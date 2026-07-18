@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PRASHANT PANDA — Offline Editor, Mumbai</title>
+<meta name="description" content="Prashant Panda — offline editor, Mumbai. Thirty titles. Eighteen banners. Twenty years in the edit. Press play." />
+<meta name="theme-color" content="#0a0809" />
+
+<meta property="og:title" content="PRASHANT PANDA — Offline Editor, Mumbai" />
+<meta property="og:description" content="Thirty titles. Eighteen banners. Twenty years in the edit. Press play." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/img/work/1088993725.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="assets/img/pp-mark.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ======== FILM GRAIN + VIGNETTE ======== -->
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<!-- ======== CUSTOM CURSOR ======== -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <span class="cursor__dot"></span>
+  <span class="cursor__ring"><b class="cursor__label">PLAY</b></span>
+</div>
+
+<!-- ======== HUD (scroll timecode) ======== -->
+<div class="hud" aria-hidden="true">
+  <span class="hud__l">P/P — OFFLINE EDIT</span>
+  <span class="hud__r">TC <b id="tc">00:00:00:00</b> / 25FPS</span>
+</div>
+
+<!-- ======== PRELOADER ======== -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__row"><span>PRASHANT PANDA</span><span>MUMBAI</span></div>
+  <div class="loader__center">
+    <div class="loader__mark">PAND<i></i></div>
+    <div class="loader__films"><i></i><span>EDITOR</span><i></i></div>
+  </div>
+  <div class="loader__row loader__row--bottom">
+    <span>LOADING TIMELINE</span>
+    <span class="loader__bar" aria-hidden="true"><i id="loaderFill"></i></span>
+    <span><b id="loaderNum">00</b>%</span>
+  </div>
+</div>
+
+<!-- ======== NAV ======== -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" aria-label="Prashant Panda — top">PRASHANT&nbsp;PAND<i></i></a>
+  <div class="nav__right">
+    <a class="nav__link" href="https://vimeo.com/showcase/8346821" target="_blank" rel="noopener">VIMEO</a>
+    <a class="nav__link" href="https://www.imdb.com/name/nm8079333/" target="_blank" rel="noopener">IMDB</a>
+    <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+      <span class="nav__burger-label" id="burgerLabel">MENU</span>
+      <span class="nav__burger-lines"><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ======== FULLSCREEN MENU ======== -->
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu__bg" aria-hidden="true">
+    <img data-menubg="reel"      src="assets/img/work/1088993725.jpg" alt="" />
+    <img data-menubg="index"     src="assets/img/work/1106434425.jpg" alt="" />
+    <img data-menubg="brands"    src="assets/img/work/867458294.jpg"  alt="" />
+    <img data-menubg="directors" src="assets/img/work/1073818885.jpg" alt="" />
+    <img data-menubg="editor"    src="assets/img/work/1015277896.jpg" alt="" />
+    <img data-menubg="contact"   src="assets/img/work/1106435260.jpg" alt="" />
+  </div>
+  <nav class="menu__links" aria-label="Primary">
+    <a href="#reel" data-bg="reel"><b>01</b><span>REEL</span><small>07 CUTS</small></a>
+    <a href="#index" data-bg="index"><b>02</b><span>INDEX</span><small>30 TITLES</small></a>
+    <a href="#brands" data-bg="brands"><b>03</b><span>BRANDS</span><small>18 BANNERS</small></a>
+    <a href="#directors" data-bg="directors"><b>04</b><span>DIRECTORS</span><small>06 NAMES</small></a>
+    <a href="#editor" data-bg="editor"><b>05</b><span>EDITOR</span><small>P. PANDA</small></a>
+    <a href="#contact" data-bg="contact"><b>06</b><span>CONTACT</span><small>MUMBAI</small></a>
+  </nav>
+  <div class="menu__foot">
+    <a href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">@PPCUT_EDIT</a>
+    <span class="menu__foot-right">
+      <a href="https://vimeo.com/showcase/8346821" target="_blank" rel="noopener">VIMEO&nbsp;↗</a>
+      <a href="https://www.instagram.com/prashantpanda79/" target="_blank" rel="noopener">INSTAGRAM&nbsp;↗</a>
+      <a href="https://www.imdb.com/name/nm8079333/" target="_blank" rel="noopener">IMDB&nbsp;↗</a>
+    </span>
+  </div>
+</div>
+
+<main>
+
+<!-- ======== HERO ======== -->
+<section class="hero" id="top">
+  <div class="hero__slides" aria-hidden="true">
+    <img id="heroA" class="hero__slide on" src="assets/img/work/1088993725.jpg" alt="" />
+    <img id="heroB" class="hero__slide" src="assets/img/work/867458294.jpg" alt="" />
+  </div>
+  <div class="hero__scrim" aria-hidden="true"></div>
+
+  <span class="frametick frametick--tl">OFFLINE&nbsp;EDITOR</span>
+  <span class="frametick frametick--tr">SINCE&nbsp;MMV</span>
+  <span class="frametick frametick--bl">19.0760°N&nbsp;/&nbsp;72.8777°E</span>
+  <span class="frametick frametick--br">CUTS&nbsp;01—30</span>
+
+  <div class="hero__center">
+    <h1 class="hero__mark">
+      <span class="hero__scorpio">PAND<i></i></span>
+      <span class="hero__films"><i></i><span>EDITOR</span><i></i></span>
+    </h1>
+    <button class="hero__play" id="playReel" aria-label="Play the reel">
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <defs><path id="ringpath" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0" /></defs>
+        <text textLength="295" lengthAdjust="spacingAndGlyphs"><textPath href="#ringpath">PLAY THE REEL — PRASHANT PANDA — PLAY —&#160;</textPath></text>
+      </svg>
+      <span class="hero__play-tri" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <a class="hero__scroll" href="#reel" aria-label="Scroll to the reel"><i></i></a>
+</section>
+
+<!-- ======== CLIENT MARQUEE (thin) ======== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>GIC</span><b>●</b><span>SNICKERS</span><b>●</b><span>ICICI&nbsp;BANK</span><b>●</b><span>PERFETTI</span><b>●</b><span>CANDID</span><b>●</b><span>GREENPLY</span><b>●</b><span>HINT</span><b>●</b><span>EVA</span><b>●</b><span>ENVY</span><b>●</b><span>TVF</span><b>●</b><span>ALTBALAJI</span><b>●</b>
+    <span>GIC</span><b>●</b><span>SNICKERS</span><b>●</b><span>ICICI&nbsp;BANK</span><b>●</b><span>PERFETTI</span><b>●</b><span>CANDID</span><b>●</b><span>GREENPLY</span><b>●</b><span>HINT</span><b>●</b><span>EVA</span><b>●</b><span>ENVY</span><b>●</b><span>TVF</span><b>●</b><span>ALTBALAJI</span><b>●</b>
+  </div>
+</div>
+
+<!-- ======== 01 — THE REEL (asymmetric feature flow) ======== -->
+<section class="reel" id="reel">
+  <div class="sec-head reveal">
+    <span class="kicker"><i>[●]</i> 01 — THE REEL</span>
+    <h2 class="sec-title">SELECTED<br/>CUTS</h2>
+    <span class="sec-meta">SEVEN&nbsp;AD&nbsp;FILMS<br/>PLAYABLE&nbsp;IN&nbsp;SITE</span>
+  </div>
+
+  <div class="reel__bar reveal">
+    <span class="reel__hint"><i>[●]</i>&nbsp;DRAG&nbsp;/&nbsp;SCROLL</span>
+    <div class="reel__arrows">
+      <button class="reel__arrow" id="reelPrev" aria-label="Previous film">←</button>
+      <button class="reel__arrow" id="reelNext" aria-label="Next film">→</button>
+    </div>
+  </div>
+
+  <div class="reel__strip" id="reelStrip" role="region" aria-label="Selected work carousel" tabindex="0"><!-- pieces injected --></div>
+  <div class="reel__progress" aria-hidden="true"><i id="reelBar"></i></div>
+
+  <div class="reel__more reveal">
+    <a href="#index" class="reel__more-link"><span>FULL INDEX</span><i>↓</i></a>
+  </div>
+</section>
+
+<!-- ======== 02 — INDEX (symmetric grid, 30 titles) ======== -->
+<section class="index" id="index">
+  <div class="sec-head sec-head--line reveal">
+    <span class="kicker"><i>[●]</i> 02 — INDEX</span>
+    <h2 class="sec-title sec-title--sm">ALL&nbsp;TITLES</h2>
+    <span class="sec-meta">N&nbsp;=&nbsp;30<br/>ADS&nbsp;/&nbsp;SERIES&nbsp;/&nbsp;FILMS</span>
+  </div>
+  <div class="index__grid" id="indexGrid"><!-- tiles injected --></div>
+</section>
+
+<!-- ======== 03 — BRANDS (big banner scroll) ======== -->
+<section class="banners" id="brands">
+  <div class="sec-head reveal">
+    <span class="kicker"><i>[●]</i> 03 — THE BANNERS</span>
+    <h2 class="sec-title sec-title--sm">BRANDS&nbsp;&amp;<br/>PLATFORMS</h2>
+    <span class="sec-meta">N&nbsp;=&nbsp;18<br/>CUT&nbsp;FOR&nbsp;/&nbsp;AIRED&nbsp;ON</span>
+  </div>
+  <div class="bmq" aria-label="Brands Prashant has cut for">
+    <div class="bmq__track">
+      <span>GIC&nbsp;INSURANCE</span><b>●</b><span>SNICKERS</span><b>●</b><span>ICICI&nbsp;BANK</span><b>●</b><span>PERFETTI&nbsp;VAN&nbsp;MELLE</span><b>●</b><span>CANDID</span><b>●</b><span>GREENPLY</span><b>●</b><span>HINT</span><b>●</b><span>EVA</span><b>●</b><span>ENVY</span><b>●</b>
+      <span>GIC&nbsp;INSURANCE</span><b>●</b><span>SNICKERS</span><b>●</b><span>ICICI&nbsp;BANK</span><b>●</b><span>PERFETTI&nbsp;VAN&nbsp;MELLE</span><b>●</b><span>CANDID</span><b>●</b><span>GREENPLY</span><b>●</b><span>HINT</span><b>●</b><span>EVA</span><b>●</b><span>ENVY</span><b>●</b>
+    </div>
+  </div>
+  <div class="bmq bmq--rev" aria-label="Platforms and agencies">
+    <div class="bmq__track">
+      <span>TVF</span><b>●</b><span>PRIME&nbsp;VIDEO</span><b>●</b><span>ALTBALAJI</span><b>●</b><span>JIOCINEMA</span><b>●</b><span>THE&nbsp;SCREEN&nbsp;PATTI</span><b>●</b><span>OGILVY</span><b>●</b><span>BBDO&nbsp;INDIA</span><b>●</b><span>JAMIC&nbsp;FILMS</span><b>●</b><span>DUCKTAPE</span><b>●</b>
+      <span>TVF</span><b>●</b><span>PRIME&nbsp;VIDEO</span><b>●</b><span>ALTBALAJI</span><b>●</b><span>JIOCINEMA</span><b>●</b><span>THE&nbsp;SCREEN&nbsp;PATTI</span><b>●</b><span>OGILVY</span><b>●</b><span>BBDO&nbsp;INDIA</span><b>●</b><span>JAMIC&nbsp;FILMS</span><b>●</b><span>DUCKTAPE</span><b>●</b>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 04 — DIRECTORS ======== -->
+<section class="dirs" id="directors">
+  <div class="sec-head reveal">
+    <span class="kicker"><i>[●]</i> 04 — THE DIRECTORS</span>
+    <h2 class="sec-title sec-title--sm">IN&nbsp;THE&nbsp;ROOM<br/>WITH</h2>
+    <span class="sec-meta">N&nbsp;=&nbsp;06<br/>ADS&nbsp;+&nbsp;FEATURES</span>
+  </div>
+  <div id="dirRows"><!-- rows injected --></div>
+</section>
+<div class="dirfloat" id="dirFloat" aria-hidden="true"><img id="dirFloatImg" src="" alt="" /></div>
+
+<!-- ======== 05 — EDITOR (bone split panel) ======== -->
+<section class="producer" id="editor">
+  <div class="producer__panel reveal">
+    <span class="kicker kicker--ink"><i>[●]</i> 05 — THE EDITOR</span>
+    <h2 class="producer__name">PRASHANT<br/>PANDA</h2>
+    <span class="producer__role">OFFLINE EDITOR — MUMBAI — SINCE 2005</span>
+    <div class="producer__stats">
+      <div class="stat"><b data-count="30">0</b><span>TITLES</span></div>
+      <div class="stat"><b data-count="18">0</b><span>BANNERS</span></div>
+      <div class="stat"><b data-count="20">0</b><span>YEARS</span></div>
+    </div>
+    <a class="producer__mail" href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">@PPCUT_EDIT&nbsp;↗</a>
+  </div>
+  <div class="producer__viz" aria-hidden="true">
+    <img id="vizA" class="producer__still on" src="assets/img/work/1088993725.jpg" alt="" />
+    <img id="vizB" class="producer__still" src="assets/img/work/867458294.jpg" alt="" />
+    <span class="producer__cap" id="vizCap">STILL 01 — GIC — MARY / GIC INSURANCE</span>
+    <span class="producer__bar"><i id="vizBar"></i></span>
+  </div>
+</section>
+
+<!-- ======== 06 — CONTACT ======== -->
+<footer class="foot" id="contact">
+  <span class="kicker foot__kicker reveal"><i>[●]</i> 06 — CONTACT</span>
+
+  <a class="frow reveal" href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">
+    <span class="frow__k">NEW&nbsp;BUSINESS</span>
+    <span class="frow__word">INSTAGRAM</span>
+    <span class="frow__arrow">↗</span>
+  </a>
+  <a class="frow reveal" href="https://vimeo.com/showcase/8346821" target="_blank" rel="noopener">
+    <span class="frow__k">THE&nbsp;SHOWREEL</span>
+    <span class="frow__word">VIMEO</span>
+    <span class="frow__arrow">↗</span>
+  </a>
+  <a class="frow reveal" href="https://www.imdb.com/name/nm8079333/" target="_blank" rel="noopener">
+    <span class="frow__k">THE&nbsp;FILMOGRAPHY</span>
+    <span class="frow__word">IMDB</span>
+    <span class="frow__arrow">↗</span>
+  </a>
+
+  <div class="foot__bar">
+    <span class="foot__brand">PRASHANT&nbsp;PAND<i></i></span>
+    <span class="foot__legal">©&nbsp;MMXXVI&nbsp;—&nbsp;MUMBAI,&nbsp;INDIA</span>
+    <span class="foot__social">
+      <a href="https://www.instagram.com/prashantpanda79/" target="_blank" rel="noopener">@PRASHANTPANDA79&nbsp;↗</a>
+      <a href="https://www.imdb.com/name/nm8079333/" target="_blank" rel="noopener">IMDB&nbsp;↗</a>
+    </span>
+    <a class="foot__top" href="#top">↑&nbsp;TOP</a>
+  </div>
+  <p class="foot__sig">EVERY FRAME EARNS ITS PLACE. CUT TO BLACK.</p>
+</footer>
+
+</main>
+
+<!-- ======== PLAYER OVERLAY ======== -->
+<div class="player" id="player" role="dialog" aria-modal="true" aria-label="Film player">
+  <div class="player__head">
+    <span class="player__now"><i>●</i>&nbsp;NOW&nbsp;PLAYING</span>
+    <span class="player__title" id="playerTitle"></span>
+    <button class="player__close" id="playerClose">CLOSE&nbsp;✕</button>
+  </div>
+  <div class="player__stage">
+    <div class="player__frame"><iframe id="playerFrame" src="" title="Film player" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+  </div>
+  <div class="player__foot">
+    <button class="player__nav" id="playerPrev">←&nbsp;PREV</button>
+    <span class="player__count" id="playerCount">01&nbsp;/&nbsp;10</span>
+    <button class="player__nav" id="playerNext">NEXT&nbsp;→</button>
+    <a class="player__ext" id="playerVimeo" href="https://vimeo.com/showcase/8346821" target="_blank" rel="noopener">OPEN&nbsp;ON&nbsp;VIMEO&nbsp;↗</a>
+  </div>
+</div>
+
+<script src="script.js?v=1"></script>
+</body>
+</html>
