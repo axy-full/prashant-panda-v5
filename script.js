@@ -1,6 +1,8 @@
 /* ============================================================
    PRASHANT PANDA — V4 · THE SCREENING ROOM
-   reel · index (ads/series/films) · brands · directors · player
+   one shared script for all pages — every module guards on the
+   presence of its DOM ( / · /work · /directors · /storyteller ·
+   /contact ); clean URLs via vercel cleanUrls + serve.py locally
    Sources: vimeo.com/showcase/8346821 (verified embeds + real
    durations) and imdb.com/name/nm8079333 (filmography).
    Fidelity rules (carried from V1–V3, tightened in V4):
@@ -326,7 +328,9 @@
   }
   (function nav() {
     const nav = $('#nav');
-    const onScroll = () => nav && nav.classList.toggle('solid', scrollY > 40);
+    /* bone-opening pages (storyteller) force a solid nav from the top */
+    const forceSolid = document.body.dataset.nav === 'solid';
+    const onScroll = () => nav && nav.classList.toggle('solid', forceSolid || scrollY > 40);
     onScroll(); addEventListener('scroll', onScroll, { passive: true });
     if (burger && menu) {
       burger.addEventListener('click', () => toggleMenu(!menuOpen()));
@@ -365,7 +369,8 @@
   (function timecode() {
     const el = $('#tc');
     if (!el) return;
-    const TOTAL = 1465; // 24:25 — twenty-four titles, twenty-five frames
+    /* per-page runtimes via <body data-tc> — full scroll = full reel */
+    const TOTAL = +document.body.dataset.tc || 1465; // default 24:25
     const fmt = s => {
       const f = Math.floor((s % 1) * 25);
       const sec = Math.floor(s);

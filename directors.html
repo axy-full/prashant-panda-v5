@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DIRECTORS — PRASHANT PANDA</title>
+<meta name="description" content="Five directors, one cutting room. The names Prashant Panda has told stories with." />
+<meta name="theme-color" content="#0a0809" />
+
+<meta property="og:title" content="DIRECTORS — PRASHANT PANDA" />
+<meta property="og:description" content="Five directors, one cutting room." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/img/work/1073818885.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="assets/img/pp-mark.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body class="loaded" data-page="directors" data-tc="325">
+
+<!-- ======== FILM GRAIN + VIGNETTE ======== -->
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<!-- ======== CUSTOM CURSOR ======== -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <span class="cursor__dot"></span>
+  <span class="cursor__ring"><b class="cursor__label">PLAY</b></span>
+</div>
+
+<!-- ======== HUD (scroll timecode) ======== -->
+<div class="hud" aria-hidden="true">
+  <span class="hud__l">P/P — FILM · STORY · EDIT</span>
+  <span class="hud__r">TC <b id="tc">00:00:00:00</b> / 25FPS</span>
+</div>
+
+<!-- ======== NAV ======== -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="/" aria-label="Prashant Panda — home">PRASHANT&nbsp;PAND<i></i></a>
+  <div class="nav__right">
+    <a class="nav__link" href="https://vimeo.com/showcase/8346821" target="_blank" rel="noopener">VIMEO</a>
+    <a class="nav__link" href="https://www.imdb.com/name/nm8079333/" target="_blank" rel="noopener">IMDB</a>
+    <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+      <span class="nav__burger-label" id="burgerLabel">MENU</span>
+      <span class="nav__burger-lines"><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ======== FULLSCREEN MENU ======== -->
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu__bg" aria-hidden="true">
+    <img data-menubg="reel"      src="assets/img/work/1088993725.jpg" alt="" />
+    <img data-menubg="index"     src="assets/img/work/1106434425.jpg" alt="" />
+    <img data-menubg="directors" src="assets/img/work/1073818885.jpg" alt="" />
+    <img data-menubg="editor"    src="assets/img/work/1015277896.jpg" alt="" />
+    <img data-menubg="contact"   src="assets/img/work/1106435260.jpg" alt="" />
+  </div>
+  <nav class="menu__links" aria-label="Primary">
+    <a href="/" data-bg="reel"><b>01</b><span>REEL</span><small>07 CUTS</small></a>
+    <a href="/work" data-bg="index"><b>02</b><span>INDEX</span><small>24 TITLES + 18 BANNERS</small></a>
+    <a class="now" href="/directors" data-bg="directors"><b>03</b><span>DIRECTORS</span><small>05 NAMES</small></a>
+    <a href="/storyteller" data-bg="editor"><b>04</b><span>STORYTELLER</span><small>P. PANDA</small></a>
+    <a href="/contact" data-bg="contact"><b>05</b><span>CONTACT</span><small>MUMBAI</small></a>
+  </nav>
+  <div class="menu__foot">
+    <a href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">@PPCUT_EDIT</a>
+    <span class="menu__foot-right">
+      <a href="https://vimeo.com/showcase/8346821" target="_blank" rel="noopener">VIMEO&nbsp;↗</a>
+      <a href="https://www.instagram.com/prashantpanda79/" target="_blank" rel="noopener">INSTAGRAM&nbsp;↗</a>
+      <a href="https://www.imdb.com/name/nm8079333/" target="_blank" rel="noopener">IMDB&nbsp;↗</a>
+    </span>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- ======== 03 — DIRECTORS ======== -->
+<section class="dirs" id="directors">
+  <div class="sec-head reveal">
+    <span class="kicker"><i>[●]</i> 03 — THE DIRECTORS</span>
+    <h2 class="sec-title sec-title--sm">IN&nbsp;THE&nbsp;ROOM<br/>WITH</h2>
+    <span class="sec-meta">N&nbsp;=&nbsp;05<br/>AD&nbsp;FILMS</span>
+  </div>
+  <div id="dirRows"><!-- rows injected --></div>
+</section>
+<div class="dirfloat" id="dirFloat" aria-hidden="true"><img id="dirFloatImg" src="" alt="" /></div>
+
+<!-- ======== NEXT ======== -->
+<div class="nextwrap">
+  <a class="frow frow--next reveal" href="/storyteller">
+    <span class="frow__k">NEXT&nbsp;—&nbsp;04</span>
+    <span class="frow__word">STORYTELLER</span>
+    <span class="frow__arrow">→</span>
+  </a>
+</div>
+
+<!-- ======== MINI FOOT ======== -->
+<footer class="foot foot--mini">
+  <div class="foot__bar">
+    <span class="foot__brand">PRASHANT&nbsp;PAND<i></i></span>
+    <span class="foot__legal">©&nbsp;MMXXVI&nbsp;—&nbsp;MUMBAI,&nbsp;INDIA</span>
+    <span class="foot__social">
+      <a href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">@PPCUT_EDIT&nbsp;↗</a>
+      <a href="https://www.imdb.com/name/nm8079333/" target="_blank" rel="noopener">IMDB&nbsp;↗</a>
+    </span>
+    <a class="foot__top" href="#top">↑&nbsp;TOP</a>
+  </div>
+  <p class="foot__sig">EVERY FRAME EARNS ITS PLACE. CUT TO BLACK.</p>
+</footer>
+
+</main>
+
+<script src="script.js?v=2"></script>
+</body>
+</html>

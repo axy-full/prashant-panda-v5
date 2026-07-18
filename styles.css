@@ -217,6 +217,8 @@ body.menu-open .nav{ background:transparent; backdrop-filter:none; border-color:
 }
 .menu__links small{ font-family:var(--mono); font-size:10px; letter-spacing:.18em; color:var(--mut-2); }
 .menu__links a:hover span{ transform:translateX(16px); color:var(--red); }
+.menu__links a.now span{ color:var(--red); }
+.menu__links a.now small::after{ content:' · NOW SHOWING'; color:var(--red); }
 .menu__foot{
   position:absolute; left:0; right:0; bottom:0; z-index:2;
   display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
@@ -675,7 +677,11 @@ body.loaded .hero__center{ opacity:1; transform:none; }
    06 — CONTACT / FOOT
    ============================================================ */
 .foot{ padding-top:clamp(90px,14vh,180px); }
+.foot--mini{ padding-top:clamp(50px,9vh,110px); }
 .foot__kicker{ display:flex; margin:0 var(--pad) 30px; }
+
+/* next-page rail — each page hands off to the next reel */
+.nextwrap{ padding-top:clamp(70px,12vh,150px); }
 .frow{
   display:grid; grid-template-columns:minmax(130px,230px) 1fr auto;
   align-items:center; gap:24px;
