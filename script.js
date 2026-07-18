@@ -175,7 +175,8 @@
   })();
 
   /* ============================================================
-     BANNERS — brands row + houses/platforms row
+     BANNERS — ad-film brands + agencies (under 02·A) and the
+     platforms/banners the series & films aired on (under 02·C)
      logo: filename in assets/img/brands/ (official marks,
      recolored bone via CSS) · logo:null → typographic fallback
      ============================================================ */
@@ -189,17 +190,17 @@
     { name: 'HINT',               logo: 'hint.svg' },
     { name: 'EVA',                logo: 'eva.svg' },
     { name: 'ENVY',               logo: 'envy.png' },
+    { name: 'OGILVY',             logo: 'ogilvy.svg' },
+    { name: 'BBDO INDIA',         logo: 'bbdo.svg' },
+    { name: 'JAMIC FILMS',        logo: 'jamic-films.png' },
+    { name: 'DUCKTAPE',           logo: 'ducktape.png' },
   ];
-  const HOUSES_ROW = [
+  const PLATFORMS_ROW = [
     { name: 'TVF',              logo: 'tvf.png' },
     { name: 'PRIME VIDEO',      logo: 'prime-video.svg' },
     { name: 'ALTBALAJI',        logo: 'altbalaji.svg' },
     { name: 'JIOCINEMA',        logo: 'jiocinema.svg' },
     { name: 'THE SCREEN PATTI', logo: 'screen-patti.png' },
-    { name: 'OGILVY',           logo: 'ogilvy.svg' },
-    { name: 'BBDO INDIA',       logo: 'bbdo.svg' },
-    { name: 'JAMIC FILMS',      logo: 'jamic-films.png' },
-    { name: 'DUCKTAPE',         logo: 'ducktape.png' },
   ];
   (function renderBanners() {
     const item = b => b.logo
@@ -208,11 +209,13 @@
     const fill = (id, row) => {
       const track = $(id);
       if (!track) return;
-      const half = row.map(b => `${item(b)}<b>●</b>`).join('');
+      /* short rows repeat within each half so one half always outspans the viewport */
+      const reps = row.length < 7 ? 2 : 1;
+      const half = Array.from({ length: reps }, () => row.map(b => `${item(b)}<b>●</b>`).join('')).join('');
       track.innerHTML = half + half; /* ×2 for the -50% loop */
     };
     fill('#bmqBrands', BRANDS_ROW);
-    fill('#bmqHouses', HOUSES_ROW);
+    fill('#bmqPlatforms', PLATFORMS_ROW);
   })();
 
   /* ============================================================

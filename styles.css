@@ -551,14 +551,19 @@ body.loaded .hero__center{ opacity:1; transform:none; }
 .tile--wide .slate__title{ font-size:clamp(22px,2.4vw,38px); }
 
 /* ============================================================
-   03 — BRANDS (big banner scroll)
+   BANNER MARQUEES — brands/agencies under 02·A, platforms
+   under 02·C (big banner scroll rows inside the index)
    ============================================================ */
-.banners{ padding-bottom:clamp(90px,14vh,180px); }
+.bmqcap{
+  display:flex; justify-content:space-between; align-items:baseline; gap:20px;
+  padding:clamp(40px,7vh,84px) var(--pad) clamp(14px,2.4vh,24px);
+}
+.bmqcap__meta{ font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+  color:var(--mut-2); text-align:right; }
 .bmq{
-  overflow:hidden; border-top:1px solid var(--line);
+  overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
   padding:clamp(18px,3.6vh,38px) 0;
 }
-.bmq:last-of-type{ border-bottom:1px solid var(--line); }
 .bmq__track{
   display:inline-flex; align-items:center; white-space:nowrap;
   animation:marq 48s linear infinite;
