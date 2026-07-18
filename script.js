@@ -1,11 +1,12 @@
 /* ============================================================
    PRASHANT PANDA — V4 · THE SCREENING ROOM
-   reel · index · brands · directors · player
+   reel · index (ads/series/films) · brands · directors · player
    Sources: vimeo.com/showcase/8346821 (verified embeds + real
    durations) and imdb.com/name/nm8079333 (filmography).
-   Fidelity rules (carried from V1–V3):
+   Fidelity rules (carried from V1–V3, tightened in V4):
      · IMDB ratings rendered ONLY when >= 7.0
-     · "Editorial Department" roles are never upgraded to "Editor"
+     · Editorial-Department titles are EXCLUDED site-wide
+       (per Prashant's brief) — never listed, never upgraded
      · no email anywhere until Prashant supplies his address
    ============================================================ */
 (() => {
@@ -57,23 +58,25 @@
   ];
   const FILMS = [
     { title: 'Rabia and Olivia',      year: 2023, role: 'Editor',          note: 'Feature film' },
-    { title: 'My Name Is Khan',       year: 2010, role: 'Editorial Dept.', note: 'Dir. Karan Johar' },
-    { title: "Nero's Guests",         year: 2009, role: 'Editorial Dept.', note: 'Documentary' },
-    { title: 'Just Married',          year: 2007, role: 'Editorial Dept.', note: '' },
-    { title: 'Pyaar Ke Side Effects', year: 2006, role: 'Editorial Dept.', note: '' },
-    { title: 'Raasta Roko',           year: 2006, role: 'Editorial Dept.', note: '' },
-    { title: 'Ek Khiladi Ek Haseena', year: 2005, role: 'Editorial Dept.', note: '' },
   ];
 
-  /* the reel — seven cuts, one shared height, cinema widths */
+  /* the reel — seven stories, one shared height, cinema widths.
+     note = the thought behind the story (craft copy, not fact) */
   const REEL = [
-    { id: 1,  t: 'GIC — MARY',                ar: '169' },
-    { id: 2,  t: 'CHUPA CHUP',                ar: '34'  },
-    { id: 7,  t: 'GREENPLY E-ZERO',           ar: '239', tick: 'FT. NTR JR — DIR. NIKHIL RAO' },
-    { id: 4,  t: 'SNICKERS',                  ar: '11'  },
-    { id: 8,  t: 'HINT — PYAAR KA TAKE-OFF',  ar: '45'  },
-    { id: 6,  t: 'CANDID',                    ar: '169' },
-    { id: 10, t: 'ENVY',                      ar: '43'  },
+    { id: 1,  t: 'GIC — MARY',                ar: '169',
+      note: 'Insurance sold as belonging — a stray who stays. The cut sits still and lets the bond do the talking.' },
+    { id: 2,  t: 'CHUPA CHUP',                ar: '34',
+      note: 'A quiet joke built frame by frame. Comedy timing is edit timing — hold, hold, pay off.' },
+    { id: 7,  t: 'GREENPLY E-ZERO',           ar: '239', tick: 'FT. NTR JR — DIR. NIKHIL RAO',
+      note: 'A star walks into a carpenter’s world. Scale meets craft, and the edit keeps both honest.' },
+    { id: 4,  t: 'SNICKERS',                  ar: '11',
+      note: 'Hunger changes people — the gag only lands if the switch is invisible. Blink, and the cut already happened.' },
+    { id: 8,  t: 'HINT — PYAAR KA TAKE-OFF',  ar: '45',
+      note: 'A love story boarding in fifty seconds. Looks traded like dialogue — the edit does the flirting.' },
+    { id: 6,  t: 'CANDID',                    ar: '169',
+      note: 'Discomfort has a rhythm: squirm, beat, relief. A remedy told as situational comedy.' },
+    { id: 10, t: 'ENVY',                      ar: '43',
+      note: 'Fragrance is pure mood — no plot, only tempo. The edit wears the perfume.' },
   ];
 
   /* ============================================================
@@ -83,7 +86,6 @@
     { name: 'SHIRISH DAIYA',      films: 'GIC — MARY · GIC — INTEGRATED · HINT', count: '03 CUTS — JAMIC FILMS', still: '1088993725' },
     { name: 'NIKHIL RAO',         films: 'CHUPA CHUP · GREENPLY E-ZERO',         count: '02 CUTS — OGILVY / JAMIC', still: '867458294' },
     { name: 'RISHABH DUBEY',      films: 'SNICKERS · CANDID',                    count: '02 CUTS — BBDO / DUCKTAPE', still: '1073818885' },
-    { name: 'KARAN JOHAR',        films: 'MY NAME IS KHAN — 2010',               count: 'EDITORIAL DEPT.',        still: '' },
     { name: 'VARUN GUPTA',        films: 'EVA — YES',                            count: '01 CUT',                 still: '1031822870' },
     { name: 'VIVEK DASCHAUDHARY', films: 'ENVY',                                 count: '01 CUT',                 still: '1106435260' },
   ];
@@ -107,55 +109,110 @@
           <span class="piece__no">${pad2(i + 1)}</span>
           <span class="piece__title">${r.t}</span>
           <span class="piece__meta">${p.client.toUpperCase()} — ${mmss(p.dur)}</span>
-        </div>`;
+        </div>
+        <p class="piece__note">${r.note}</p>`;
       strip.appendChild(el);
     });
   })();
 
   /* ============================================================
-     RENDER — INDEX (10 ad tiles + 20 slates = 30)
+     RENDER — INDEX (three shelves: ads / series / films)
+     each shelf numbers its own titles; an end strip stretches
+     to the last grid column (grid-column:auto/-1) so no shelf
+     leaves bare cells
      ============================================================ */
   (function renderIndex() {
-    const grid = $('#indexGrid');
-    if (!grid) return;
-    const N = ADS.length + SERIES.length + FILMS.length;
-    let n = 0;
-    ADS.forEach(p => {
-      n += 1;
-      const el = document.createElement('button');
-      el.type = 'button';
-      el.className = 'tile';
-      el.dataset.play = p.id;
-      el.setAttribute('aria-label', `Play — ${p.title}`);
-      el.innerHTML = `
-        <img loading="lazy" src="${img(p)}" alt="${p.title} — film still" />
-        <span class="tile__no">${pad2(n)} / ${pad2(N)}</span>
-        <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${p.client.toUpperCase()} — ${mmss(p.dur)}</span></span>`;
-      grid.appendChild(el);
-    });
-    const slate = (tag, title, meta, rating) => {
-      n += 1;
+    const endStrip = (grid, text) => {
+      const end = document.createElement('div');
+      end.className = 'tile tile--end';
+      end.innerHTML = `<span>[<i>●</i>]&nbsp;&nbsp;${text}</span>`;
+      grid.appendChild(end);
+    };
+    const slate = (grid, no, N, tag, title, meta, rating, wide) => {
       const el = document.createElement('div');
-      el.className = 'tile tile--slate';
+      el.className = 'tile tile--slate' + (wide ? ' tile--wide' : '');
       el.innerHTML = `
-        <span class="slate__top"><b>${pad2(n)} / ${pad2(N)} — ${tag}</b>${rating ? `<span>IMDB ${rating.toFixed(1)}</span>` : ''}</span>
+        <span class="slate__top"><b>${pad2(no)} / ${pad2(N)} — ${tag}</b>${rating ? `<span>IMDB ${rating.toFixed(1)}</span>` : ''}</span>
         <span class="slate__title">${title.toUpperCase()}</span>
         <span class="slate__meta">${meta}</span>`;
       grid.appendChild(el);
     };
-    SERIES.forEach(s => {
-      const meta = [s.years, `${pad2(s.eps)} EP`, s.platform.toUpperCase()].filter(Boolean).join(' · ');
-      slate('SERIES', s.title, meta, s.rating >= 7 ? s.rating : 0);
-    });
-    FILMS.forEach(f => {
-      const meta = [String(f.year), f.role.toUpperCase(), f.note.toUpperCase()].filter(Boolean).join(' · ');
-      slate('FILM', f.title, meta, 0);
-    });
-    /* end card — fills the 2 leftover cells of the 4-col grid */
-    const end = document.createElement('div');
-    end.className = 'tile tile--end';
-    end.innerHTML = `<span>[<i>●</i>]&nbsp;&nbsp;END OF REEL — ${N} TITLES — MUMBAI</span>`;
-    grid.appendChild(end);
+
+    const gAds = $('#gridAds');
+    if (gAds) {
+      ADS.forEach((p, i) => {
+        const el = document.createElement('button');
+        el.type = 'button';
+        el.className = 'tile';
+        el.dataset.play = p.id;
+        el.setAttribute('aria-label', `Play — ${p.title}`);
+        el.innerHTML = `
+          <img loading="lazy" src="${img(p)}" alt="${p.title} — film still" />
+          <span class="tile__no">${pad2(i + 1)} / ${pad2(ADS.length)}</span>
+          <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${p.client.toUpperCase()} — ${mmss(p.dur)}</span></span>`;
+        gAds.appendChild(el);
+      });
+      endStrip(gAds, `END OF AD FILMS — ${pad2(ADS.length)} CUTS`);
+    }
+
+    const gSeries = $('#gridSeries');
+    if (gSeries) {
+      SERIES.forEach((s, i) => {
+        const meta = [s.years, `${pad2(s.eps)} EP`, s.platform.toUpperCase()].filter(Boolean).join(' · ');
+        slate(gSeries, i + 1, SERIES.length, 'SERIES', s.title, meta, s.rating >= 7 ? s.rating : 0, false);
+      });
+      endStrip(gSeries, `END OF SERIES — ${pad2(SERIES.length)} SHOWS`);
+    }
+
+    const gFilms = $('#gridFilms');
+    if (gFilms) {
+      FILMS.forEach((f, i) => {
+        const meta = [String(f.year), f.role.toUpperCase(), f.note.toUpperCase()].filter(Boolean).join(' · ');
+        slate(gFilms, i + 1, FILMS.length, 'FILM', f.title, meta, 0, true);
+      });
+      endStrip(gFilms, 'END OF REEL — CUT TO BLACK');
+    }
+  })();
+
+  /* ============================================================
+     BANNERS — brands row + houses/platforms row
+     logo: filename in assets/img/brands/ (official marks,
+     recolored bone via CSS) · logo:null → typographic fallback
+     ============================================================ */
+  const BRANDS_ROW = [
+    { name: 'GIC',                logo: null }, /* Council lockup too fine-printed for marquee scale */
+    { name: 'SNICKERS',           logo: 'snickers.svg' },
+    { name: 'ICICI BANK',         logo: 'icici-bank.svg' },
+    { name: 'PERFETTI VAN MELLE', logo: 'perfetti.svg' },
+    { name: 'CANDID',             logo: 'candid.svg' },
+    { name: 'GREENPLY',           logo: 'greenply.svg' },
+    { name: 'HINT',               logo: 'hint.svg' },
+    { name: 'EVA',                logo: 'eva.svg' },
+    { name: 'ENVY',               logo: 'envy.png' },
+  ];
+  const HOUSES_ROW = [
+    { name: 'TVF',              logo: 'tvf.png' },
+    { name: 'PRIME VIDEO',      logo: 'prime-video.svg' },
+    { name: 'ALTBALAJI',        logo: 'altbalaji.svg' },
+    { name: 'JIOCINEMA',        logo: 'jiocinema.svg' },
+    { name: 'THE SCREEN PATTI', logo: 'screen-patti.png' },
+    { name: 'OGILVY',           logo: 'ogilvy.svg' },
+    { name: 'BBDO INDIA',       logo: 'bbdo.svg' },
+    { name: 'JAMIC FILMS',      logo: 'jamic-films.png' },
+    { name: 'DUCKTAPE',         logo: 'ducktape.png' },
+  ];
+  (function renderBanners() {
+    const item = b => b.logo
+      ? `<img class="bmq__logo" src="assets/img/brands/${b.logo}" alt="${b.name}" loading="lazy" />`
+      : `<span>${b.name.replace(/ /g, '&nbsp;')}</span>`;
+    const fill = (id, row) => {
+      const track = $(id);
+      if (!track) return;
+      const half = row.map(b => `${item(b)}<b>●</b>`).join('');
+      track.innerHTML = half + half; /* ×2 for the -50% loop */
+    };
+    fill('#bmqBrands', BRANDS_ROW);
+    fill('#bmqHouses', HOUSES_ROW);
   })();
 
   /* ============================================================
@@ -305,7 +362,7 @@
   (function timecode() {
     const el = $('#tc');
     if (!el) return;
-    const TOTAL = 1825; // 30:25 — thirty titles, twenty-five frames
+    const TOTAL = 1465; // 24:25 — twenty-four titles, twenty-five frames
     const fmt = s => {
       const f = Math.floor((s % 1) * 25);
       const sec = Math.floor(s);
