@@ -735,8 +735,13 @@ body.loaded .hero__center{ opacity:1; transform:none; }
 .recog__kicker i{ color:var(--red-deep); font-style:normal; }
 .recog__list{ list-style:none; margin-top:10px; }
 .recog__list li{
-  display:flex; flex-direction:column; gap:2px;
+  display:flex; align-items:center; justify-content:space-between; gap:18px;
   padding:10px 0; border-top:1px solid var(--line-ink);
+}
+.recog__text{ display:flex; flex-direction:column; gap:2px; }
+.recog__logo{
+  flex:none; width:auto; height:auto; max-height:32px; max-width:104px;
+  filter:brightness(0); opacity:.82;
 }
 .recog__list li:last-child{ border-bottom:1px solid var(--line-ink); }
 .recog__list b{ font-family:var(--mono); font-weight:700; font-size:10px;
