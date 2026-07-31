@@ -398,8 +398,9 @@
     { name: 'THE SCREEN PATTI', logo: 'screen-patti.png' },
   ];
   (function renderBanners() {
+    /* ?v=2 busts caches that pinned 404s from the deploy window */
     const item = b => b.logo
-      ? `<img class="bmq__logo" src="assets/img/brands/${b.logo}" alt="${b.name}" loading="lazy" />`
+      ? `<img class="bmq__logo" src="assets/img/brands/${b.logo}?v=2" alt="${b.name}" />`
       : `<span>${b.name.replace(/ /g, '&nbsp;')}</span>`;
     const fill = (id, row) => {
       const track = $(id);
@@ -417,7 +418,7 @@
     if (ticker) {
       const ROW = [...BRANDS_ROW, ...PLATFORMS_ROW];
       const tItem = b => b.logo
-        ? `<img class="marquee__logo" src="assets/img/brands/${b.logo}" alt="${b.name}" loading="lazy" />`
+        ? `<img class="marquee__logo" src="assets/img/brands/${b.logo}?v=2" alt="${b.name}" />`
         : `<span>${b.name.replace(/ /g, '&nbsp;')}</span>`;
       const half = ROW.map(b => `${tItem(b)}<b>●</b>`).join('');
       ticker.innerHTML = half + half;
