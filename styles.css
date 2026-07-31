@@ -482,6 +482,25 @@ body.loaded .hero__center{ opacity:1; transform:none; }
   font-family:var(--mono); font-size:9.5px; letter-spacing:.16em;
   color:rgba(242,239,230,.72); text-shadow:0 1px 8px rgba(0,0,0,.6);
 }
+.tile__tag{
+  position:absolute; top:10px; right:12px; z-index:2;
+  font-family:var(--mono); font-size:8.5px; letter-spacing:.2em;
+  color:rgba(242,239,230,.6); text-shadow:0 1px 8px rgba(0,0,0,.6);
+}
+
+/* genre filter pills (ad films shelf) */
+.filters{
+  display:flex; flex-wrap:wrap; gap:10px;
+  padding:0 var(--pad) clamp(16px,3vh,26px);
+}
+.pill{
+  font-family:var(--mono); font-size:10px; letter-spacing:.16em; color:var(--mut);
+  background:none; border:1px solid var(--line); border-radius:100px;
+  padding:9px 16px; cursor:none; transition:.3s var(--ease);
+}
+@media (max-width:900px){ .pill{ cursor:pointer; } }
+.pill:hover{ color:var(--bone); border-color:var(--bone-dim); }
+.pill.on{ background:var(--red); border-color:var(--red); color:var(--bone); }
 .tile::before{
   content:''; position:absolute; left:0; top:0; width:100%; height:2px; z-index:3;
   background:var(--red); transform:scaleX(0); transform-origin:left;
@@ -529,9 +548,15 @@ body.loaded .hero__center{ opacity:1; transform:none; }
   color:var(--mut-2); text-align:center; padding:0 14px; }
 .tile--end i{ color:var(--red); font-style:normal; }
 
-/* wide feature slate — the lone FILMS entry */
+/* wide feature slate — the lead FILMS entry */
 .tile--wide{ grid-column:span 2; }
 .tile--wide .slate__title{ font-size:clamp(22px,2.4vw,38px); }
+
+/* upcoming film — announced, not yet numbered */
+.tile--upcoming .slate__top b{ color:var(--bone); }
+.tile--upcoming{ background:var(--bg);
+  outline:1px dashed rgba(232,41,28,.5); outline-offset:-1px; }
+.tile--upcoming:hover{ background:var(--bg-2); }
 
 /* ============================================================
    BANNER MARQUEES — brands/agencies under 02·A, platforms
@@ -592,6 +617,24 @@ body.loaded .hero__center{ opacity:1; transform:none; }
 .dir__meta{ font-family:var(--mono); font-size:10px; letter-spacing:.16em;
   color:var(--mut-2); text-align:right; line-height:1.9; }
 
+/* tap a director → their cuts unfold */
+.dir{ cursor:none; }
+@media (max-width:900px){ .dir{ cursor:pointer; } }
+.dir__works{
+  grid-column:2/-1; display:none; flex-wrap:wrap; gap:10px;
+  padding-top:clamp(14px,2.4vh,24px);
+}
+.dir.open .dir__works{ display:flex; }
+.dir.open .dir__name{ color:var(--red); }
+.dirchip{
+  font-family:var(--mono); font-size:10px; letter-spacing:.14em; color:var(--bone);
+  background:none; border:1px solid var(--line); border-radius:100px;
+  padding:9px 16px; cursor:none; transition:.3s var(--ease);
+}
+@media (max-width:900px){ .dirchip{ cursor:pointer; } }
+.dirchip:hover{ background:var(--red); border-color:var(--red); }
+.dirchip--tbc{ color:var(--mut-2); border-style:dashed; pointer-events:none; }
+
 .dirfloat{
   position:fixed; top:0; left:0; z-index:250; pointer-events:none;
   width:min(320px,26vw); aspect-ratio:16/9; overflow:hidden;
@@ -627,6 +670,17 @@ body.loaded .hero__center{ opacity:1; transform:none; }
   font-size:clamp(15px,1.4vw,20px); line-height:1.55;
   color:rgba(15,13,13,.72); margin-top:clamp(18px,3vh,30px); max-width:36ch;
 }
+.producer__bio{
+  font-family:var(--sans); font-weight:400;
+  font-size:clamp(13px,1.1vw,15.5px); line-height:1.7;
+  color:rgba(15,13,13,.62); margin-top:clamp(14px,2.4vh,22px); max-width:52ch;
+}
+.producer__note{
+  font-family:var(--mono); font-size:10px; letter-spacing:.2em;
+  color:rgba(15,13,13,.7); margin-top:14px;
+}
+.producer__note i{ color:var(--red-deep); font-style:normal; }
+.producer__note--dim{ color:rgba(15,13,13,.45); margin-top:8px; }
 .producer__stats{ display:flex; gap:clamp(30px,4.5vw,68px);
   margin-top:auto; padding-top:clamp(44px,7vh,80px); }
 .stat b{
@@ -664,6 +718,7 @@ body.loaded .hero__center{ opacity:1; transform:none; }
 .foot{ padding-top:clamp(90px,14vh,180px); }
 .foot--mini{ padding-top:clamp(50px,9vh,110px); }
 .foot__kicker{ display:flex; margin:0 var(--pad) 30px; }
+.foot__title{ padding:0 var(--pad) clamp(30px,5vh,60px); }
 
 /* next-page rail — each page hands off to the next reel */
 .nextwrap{ padding-top:clamp(70px,12vh,150px); }

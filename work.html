@@ -18,7 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="loaded" data-page="work" data-tc="1465">
+<body class="loaded" data-page="work" data-tc="1585">
 
 <!-- ======== FILM GRAIN + VIGNETTE ======== -->
 <div class="grain" aria-hidden="true"></div>
@@ -41,6 +41,7 @@
   <a class="nav__brand" href="/" aria-label="Prashant Panda — home"><img src="assets/img/brand/pp-lockup-inline-white.png" alt="PRASHANT PANDA" /></a>
   <div class="nav__right">
     <a class="nav__link" href="https://vimeo.com/showcase/8346821" target="_blank" rel="noopener">VIMEO</a>
+    <a class="nav__link" href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">INSTAGRAM</a>
     <a class="nav__link" href="https://www.imdb.com/name/nm8079333/" target="_blank" rel="noopener">IMDB</a>
     <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu">
       <span class="nav__burger-label" id="burgerLabel">MENU</span>
@@ -60,8 +61,8 @@
   </div>
   <nav class="menu__links" aria-label="Primary">
     <a href="/" data-bg="reel"><b>01</b><span>REEL</span><small>07 CUTS</small></a>
-    <a class="now" href="/work" data-bg="index"><b>02</b><span>INDEX</span><small>24 TITLES + 18 BANNERS</small></a>
-    <a href="/directors" data-bg="directors"><b>03</b><span>DIRECTORS</span><small>05 NAMES</small></a>
+    <a class="now" href="/work" data-bg="index"><b>02</b><span>INDEX</span><small>26 TITLES + 22 BANNERS</small></a>
+    <a href="/directors" data-bg="directors"><b>03</b><span>DIRECTORS</span><small>10 NAMES</small></a>
     <a href="/storyteller" data-bg="editor"><b>04</b><span>STORYTELLER</span><small>P. PANDA</small></a>
     <a href="/contact" data-bg="contact"><b>05</b><span>CONTACT</span><small>MUMBAI</small></a>
   </nav>
@@ -82,7 +83,7 @@
   <div class="sec-head sec-head--line reveal">
     <span class="kicker"><i>[●]</i> 02 — INDEX</span>
     <h2 class="sec-title sec-title--sm">ALL&nbsp;TITLES</h2>
-    <span class="sec-meta">N&nbsp;=&nbsp;24<br/>EDITOR&rsquo;S&nbsp;CUTS&nbsp;ONLY</span>
+    <span class="sec-meta">N&nbsp;=&nbsp;26<br/>ADS&nbsp;/&nbsp;SERIES&nbsp;/&nbsp;FILMS</span>
   </div>
 
   <div class="subhead reveal" id="adfilms">
@@ -90,10 +91,11 @@
     <h3 class="subhead__title">AD&nbsp;FILMS</h3>
     <span class="sec-meta">N&nbsp;=&nbsp;10<br/>TAP&nbsp;TO&nbsp;PLAY</span>
   </div>
+  <div class="filters reveal" id="adFilters" role="group" aria-label="Filter ad films by genre"><!-- pills injected --></div>
   <div class="index__grid" id="gridAds"><!-- tiles injected --></div>
   <div class="bmqcap reveal">
     <span class="kicker"><i>[●]</i> CUT&nbsp;FOR</span>
-    <span class="bmqcap__meta">09&nbsp;BRANDS&nbsp;·&nbsp;04&nbsp;AGENCIES&nbsp;&amp;&nbsp;HOUSES</span>
+    <span class="bmqcap__meta">09&nbsp;BRANDS&nbsp;·&nbsp;08&nbsp;AGENCIES&nbsp;&amp;&nbsp;HOUSES</span>
   </div>
   <div class="bmq" aria-label="Brands and agencies Prashant has cut ad films for">
     <div class="bmq__track" id="bmqBrands"><!-- logos + wordmarks injected --></div>
@@ -109,9 +111,19 @@
   <div class="subhead reveal" id="films">
     <span class="kicker"><i>[●]</i> 02·C</span>
     <h3 class="subhead__title">FILMS</h3>
-    <span class="sec-meta">N&nbsp;=&nbsp;01<br/>AS&nbsp;EDITOR</span>
+    <span class="sec-meta">N&nbsp;=&nbsp;03&nbsp;(+1&nbsp;UPCOMING)<br/>EDITOR&nbsp;·&nbsp;ASSOC.&nbsp;EDITOR</span>
   </div>
   <div class="index__grid" id="gridFilms"><!-- slates injected --></div>
+
+  <div class="subhead reveal" id="musicvideos">
+    <span class="kicker"><i>[●]</i> 02·D</span>
+    <h3 class="subhead__title">MUSIC&nbsp;VIDEOS</h3>
+    <span class="sec-meta">N&nbsp;=&nbsp;00<br/>IN&nbsp;ASSEMBLY</span>
+  </div>
+  <div class="index__grid">
+    <div class="tile tile--end"><span>[<i>●</i>]&nbsp;&nbsp;MUSIC VIDEOS — REEL IN ASSEMBLY — SOON</span></div>
+  </div>
+
   <div class="bmqcap reveal">
     <span class="kicker"><i>[●]</i> AIRED&nbsp;ON</span>
     <span class="bmqcap__meta">05&nbsp;BANNERS</span>
@@ -164,6 +176,6 @@
   </div>
 </div>
 
-<script src="script.js?v=2"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>

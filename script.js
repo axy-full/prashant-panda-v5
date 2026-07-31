@@ -5,10 +5,15 @@
    /contact ); clean URLs via vercel cleanUrls + serve.py locally
    Sources: vimeo.com/showcase/8346821 (verified embeds + real
    durations) and imdb.com/name/nm8079333 (filmography).
-   Fidelity rules (carried from V1–V3, tightened in V4):
+   Fidelity rules (carried from V1–V3, revised per Prashant's
+   notes of 2026-07-26):
      · IMDB ratings rendered ONLY when >= 7.0
-     · Editorial-Department titles are EXCLUDED site-wide
-       (per Prashant's brief) — never listed, never upgraded
+     · My Name Is Khan + Paying Guest listed as ASSOCIATE FILM
+       EDITOR (Prashant's own credit correction); the remaining
+       editorial-department titles stay excluded
+     · ad-film genre tags (humor/storytelling/action/stylish)
+       are DRAFT assignments — awaiting Prashant's corrections
+     · awards list + music-video reel pending from Prashant
      · no email anywhere until Prashant supplies his address
    ============================================================ */
 (() => {
@@ -23,17 +28,18 @@
      AD FILMS (playable — vimeo showcase, unlisted hashes)
      ============================================================ */
   const ADS = [
-    { id: 1,  vid: '1088993725', hash: 'cd85ed120d', title: 'GIC — Mary',               client: 'GIC Insurance',   credits: 'Jamic Films · Dir. Shirish Daiya',                dur: 93 },
-    { id: 2,  vid: '1106434425', hash: 'd768255096', title: 'Chupa Chup',               client: 'Perfetti Van Melle', credits: 'Ogilvy · Dir. Nikhil Rao',                     dur: 60 },
-    { id: 3,  vid: '1031822870', hash: '34305ab15d', title: 'EVA — Yes',                client: 'EVA',             credits: 'Dir. Varun Gupta',                                dur: 64 },
-    { id: 4,  vid: '1073818885', hash: 'd659e0694c', title: 'Snickers',                 client: 'Snickers',        credits: 'Dir. Rishabh Dubey',                              dur: 35 },
-    { id: 5,  vid: '1166613867', hash: '406b559643', title: 'ICICI Bank',               client: 'ICICI Bank',      credits: '',                                                dur: 40 },
-    { id: 6,  vid: '1015277896', hash: '25f1c9636d', title: 'Candid Dusting Powder',    client: 'Candid',          credits: 'BBDO India · Ducktape · Dir. Rishabh Dubey',      dur: 53 },
-    { id: 7,  vid: '867458294',  hash: '74dda2c808', title: 'Greenply E-Zero',          client: 'Greenply',        credits: 'Jamic Films · Dir. Nikhil Rao · ft. NTR Jr',      dur: 35 },
-    { id: 8,  vid: '1149446709', hash: '45c47a44bc', title: 'Hint — Pyaar ka Take-off', client: 'Hint',            credits: 'Jamic Films · Dir. Shirish Daiya',                dur: 50 },
-    { id: 9,  vid: '1088994415', hash: '270d911f7c', title: 'GIC — Integrated',         client: 'GIC Insurance',   credits: 'Jamic Films · Dir. Shirish Daiya',                dur: 30 },
-    { id: 10, vid: '1106435260', hash: 'ec61b93f55', title: 'ENVY',                     client: 'ENVY',            credits: 'Dir. Vivek Daschaudhary',                         dur: 40 },
+    { id: 1,  vid: '1088993725', hash: 'cd85ed120d', title: 'GIC — Mary',               client: 'GIC Insurance',   credits: 'Jamic Films · Dir. Shirish Daiya',                dur: 93, tag: 'STORYTELLING' },
+    { id: 2,  vid: '1106434425', hash: 'd768255096', title: 'Chupa Chup',               client: 'Perfetti Van Melle', credits: 'Ogilvy · Dir. Nikhil Rao',                     dur: 60, tag: 'HUMOR' },
+    { id: 3,  vid: '1031822870', hash: '34305ab15d', title: 'EVA — Yes',                client: 'EVA',             credits: 'Dir. Varun Gupta',                                dur: 64, tag: 'STYLISH' },
+    { id: 4,  vid: '1073818885', hash: 'd659e0694c', title: 'Snickers',                 client: 'Snickers',        credits: 'Dir. Rishabh Dubey',                              dur: 35, tag: 'HUMOR' },
+    { id: 5,  vid: '1166613867', hash: '406b559643', title: 'ICICI Bank',               client: 'ICICI Bank',      credits: '',                                                dur: 40, tag: 'HUMOR' },
+    { id: 6,  vid: '1015277896', hash: '25f1c9636d', title: 'Candid Dusting Powder',    client: 'Candid',          credits: 'BBDO India · Ducktape · Dir. Rishabh Dubey',      dur: 53, tag: 'HUMOR' },
+    { id: 7,  vid: '867458294',  hash: '74dda2c808', title: 'Greenply E-Zero',          client: 'Greenply',        credits: 'Jamic Films · Dir. Nikhil Rao · ft. NTR Jr',      dur: 35, tag: 'ACTION' },
+    { id: 8,  vid: '1149446709', hash: '45c47a44bc', title: 'Hint — Pyaar ka Take-off', client: 'Hint',            credits: 'Jamic Films · Dir. Shirish Daiya',                dur: 50, tag: 'STORYTELLING' },
+    { id: 9,  vid: '1088994415', hash: '270d911f7c', title: 'GIC — Integrated',         client: 'GIC Insurance',   credits: 'Jamic Films · Dir. Shirish Daiya',                dur: 30, tag: 'STORYTELLING' },
+    { id: 10, vid: '1106435260', hash: 'ec61b93f55', title: 'ENVY',                     client: 'ENVY',            credits: 'Dir. Vivek Daschaudhary',                         dur: 40, tag: 'STYLISH' },
   ];
+  const TAGS = ['HUMOR', 'STORYTELLING', 'ACTION', 'STYLISH'];
   const img = p => `assets/img/work/${p.vid}.jpg`;
   const byId = id => ADS.find(p => p.id === id);
   const LIST = ADS; /* player order = showcase order */
@@ -59,8 +65,11 @@
     { title: 'Ragini MMS Returns',         years: '2017–2018', eps: 11, rating: 4.1, platform: 'ALTBalaji' },
   ];
   const FILMS = [
-    { title: 'Rabia and Olivia',      year: 2023, role: 'Editor',          note: 'Feature film' },
+    { title: 'Rabia and Olivia', year: '2023', role: 'Editor',                note: 'Feature film' },
+    { title: 'My Name Is Khan',  year: '2010', role: 'Associate Film Editor', note: 'Dir. Karan Johar' },
+    { title: 'Paying Guest',     year: '',     role: 'Associate Film Editor', note: '' },
   ];
+  const UPCOMING = { title: 'Rotten Apple', note: 'Feature film' };
 
   /* the reel — seven stories, one shared height, cinema widths.
      note = the thought behind the story (craft copy, not fact) */
@@ -82,14 +91,21 @@
   ];
 
   /* ============================================================
-     DIRECTORS — verified collaborations only
+     DIRECTORS — Prashant's list of 2026-07-26, his order.
+     works[] = ad ids playable in-site today; directors without
+     works get an "in assembly" panel until he sends the titles.
      ============================================================ */
   const DIRECTORS = [
-    { name: 'SHIRISH DAIYA',      films: 'GIC — MARY · GIC — INTEGRATED · HINT', count: '03 CUTS — JAMIC FILMS', still: '1088993725' },
-    { name: 'NIKHIL RAO',         films: 'CHUPA CHUP · GREENPLY E-ZERO',         count: '02 CUTS — OGILVY / JAMIC', still: '867458294' },
-    { name: 'RISHABH DUBEY',      films: 'SNICKERS · CANDID',                    count: '02 CUTS — BBDO / DUCKTAPE', still: '1073818885' },
-    { name: 'VARUN GUPTA',        films: 'EVA — YES',                            count: '01 CUT',                 still: '1031822870' },
-    { name: 'VIVEK DASCHAUDHARY', films: 'ENVY',                                 count: '01 CUT',                 still: '1106435260' },
+    { name: 'NIKHIL RAO',         house: 'JAMIC FILMS / CARROM FILMS', works: [2, 7],    still: '867458294' },
+    { name: 'SHIRISH DAIYA',      house: 'JAMIC FILMS',                works: [1, 9, 8], still: '1088993725' },
+    { name: 'RAJESH SAATHI',      house: 'KEROSCENE FILMS',            works: [],        still: '' },
+    { name: 'SAPNA SINGH',        house: '',                           works: [],        still: '' },
+    { name: 'RISHABH DUBEY',      house: 'BBDO / DUCKTAPE',            works: [4, 6],    still: '1073818885' },
+    { name: 'RAHUL SRIVASTAVA',   house: '',                           works: [],        still: '' },
+    { name: 'ABHIJIT SUDAKAR',    house: 'ZIGZAG FILM',                works: [],        still: '' },
+    { name: 'VIVEK DASCHAUDHARY', house: 'KARMANLINE',                 works: [10],      still: '1106435260' },
+    { name: 'VARUN GUPTA',        house: '',                           works: [3],       still: '1031822870' },
+    { name: 'RAGHAVI AGARWAL',    house: '',                           works: [],        still: '' },
   ];
 
   /* ============================================================
@@ -147,14 +163,34 @@
         el.type = 'button';
         el.className = 'tile';
         el.dataset.play = p.id;
+        el.dataset.tag = p.tag;
         el.setAttribute('aria-label', `Play — ${p.title}`);
         el.innerHTML = `
           <img loading="lazy" src="${img(p)}" alt="${p.title} — film still" />
           <span class="tile__no">${pad2(i + 1)} / ${pad2(ADS.length)}</span>
+          <span class="tile__tag">${p.tag}</span>
           <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${p.client.toUpperCase()} — ${mmss(p.dur)}</span></span>`;
         gAds.appendChild(el);
       });
       endStrip(gAds, `END OF AD FILMS — ${pad2(ADS.length)} CUTS`);
+    }
+
+    /* genre filter pills — Prashant's four lenses on the ad shelf */
+    const filters = $('#adFilters');
+    if (filters && gAds) {
+      const counts = t => ADS.filter(p => p.tag === t).length;
+      filters.innerHTML =
+        `<button type="button" class="pill on" data-filter="ALL">ALL — ${pad2(ADS.length)}</button>` +
+        TAGS.map(t => `<button type="button" class="pill" data-filter="${t}">${t} — ${pad2(counts(t))}</button>`).join('');
+      filters.addEventListener('click', e => {
+        const pill = e.target.closest('.pill');
+        if (!pill) return;
+        $$('.pill', filters).forEach(p => p.classList.toggle('on', p === pill));
+        const f = pill.dataset.filter;
+        $$('.tile[data-play]', gAds).forEach(t => {
+          t.style.display = (f === 'ALL' || t.dataset.tag === f) ? '' : 'none';
+        });
+      });
     }
 
     const gSeries = $('#gridSeries');
@@ -169,9 +205,17 @@
     const gFilms = $('#gridFilms');
     if (gFilms) {
       FILMS.forEach((f, i) => {
-        const meta = [String(f.year), f.role.toUpperCase(), f.note.toUpperCase()].filter(Boolean).join(' · ');
-        slate(gFilms, i + 1, FILMS.length, 'FILM', f.title, meta, 0, true);
+        const meta = [f.year, f.role.toUpperCase(), f.note.toUpperCase()].filter(Boolean).join(' · ');
+        slate(gFilms, i + 1, FILMS.length, 'FILM', f.title, meta, 0, i === 0);
       });
+      /* upcoming — unnumbered, announced */
+      const up = document.createElement('div');
+      up.className = 'tile tile--slate tile--upcoming';
+      up.innerHTML = `
+        <span class="slate__top"><b>UPCOMING — FILM</b></span>
+        <span class="slate__title">${UPCOMING.title.toUpperCase()}</span>
+        <span class="slate__meta">${UPCOMING.note.toUpperCase()} · IN THE WORKS</span>`;
+      gFilms.appendChild(up);
       endStrip(gFilms, 'END OF REEL — CUT TO BLACK');
     }
   })();
@@ -196,6 +240,10 @@
     { name: 'BBDO INDIA',         logo: 'bbdo.svg' },
     { name: 'JAMIC FILMS',        logo: 'jamic-films.png' },
     { name: 'DUCKTAPE',           logo: 'ducktape.png' },
+    { name: 'CARROM FILMS',       logo: null },
+    { name: 'KEROSCENE FILMS',    logo: null },
+    { name: 'ZIGZAG FILM',        logo: null },
+    { name: 'KARMANLINE',         logo: null },
   ];
   const PLATFORMS_ROW = [
     { name: 'TVF',              logo: 'tvf.png' },
@@ -227,14 +275,40 @@
     const wrap = $('#dirRows');
     if (!wrap) return;
     DIRECTORS.forEach((d, i) => {
+      const cuts = d.works.map(byId);
+      const metaTop = cuts.length ? cuts.map(w => w.title.toUpperCase()).join(' · ') : 'CUTS — LIST IN ASSEMBLY';
+      const metaBot = [cuts.length ? `${pad2(cuts.length)} CUTS` : '', d.house].filter(Boolean).join(' — ') || '&nbsp;';
+      const chips = cuts.length
+        ? cuts.map(w => `<button type="button" class="dirchip" data-play="${w.id}">${w.title.toUpperCase()}&nbsp;▸</button>`).join('')
+        : '<span class="dirchip dirchip--tbc">FULL LIST IN ASSEMBLY — SOON</span>';
       const el = document.createElement('div');
       el.className = 'dir reveal';
       el.dataset.still = d.still;
+      el.setAttribute('role', 'button');
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('aria-expanded', 'false');
       el.innerHTML = `
         <span class="dir__no">D.${pad2(i + 1)}</span>
         <span class="dir__name">${d.name}</span>
-        <span class="dir__meta">${d.films}<br/>${d.count}</span>`;
+        <span class="dir__meta">${metaTop}<br/>${metaBot}</span>
+        <div class="dir__works">${chips}</div>`;
       wrap.appendChild(el);
+    });
+
+    /* tap a name → its cuts unfold (and play in-site) */
+    const toggle = row => {
+      const open = row.classList.toggle('open');
+      row.setAttribute('aria-expanded', String(open));
+    };
+    wrap.addEventListener('click', e => {
+      if (e.target.closest('[data-play]')) return; /* chip → player */
+      const row = e.target.closest('.dir');
+      if (row) toggle(row);
+    });
+    wrap.addEventListener('keydown', e => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const row = e.target.closest('.dir');
+      if (row && !e.target.closest('[data-play]')) { e.preventDefault(); toggle(row); }
     });
 
     const float = $('#dirFloat'), fimg = $('#dirFloatImg');
