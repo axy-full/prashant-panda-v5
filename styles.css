@@ -796,6 +796,7 @@ body.loaded .hero__center{ opacity:1; transform:none; }
 .frow__arrow{ font-weight:200; font-size:clamp(28px,4vw,58px); line-height:1;
   transition:transform .45s var(--ease); }
 .frow:hover{ background:var(--red); padding-left:calc(var(--pad) + 20px); }
+.frow--pending{ opacity:.5; pointer-events:none; }
 .frow:hover .frow__k{ color:rgba(242,239,230,.85); }
 .frow:hover .frow__arrow{ transform:translate(8px,-8px); }
 

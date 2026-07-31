@@ -366,6 +366,25 @@
   })();
 
   /* ============================================================
+     CONTACT EMAIL — paste Prashant's address here to activate
+     the EMAIL button on /contact (stays a muted "in assembly"
+     row while empty — the no-invented-email rule holds)
+     ============================================================ */
+  const EMAIL = '';
+  (function emailButton() {
+    const row = $('#emailRow');
+    if (!row) return;
+    if (EMAIL) {
+      row.href = 'mailto:' + EMAIL;
+    } else {
+      row.classList.add('frow--pending');
+      row.removeAttribute('href');
+      const k = $('#emailRowK');
+      if (k) k.innerHTML = 'ADDRESS&nbsp;—&nbsp;IN&nbsp;ASSEMBLY';
+    }
+  })();
+
+  /* ============================================================
      BANNERS — ad-film brands + agencies (under 02·A) and the
      platforms/banners the series & films aired on (under 02·C)
      logo: filename in assets/img/brands/ (official marks,
