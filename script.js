@@ -27,17 +27,54 @@
   /* ============================================================
      AD FILMS (playable — vimeo showcase, unlisted hashes)
      ============================================================ */
+  /* the full COMMERCIAL showcase — all 44, showcase order.
+     ids 1-10 are the original curated set (reel/directors/viz
+     reference them); credits/tags for 11+ pending Prashant */
   const ADS = [
-    { id: 1,  vid: '1088993725', hash: 'cd85ed120d', title: 'GIC — Mary',               client: 'GIC Insurance',   credits: 'Jamic Films · Dir. Shirish Daiya',                dur: 93, tag: 'STORYTELLING' },
-    { id: 2,  vid: '1106434425', hash: 'd768255096', title: 'Chupa Chup',               client: 'Perfetti Van Melle', credits: 'Ogilvy · Dir. Nikhil Rao',                     dur: 60, tag: 'HUMOR' },
-    { id: 3,  vid: '1031822870', hash: '34305ab15d', title: 'EVA — Yes',                client: 'EVA',             credits: 'Dir. Varun Gupta',                                dur: 64, tag: 'STYLISH' },
-    { id: 4,  vid: '1073818885', hash: 'd659e0694c', title: 'Snickers',                 client: 'Snickers',        credits: 'Dir. Rishabh Dubey',                              dur: 35, tag: 'HUMOR' },
-    { id: 5,  vid: '1166613867', hash: '406b559643', title: 'ICICI Bank',               client: 'ICICI Bank',      credits: '',                                                dur: 40, tag: 'HUMOR' },
-    { id: 6,  vid: '1015277896', hash: '25f1c9636d', title: 'Candid Dusting Powder',    client: 'Candid',          credits: 'BBDO India · Ducktape · Dir. Rishabh Dubey',      dur: 53, tag: 'HUMOR' },
-    { id: 7,  vid: '867458294',  hash: '74dda2c808', title: 'Greenply E-Zero',          client: 'Greenply',        credits: 'Jamic Films · Dir. Nikhil Rao · ft. NTR Jr',      dur: 35, tag: 'ACTION' },
-    { id: 8,  vid: '1149446709', hash: '45c47a44bc', title: 'Hint — Pyaar ka Take-off', client: 'Hint',            credits: 'Jamic Films · Dir. Shirish Daiya',                dur: 50, tag: 'STORYTELLING' },
-    { id: 9,  vid: '1088994415', hash: '270d911f7c', title: 'GIC — Integrated',         client: 'GIC Insurance',   credits: 'Jamic Films · Dir. Shirish Daiya',                dur: 30, tag: 'STORYTELLING' },
-    { id: 10, vid: '1106435260', hash: 'ec61b93f55', title: 'ENVY',                     client: 'ENVY',            credits: 'Dir. Vivek Daschaudhary',                         dur: 40, tag: 'STYLISH' },
+    { id: 2, vid: '1106434425', hash: 'd768255096', title: 'Chupa Chup', client: 'Perfetti Van Melle', credits: 'Ogilvy · Dir. Nikhil Rao', dur: 60, tag: 'HUMOR' },
+    { id: 1, vid: '1088993725', hash: 'cd85ed120d', title: 'GIC — Mary', client: 'GIC Insurance', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 93, tag: 'STORYTELLING' },
+    { id: 3, vid: '1031822870', hash: '34305ab15d', title: 'EVA — Yes', client: 'EVA', credits: 'Dir. Varun Gupta', dur: 64, tag: 'STYLISH' },
+    { id: 4, vid: '1073818885', hash: 'd659e0694c', title: 'Snickers', client: 'Snickers', credits: 'Dir. Rishabh Dubey', dur: 35, tag: 'HUMOR' },
+    { id: 5, vid: '1166613867', hash: '406b559643', title: 'ICICI Bank', client: 'ICICI Bank', credits: '', dur: 40, tag: 'HUMOR' },
+    { id: 6, vid: '1015277896', hash: '25f1c9636d', title: 'Candid Dusting Powder', client: 'Candid', credits: 'BBDO India · Ducktape · Dir. Rishabh Dubey', dur: 53, tag: 'HUMOR' },
+    { id: 7, vid: '867458294', hash: '74dda2c808', title: 'Greenply E-Zero', client: 'Greenply', credits: 'Jamic Films · Dir. Nikhil Rao · ft. NTR Jr', dur: 35, tag: 'ACTION' },
+    { id: 8, vid: '1149446709', hash: '45c47a44bc', title: 'Hint — Pyaar ka Take-off', client: 'Hint', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 50, tag: 'STORYTELLING' },
+    { id: 9, vid: '1088994415', hash: '270d911f7c', title: 'GIC — Integrated', client: 'GIC Insurance', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 30, tag: 'STORYTELLING' },
+    { id: 10, vid: '1106435260', hash: 'ec61b93f55', title: 'ENVY', client: 'ENVY', credits: 'Dir. Vivek Daschaudhary', dur: 40, tag: 'STYLISH' },
+    { id: 11, vid: '949624577', hash: '0aecd8d238', title: 'ICC T20 World Cup — Biggest Love', client: 'ICC T20 World Cup', credits: '', dur: 70, tag: '' },
+    { id: 12, vid: '1167725115', hash: '2ad055a2ad', title: 'Kotak Neo', client: 'Kotak Neo', credits: '', dur: 45, tag: '' },
+    { id: 13, vid: '571746432', hash: '3ca0813643', title: 'Society Tea — Brand New Day', client: 'Society Tea', credits: '', dur: 257, tag: '' },
+    { id: 14, vid: '1162055404', hash: '542ab9265a', title: 'MG Hector', client: 'MG Motor', credits: '', dur: 60, tag: '' },
+    { id: 15, vid: '1135694596', hash: '4e54adecb1', title: 'It\'s Your Moment — Festive \'25', client: '', credits: '', dur: 60, tag: '' },
+    { id: 16, vid: '958465600', hash: '9b8803648b', title: 'Dare Kiya Toh Darna Kya', client: '', credits: '', dur: 40, tag: '' },
+    { id: 17, vid: '1020985979', hash: '2c2597bb82', title: 'Birla Opus — Ghost', client: 'Birla Opus', credits: '', dur: 140, tag: '' },
+    { id: 18, vid: '1011935988', hash: '16db53c95f', title: 'Birla Opus — Kidnapper', client: 'Birla Opus', credits: '', dur: 168, tag: '' },
+    { id: 19, vid: '709084029', hash: 'e53fc093be', title: 'Swiggy — All The Food You Love', client: 'Swiggy', credits: '', dur: 15, tag: '' },
+    { id: 20, vid: '642944186', hash: '193722126e', title: 'Bingo! Tedhe Medhe ft. Ranveer Singh', client: 'Bingo!', credits: '', dur: 15, tag: '' },
+    { id: 21, vid: '634280547', hash: 'bf91cde5d0', title: 'Bingo! Mad Angles ft. Ranveer Singh', client: 'Bingo!', credits: '', dur: 30, tag: '' },
+    { id: 22, vid: '747936616', hash: '39ddb035cb', title: 'Meesho — Electronics MegaBlockbuster', client: 'Meesho', credits: '', dur: 20, tag: '' },
+    { id: 23, vid: '539977032', hash: 'dd66e499b8', title: 'PGIM India — Gain From Experience', client: 'PGIM India', credits: '', dur: 55, tag: '' },
+    { id: 24, vid: '904713196', hash: 'b63d40fc61', title: 'Sunfeast', client: 'ITC Sunfeast', credits: '', dur: 43, tag: '' },
+    { id: 25, vid: '1174664059', hash: '2c95939b18', title: 'Britannia — Dugout', client: 'Britannia', credits: '', dur: 31, tag: '' },
+    { id: 26, vid: '763773061', hash: 'abe977a192', title: 'MPL — Pool Champs', client: 'MPL', credits: '', dur: 29, tag: '' },
+    { id: 27, vid: '535421247', hash: '6eecab7289', title: '#DeliverTheLove — Bhai Dooj', client: '', credits: '', dur: 112, tag: '' },
+    { id: 28, vid: '995053082', hash: '0f47f2dbab', title: 'Omnigel', client: 'Omnigel', credits: '', dur: 42, tag: '' },
+    { id: 29, vid: '948625099', hash: '8bc2c8aa54', title: 'Birla Opus — Gorilla', client: 'Birla Opus', credits: '', dur: 146, tag: '' },
+    { id: 30, vid: '1176230484', hash: '31f3be9440', title: 'Tata IPL', client: 'Tata IPL', credits: '', dur: 90, tag: '' },
+    { id: 31, vid: '1174664439', hash: 'e17b297944', title: 'Hershey\'s', client: 'Hershey\'s', credits: '', dur: 61, tag: '' },
+    { id: 32, vid: '535424849', hash: 'a1ece44b88', title: 'Hero — Halwa', client: 'Hero', credits: '', dur: 42, tag: '' },
+    { id: 33, vid: '535422129', hash: '146793b802', title: 'Bajaj — Umbrella', client: 'Bajaj', credits: '', dur: 41, tag: '' },
+    { id: 34, vid: '535421448', hash: 'bcd4f2c473', title: 'Bajaj — Paperboat', client: 'Bajaj', credits: '', dur: 46, tag: '' },
+    { id: 35, vid: '854322510', hash: '4e43202996', title: 'MPL — Ludo', client: 'MPL', credits: '', dur: 30, tag: '' },
+    { id: 36, vid: '747936708', hash: 'cfb4e9b082', title: 'Meesho — MegaBlockbuster Sale', client: 'Meesho', credits: '', dur: 29, tag: '' },
+    { id: 37, vid: '1179531910', hash: 'be8e6f7f01', title: 'Gillette Guard 3-in-1', client: 'Gillette', credits: '', dur: 30, tag: '' },
+    { id: 38, vid: '1179533196', hash: 'b39fd32b44', title: 'IPL — Migrant', client: '', credits: '', dur: 60, tag: '' },
+    { id: 39, vid: '948622574', hash: 'cdfcad98cb', title: 'Bajaj Allianz Life — Happy Bonus', client: 'Bajaj Allianz Life', credits: '', dur: 55, tag: '' },
+    { id: 40, vid: '1006193461', hash: 'b2f117028b', title: 'JK Wipeazy', client: 'JK Wipeazy', credits: '', dur: 36, tag: '' },
+    { id: 41, vid: '1194290610', hash: '0abd367ed4', title: 'Soulmate — 15s Digital', client: '', credits: '', dur: 15, tag: '' },
+    { id: 42, vid: '1194256626', hash: '3fdcc1ecb0', title: 'Popeyes', client: 'Popeyes', credits: '', dur: 40, tag: '' },
+    { id: 43, vid: '1176234899', hash: '4b3fdf00d8', title: 'Equus Asinus', client: '', credits: '', dur: 50, tag: '' },
+    { id: 44, vid: '1202512344', hash: '2f299c22f5', title: 'Agami Reality', client: 'Agami Reality', credits: '', dur: 78, tag: '' },
   ];
   const TAGS = ['HUMOR', 'STORYTELLING', 'ACTION', 'STYLISH'];
   const img = p => `assets/img/work/${p.vid}.jpg`;
@@ -272,11 +309,12 @@
         el.dataset.play = p.id;
         el.dataset.tag = p.tag;
         el.setAttribute('aria-label', `Play — ${p.title}`);
+        const capMeta = [p.client.toUpperCase(), mmss(p.dur)].filter(Boolean).join(' — ');
         el.innerHTML = `
           <img loading="lazy" src="${img(p)}" alt="${p.title} — film still" />
           <span class="tile__no">${pad2(i + 1)} / ${pad2(ADS.length)}</span>
-          <span class="tile__tag">${p.tag}</span>
-          <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${p.client.toUpperCase()} — ${mmss(p.dur)}</span></span>`;
+          ${p.tag ? `<span class="tile__tag">${p.tag}</span>` : ''}
+          <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${capMeta}</span></span>`;
         gAds.appendChild(el);
       });
       endStrip(gAds, `END OF AD FILMS — ${pad2(ADS.length)} CUTS`);
