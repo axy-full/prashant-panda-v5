@@ -89,26 +89,28 @@
   /* art = assets/img/series/<art>.jpg — official key art; a slate
      falls back to type automatically if the file is missing */
   const SERIES = [
-    { title: 'Permanent Roommates',        years: '2014–2016', eps: 5,  rating: 8.6, platform: 'TVF',                art: 'permanent-roommates' },
-    { title: 'Hostel Daze',                years: '2019–2022', eps: 3,  rating: 8.5, platform: 'TVF · Prime Video',  art: 'hostel-daze' },
-    { title: 'Operation MBBS',             years: '2020–2021', eps: 2,  rating: 8.3, platform: '',                   art: 'operation-mbbs' },
-    { title: 'Cheesecake',                 years: '2019',      eps: 5,  rating: 8.2, platform: '',                   art: 'cheesecake' },
-    { title: 'Cartel',                     years: '2021',      eps: 14, rating: 8.0, platform: 'ALTBalaji',          art: 'cartel' },
-    { title: 'Bachelors vs the World',     years: '2022',      eps: 5,  rating: 7.8, platform: '',                   art: 'bachelors-vs-the-world' },
-    { title: 'Ishq Next Door',             years: '2023',      eps: 7,  rating: 7.7, platform: 'JioCinema',          art: 'ishq-next-door' },
-    { title: 'Fireflies: Parth Aur Jugnu', years: '2023',      eps: 10, rating: 7.3, platform: '',                   art: 'fireflies' },
-    { title: 'CLASS of 2017',              years: '2017',      eps: 20, rating: 7.3, platform: 'ALTBalaji',          art: 'class-of-2017' },
-    { title: "TSP's Zeroes",               years: '2018',      eps: 3,  rating: 7.2, platform: 'The Screen Patti',   art: 'tsps-zeroes' },
-    { title: 'PA-Gals',                    years: '2017',      eps: 3,  rating: 6.6, platform: '',                   art: 'pa-gals' },
-    { title: 'Puncch Beat',                years: '2018–2019', eps: 13, rating: 6.2, platform: 'ALTBalaji',          art: 'puncch-beat' },
-    { title: 'Ragini MMS Returns',         years: '2017–2018', eps: 11, rating: 4.1, platform: 'ALTBalaji',          art: 'ragini-mms-returns' },
+    { title: 'Permanent Roommates',        years: '2014–2016', eps: 5,  rating: 8.6, platform: 'TVF',                art: 'series/permanent-roommates', yt: '' },
+    { title: 'Hostel Daze',                years: '2019–2022', eps: 3,  rating: 8.5, platform: 'TVF · Prime Video',  art: 'series/hostel-daze', yt: '' },
+    { title: 'Operation MBBS',             years: '2020–2021', eps: 2,  rating: 8.3, platform: '',                   art: 'series/operation-mbbs', yt: '' },
+    { title: 'Cheesecake',                 years: '2019',      eps: 5,  rating: 8.2, platform: '',                   art: 'series/cheesecake', yt: '' },
+    { title: 'Cartel',                     years: '2021',      eps: 14, rating: 8.0, platform: 'ALTBalaji',          art: 'series/cartel', yt: '' },
+    { title: 'Bachelors vs the World',     years: '2022',      eps: 5,  rating: 7.8, platform: '',                   art: 'series/bachelors-vs-the-world', yt: '' },
+    { title: 'Ishq Next Door',             years: '2023',      eps: 7,  rating: 7.7, platform: 'JioCinema',          art: 'series/ishq-next-door', yt: '' },
+    { title: 'Fireflies: Parth Aur Jugnu', years: '2023',      eps: 10, rating: 7.3, platform: '',                   art: 'series/fireflies', yt: '' },
+    { title: 'CLASS of 2017',              years: '2017',      eps: 20, rating: 7.3, platform: 'ALTBalaji',          art: 'series/class-of-2017', yt: '' },
+    { title: "TSP's Zeroes",               years: '2018',      eps: 3,  rating: 7.2, platform: 'The Screen Patti',   art: 'series/tsps-zeroes', yt: '' },
+    { title: 'PA-Gals',                    years: '2017',      eps: 3,  rating: 6.6, platform: '',                   art: 'series/pa-gals', yt: '' },
+    { title: 'Puncch Beat',                years: '2018–2019', eps: 13, rating: 6.2, platform: 'ALTBalaji',          art: 'series/puncch-beat', yt: '' },
+    { title: 'Ragini MMS Returns',         years: '2017–2018', eps: 11, rating: 4.1, platform: 'ALTBalaji',          art: 'series/ragini-mms-returns', yt: '' },
   ];
   const FILMS = [
-    { title: 'Rabia and Olivia', year: '2023', role: 'Editor',                note: 'Feature film' },
-    { title: 'My Name Is Khan',  year: '2010', role: 'Associate Film Editor', note: 'Dir. Karan Johar' },
-    { title: 'Paying Guest',     year: '',     role: 'Associate Film Editor', note: '' },
+    { title: 'Rabia and Olivia', year: '2023', role: 'Editor',                note: 'Feature film',    art: 'films/rabia-and-olivia', yt: '' },
+    { title: 'My Name Is Khan',  year: '2010', role: 'Associate Film Editor', note: 'Dir. Karan Johar', art: 'films/my-name-is-khan',  yt: '' },
+    { title: 'Paying Guest',     year: '',     role: 'Associate Film Editor', note: '',                 art: 'films/paying-guest',     yt: '' },
   ];
-  const UPCOMING = { title: 'Rotten Apple', note: 'Feature film' };
+  /* the upcoming feature — hero of the films shelf; drops in
+     assets/img/films/rotten-apple.jpg automatically when supplied */
+  const UPCOMING = { title: 'Rotten Apple', note: 'Feature film', art: 'films/rotten-apple' };
 
   /* the reel — seven stories, one shared height, cinema widths.
      note = the thought behind the story (craft copy, not fact) */
@@ -280,14 +282,21 @@
       end.innerHTML = `<span>[<i>●</i>]&nbsp;&nbsp;${text}</span>`;
       grid.appendChild(end);
     };
-    const slate = (grid, no, N, tag, title, meta, rating, wide, art) => {
-      const el = document.createElement('div');
+    const slate = (grid, no, N, tag, title, meta, rating, wide, art, yt) => {
+      const el = document.createElement(yt ? 'button' : 'div');
+      if (yt) {
+        el.type = 'button';
+        el.dataset.yt = yt;
+        el.dataset.ytTitle = title.toUpperCase();
+        el.setAttribute('aria-label', `Play trailer — ${title}`);
+      }
       el.className = 'tile tile--slate' + (wide ? ' tile--wide' : '') + (art ? ' has-cover' : '');
       el.innerHTML = `
-        ${art ? `<img class="slate__art" loading="lazy" src="assets/img/series/${art}.jpg" alt="${title} — key art" /><span class="slate__scrim" aria-hidden="true"></span>` : ''}
-        <span class="slate__top"><b>${pad2(no)} / ${pad2(N)} — ${tag}</b>${rating ? `<span>IMDB ${rating.toFixed(1)}</span>` : ''}</span>
+        ${art ? `<img class="slate__art" loading="lazy" src="assets/img/${art}.jpg" alt="${title} — key art" /><span class="slate__scrim" aria-hidden="true"></span>` : ''}
+        <span class="slate__top"><b>${no ? `${pad2(no)} / ${pad2(N)} — ` : ''}${tag}</b>${rating ? `<span>IMDB ${rating.toFixed(1)}</span>` : ''}</span>
         <span class="slate__title">${title.toUpperCase()}</span>
-        <span class="slate__meta">${meta}</span>`;
+        <span class="slate__meta">${meta}</span>
+        ${yt ? '<span class="slate__chip"><i>▸</i>&nbsp;TRAILER</span>' : ''}`;
       if (art) {
         const im = el.querySelector('.slate__art');
         im.addEventListener('error', () => {
@@ -298,6 +307,7 @@
         });
       }
       grid.appendChild(el);
+      return el;
     };
 
     const gAds = $('#gridAds');
@@ -342,25 +352,21 @@
     if (gSeries) {
       SERIES.forEach((s, i) => {
         const meta = [s.years, `${pad2(s.eps)} EP`, s.platform.toUpperCase()].filter(Boolean).join(' · ');
-        slate(gSeries, i + 1, SERIES.length, 'SERIES', s.title, meta, s.rating >= 7 ? s.rating : 0, false, s.art);
+        slate(gSeries, i + 1, SERIES.length, 'SERIES', s.title, meta, s.rating >= 7 ? s.rating : 0, false, s.art, s.yt);
       });
       endStrip(gSeries, `END OF SERIES — ${pad2(SERIES.length)} SHOWS`);
     }
 
     const gFilms = $('#gridFilms');
     if (gFilms) {
+      /* the upcoming feature leads the shelf as its hero */
+      const hero = slate(gFilms, 0, 0, 'UPCOMING — FEATURE FILM', UPCOMING.title,
+        UPCOMING.note.toUpperCase() + ' · IN THE WORKS', 0, false, UPCOMING.art, '');
+      hero.classList.add('tile--filmhero', 'tile--upcoming');
       FILMS.forEach((f, i) => {
         const meta = [f.year, f.role.toUpperCase(), f.note.toUpperCase()].filter(Boolean).join(' · ');
-        slate(gFilms, i + 1, FILMS.length, 'FILM', f.title, meta, 0, i === 0);
+        slate(gFilms, i + 1, FILMS.length, 'FILM', f.title, meta, 0, i === 0, f.art, f.yt);
       });
-      /* upcoming — unnumbered, announced */
-      const up = document.createElement('div');
-      up.className = 'tile tile--slate tile--upcoming';
-      up.innerHTML = `
-        <span class="slate__top"><b>UPCOMING — FILM</b></span>
-        <span class="slate__title">${UPCOMING.title.toUpperCase()}</span>
-        <span class="slate__meta">${UPCOMING.note.toUpperCase()} · IN THE WORKS</span>`;
-      gFilms.appendChild(up);
       endStrip(gFilms, 'END OF REEL — CUT TO BLACK');
     }
   })();
@@ -723,20 +729,37 @@
     frame.title = `${p.title} — Prashant Panda`;
     $('#playerTitle').textContent = `${p.title.toUpperCase()} — ${p.client.toUpperCase()}${p.credits ? ' / ' + p.credits.toUpperCase() : ''}`;
     $('#playerCount').textContent = `${pad2(cur + 1)} / ${pad2(LIST.length)}`;
-    $('#playerVimeo').href = `https://vimeo.com/${p.vid}/${p.hash}`;
+    const ext = $('#playerVimeo');
+    ext.href = `https://vimeo.com/${p.vid}/${p.hash}`;
+    ext.innerHTML = 'OPEN&nbsp;ON&nbsp;VIMEO&nbsp;↗';
   }
   function openPlayer(id) {
     if (!player || !frame) return;
     const idx = LIST.findIndex(p => p.id === id);
     lastFocus = document.activeElement;
+    player.classList.remove('single');
     loadFilm(idx < 0 ? 0 : idx);
     player.classList.add('open');
     document.body.style.overflow = 'hidden';
     $('#playerClose').focus();
   }
+  function openTrailer(ytId, title) {
+    if (!player || !frame) return;
+    lastFocus = document.activeElement;
+    frame.src = `https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&rel=0`;
+    frame.title = `${title} — trailer`;
+    $('#playerTitle').textContent = `${title} — OFFICIAL TRAILER`;
+    $('#playerCount').textContent = 'TRAILER';
+    const ext = $('#playerVimeo');
+    ext.href = `https://www.youtube.com/watch?v=${ytId}`;
+    ext.innerHTML = 'OPEN&nbsp;ON&nbsp;YOUTUBE&nbsp;↗';
+    player.classList.add('open', 'single');
+    document.body.style.overflow = 'hidden';
+    $('#playerClose').focus();
+  }
   function closePlayer() {
     if (!player) return;
-    player.classList.remove('open');
+    player.classList.remove('open', 'single');
     frame.src = '';
     document.body.style.overflow = '';
     if (lastFocus && lastFocus.focus) lastFocus.focus();
@@ -745,7 +768,9 @@
     if (!player) return;
     document.addEventListener('click', e => {
       const t = e.target.closest('[data-play]');
-      if (t) openPlayer(+t.dataset.play);
+      if (t) { openPlayer(+t.dataset.play); return; }
+      const y = e.target.closest('[data-yt]');
+      if (y) openTrailer(y.dataset.yt, y.dataset.ytTitle);
     });
     const reelBtn = $('#playReel');
     if (reelBtn) reelBtn.addEventListener('click', () => openPlayer(LIST[0].id));
