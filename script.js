@@ -49,20 +49,22 @@
      · sorted: series by IMDB desc, films by year desc
      · rating shown only when >= 7.0
      ============================================================ */
+  /* art = assets/img/series/<art>.jpg — official key art; a slate
+     falls back to type automatically if the file is missing */
   const SERIES = [
-    { title: 'Permanent Roommates',        years: '2014–2016', eps: 5,  rating: 8.6, platform: 'TVF' },
-    { title: 'Hostel Daze',                years: '2019–2022', eps: 3,  rating: 8.5, platform: 'TVF · Prime Video' },
-    { title: 'Operation MBBS',             years: '2020–2021', eps: 2,  rating: 8.3, platform: '' },
-    { title: 'Cheesecake',                 years: '2019',      eps: 5,  rating: 8.2, platform: '' },
-    { title: 'Cartel',                     years: '2021',      eps: 14, rating: 8.0, platform: 'ALTBalaji' },
-    { title: 'Bachelors vs the World',     years: '2022',      eps: 5,  rating: 7.8, platform: '' },
-    { title: 'Ishq Next Door',             years: '2023',      eps: 7,  rating: 7.7, platform: 'JioCinema' },
-    { title: 'Fireflies: Parth Aur Jugnu', years: '2023',      eps: 10, rating: 7.3, platform: '' },
-    { title: 'CLASS of 2017',              years: '2017',      eps: 20, rating: 7.3, platform: 'ALTBalaji' },
-    { title: "TSP's Zeroes",               years: '2018',      eps: 3,  rating: 7.2, platform: 'The Screen Patti' },
-    { title: 'PA-Gals',                    years: '2017',      eps: 3,  rating: 6.6, platform: '' },
-    { title: 'Puncch Beat',                years: '2018–2019', eps: 13, rating: 6.2, platform: 'ALTBalaji' },
-    { title: 'Ragini MMS Returns',         years: '2017–2018', eps: 11, rating: 4.1, platform: 'ALTBalaji' },
+    { title: 'Permanent Roommates',        years: '2014–2016', eps: 5,  rating: 8.6, platform: 'TVF',                art: 'permanent-roommates' },
+    { title: 'Hostel Daze',                years: '2019–2022', eps: 3,  rating: 8.5, platform: 'TVF · Prime Video',  art: 'hostel-daze' },
+    { title: 'Operation MBBS',             years: '2020–2021', eps: 2,  rating: 8.3, platform: '',                   art: 'operation-mbbs' },
+    { title: 'Cheesecake',                 years: '2019',      eps: 5,  rating: 8.2, platform: '',                   art: 'cheesecake' },
+    { title: 'Cartel',                     years: '2021',      eps: 14, rating: 8.0, platform: 'ALTBalaji',          art: 'cartel' },
+    { title: 'Bachelors vs the World',     years: '2022',      eps: 5,  rating: 7.8, platform: '',                   art: 'bachelors-vs-the-world' },
+    { title: 'Ishq Next Door',             years: '2023',      eps: 7,  rating: 7.7, platform: 'JioCinema',          art: 'ishq-next-door' },
+    { title: 'Fireflies: Parth Aur Jugnu', years: '2023',      eps: 10, rating: 7.3, platform: '',                   art: 'fireflies' },
+    { title: 'CLASS of 2017',              years: '2017',      eps: 20, rating: 7.3, platform: 'ALTBalaji',          art: 'class-of-2017' },
+    { title: "TSP's Zeroes",               years: '2018',      eps: 3,  rating: 7.2, platform: 'The Screen Patti',   art: 'tsps-zeroes' },
+    { title: 'PA-Gals',                    years: '2017',      eps: 3,  rating: 6.6, platform: '',                   art: 'pa-gals' },
+    { title: 'Puncch Beat',                years: '2018–2019', eps: 13, rating: 6.2, platform: 'ALTBalaji',          art: 'puncch-beat' },
+    { title: 'Ragini MMS Returns',         years: '2017–2018', eps: 11, rating: 4.1, platform: 'ALTBalaji',          art: 'ragini-mms-returns' },
   ];
   const FILMS = [
     { title: 'Rabia and Olivia', year: '2023', role: 'Editor',                note: 'Feature film' },
@@ -241,13 +243,23 @@
       end.innerHTML = `<span>[<i>●</i>]&nbsp;&nbsp;${text}</span>`;
       grid.appendChild(end);
     };
-    const slate = (grid, no, N, tag, title, meta, rating, wide) => {
+    const slate = (grid, no, N, tag, title, meta, rating, wide, art) => {
       const el = document.createElement('div');
-      el.className = 'tile tile--slate' + (wide ? ' tile--wide' : '');
+      el.className = 'tile tile--slate' + (wide ? ' tile--wide' : '') + (art ? ' has-cover' : '');
       el.innerHTML = `
+        ${art ? `<img class="slate__art" loading="lazy" src="assets/img/series/${art}.jpg" alt="${title} — key art" /><span class="slate__scrim" aria-hidden="true"></span>` : ''}
         <span class="slate__top"><b>${pad2(no)} / ${pad2(N)} — ${tag}</b>${rating ? `<span>IMDB ${rating.toFixed(1)}</span>` : ''}</span>
         <span class="slate__title">${title.toUpperCase()}</span>
         <span class="slate__meta">${meta}</span>`;
+      if (art) {
+        const im = el.querySelector('.slate__art');
+        im.addEventListener('error', () => {
+          el.classList.remove('has-cover');
+          const sc = el.querySelector('.slate__scrim');
+          if (sc) sc.remove();
+          im.remove();
+        });
+      }
       grid.appendChild(el);
     };
 
@@ -292,7 +304,7 @@
     if (gSeries) {
       SERIES.forEach((s, i) => {
         const meta = [s.years, `${pad2(s.eps)} EP`, s.platform.toUpperCase()].filter(Boolean).join(' · ');
-        slate(gSeries, i + 1, SERIES.length, 'SERIES', s.title, meta, s.rating >= 7 ? s.rating : 0, false);
+        slate(gSeries, i + 1, SERIES.length, 'SERIES', s.title, meta, s.rating >= 7 ? s.rating : 0, false, s.art);
       });
       endStrip(gSeries, `END OF SERIES — ${pad2(SERIES.length)} SHOWS`);
     }
