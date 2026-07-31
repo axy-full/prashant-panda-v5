@@ -103,33 +103,128 @@
     { name: 'RISHABH DUBEY',      house: 'BBDO / DUCKTAPE',            works: [4, 6],    still: '1073818885' },
     { name: 'RAHUL SRIVASTAVA',   house: '',                           works: [],        still: '' },
     { name: 'ABHIJIT SUDAKAR',    house: 'ZIGZAG FILM',                works: [],        still: '' },
-    { name: 'VIVEK DASCHAUDHARY', house: 'KARMANLINE',                 works: [10],      still: '1106435260' },
+    { name: 'VIVEK DASCHAUDHARY', house: 'KARMMAN LINE',               works: [10],      still: '1106435260' },
     { name: 'VARUN GUPTA',        house: '',                           works: [3],       still: '1031822870' },
     { name: 'RAGHAVI AGARWAL',    house: '',                           works: [],        still: '' },
   ];
 
   /* ============================================================
-     RENDER — REEL (filmstrip cards)
+     01 — THE REEL as an NLE TIMELINE (aimighty treatment)
+     · clips cut to true duration (width = seconds × pps)
+     · checkerboarded across V2/V1 like an A/B roll — echoing
+       the brand lockup's two tracks
+     · fixed playhead reads the scroll; 25fps timecode; the
+       active clip's story-thought prints under the strip
      ============================================================ */
-  (function renderReel() {
-    const strip = $('#reelStrip');
-    if (!strip) return;
-    REEL.forEach((r, i) => {
-      const p = byId(r.id);
-      const el = document.createElement('article');
-      el.className = `piece piece--ar${r.ar} reveal`;
+  (function timeline() {
+    const scroller = $('#tlScroll');
+    if (!scroller) return;
+    const lanes = [$('#laneV2'), $('#laneV1')];
+    const ruler = $('#tlRuler'), inner = $('#tlInner'), tcOut = $('#tlTc');
+    const noteT = $('#tlNoteTitle'), noteX = $('#tlNoteText');
+
+    const CLIPS = REEL.map(r => ({ ...r, p: byId(r.id) }));
+    let acc = 0;
+    CLIPS.forEach(c => { c.start = acc; acc += c.p.dur; });
+    const TOTALS = acc;
+    const PADL = 56, PADR = 72;
+    let pps = 7;
+
+    CLIPS.forEach((c, i) => {
+      const el = document.createElement('button');
+      el.type = 'button';
+      el.className = 'tclip';
+      el.dataset.play = c.id;
+      el.setAttribute('aria-label', `Play — ${c.p.title}`);
       el.innerHTML = `
-        <button type="button" class="piece__media" data-play="${p.id}" aria-label="Play — ${p.title}">
-          <img src="${img(p)}" alt="${p.title} — film still" ${i === 0 ? '' : 'loading="lazy"'} draggable="false" />
-          ${r.tick ? `<span class="piece__tick">${r.tick}</span>` : ''}
-        </button>
-        <div class="piece__cap">
-          <span class="piece__no">${pad2(i + 1)}</span>
-          <span class="piece__title">${r.t}</span>
-          <span class="piece__meta">${p.client.toUpperCase()} — ${mmss(p.dur)}</span>
-        </div>
-        <p class="piece__note">${r.note}</p>`;
-      strip.appendChild(el);
+        <img src="${img(c.p)}" alt="" ${i === 0 ? '' : 'loading="lazy"'} draggable="false" />
+        <span class="tclip__grade" aria-hidden="true"></span>
+        <span class="tclip__face">
+          <span class="tclip__no">${pad2(i + 1)}</span>
+          <span class="tclip__name">${c.t}</span>
+          <span class="tclip__meta">${c.p.client.toUpperCase()} — ${mmss(c.p.dur)}</span>
+        </span>`;
+      lanes[i % 2].appendChild(el);
+      c.el = el;
+    });
+
+    function layout() {
+      const frame = scroller.clientWidth || innerWidth;
+      pps = Math.max((frame * (frame < 700 ? 2.1 : 1.55)) / TOTALS, 7);
+      CLIPS.forEach(c => {
+        c.el.style.left = Math.round(PADL + c.start * pps) + 'px';
+        c.el.style.width = Math.round(c.p.dur * pps) + 'px';
+      });
+      const marks = [];
+      for (let s = 0; s <= TOTALS; s += 10) {
+        const major = s % 30 === 0;
+        marks.push(`<span class="tick${major ? ' major' : ''}" style="left:${Math.round(PADL + s * pps)}px">${major ? `<i>${mmss(s)}</i>` : ''}</span>`);
+      }
+      ruler.innerHTML = marks.join('');
+      inner.style.width = Math.round(PADL + TOTALS * pps + PADR) + 'px';
+      sync();
+    }
+
+    const headAt = () => scroller.clientWidth * 0.18;
+    const fmtTC = sec => {
+      const s = Math.floor(sec);
+      return `${pad2(Math.floor(s / 60))}:${pad2(s % 60)}:${pad2(Math.floor((sec - s) * 25))}`;
+    };
+    let cur = -1;
+    function sync() {
+      const secs = Math.min(Math.max(0, (scroller.scrollLeft + headAt() - PADL) / pps), TOTALS - 0.04);
+      if (tcOut) tcOut.textContent = fmtTC(secs);
+      const i = CLIPS.findIndex(c => secs >= c.start && secs < c.start + c.p.dur);
+      if (i >= 0 && i !== cur) {
+        cur = i;
+        CLIPS.forEach((c, j) => c.el.classList.toggle('active', j === i));
+        if (noteT) noteT.textContent = CLIPS[i].t + ' — ';
+        if (noteX) noteX.textContent = CLIPS[i].note;
+      }
+    }
+    let tick = false;
+    scroller.addEventListener('scroll', () => {
+      if (!tick) { tick = true; requestAnimationFrame(() => { tick = false; sync(); }); }
+    }, { passive: true });
+    let rt;
+    addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(layout, 120); });
+    layout();
+
+    /* wheel scrubs the timeline, hands the page back at the ends */
+    scroller.addEventListener('wheel', e => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      const max = scroller.scrollWidth - scroller.clientWidth;
+      if ((scroller.scrollLeft <= 0 && e.deltaY < 0) ||
+          (scroller.scrollLeft >= max - 1 && e.deltaY > 0)) return;
+      e.preventDefault();
+      scroller.scrollLeft += e.deltaY;
+    }, { passive: false });
+
+    /* drag to scrub (mouse) — suppress the click that would open the player */
+    let down = false, dragged = false, sx = 0, sl = 0;
+    scroller.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse') return;
+      down = true; dragged = false; sx = e.clientX; sl = scroller.scrollLeft;
+      scroller.classList.add('dragging');
+    });
+    addEventListener('pointermove', e => {
+      if (!down) return;
+      const dx = e.clientX - sx;
+      if (!dragged && Math.abs(dx) > 6) dragged = true;
+      if (dragged) scroller.scrollLeft = sl - dx;
+    });
+    addEventListener('pointerup', () => {
+      if (!down) return;
+      down = false;
+      scroller.classList.remove('dragging');
+      if (dragged) setTimeout(() => { dragged = false; }, 40);
+    });
+    scroller.addEventListener('click', e => {
+      if (dragged) { e.preventDefault(); e.stopPropagation(); }
+    }, true);
+    scroller.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); scroller.scrollLeft -= 120; }
+      if (e.key === 'ArrowRight') { e.preventDefault(); scroller.scrollLeft += 120; }
     });
   })();
 
@@ -227,7 +322,7 @@
      recolored bone via CSS) · logo:null → typographic fallback
      ============================================================ */
   const BRANDS_ROW = [
-    { name: 'GIC',                logo: null }, /* Council lockup too fine-printed for marquee scale */
+    { name: 'GIC',                logo: 'gic-compact.svg' }, /* emblem + GIC glyphs derived from the official Council lockup */
     { name: 'SNICKERS',           logo: 'snickers.svg' },
     { name: 'ICICI BANK',         logo: 'icici-bank.svg' },
     { name: 'PERFETTI VAN MELLE', logo: 'perfetti.svg' },
@@ -241,9 +336,9 @@
     { name: 'JAMIC FILMS',        logo: 'jamic-films.png' },
     { name: 'DUCKTAPE',           logo: 'ducktape.png' },
     { name: 'CARROM FILMS',       logo: null },
-    { name: 'KEROSCENE FILMS',    logo: null },
-    { name: 'ZIGZAG FILM',        logo: null },
-    { name: 'KARMANLINE',         logo: null },
+    { name: 'KEROSCENE FILMS',    logo: 'keroscene.png' },
+    { name: 'ZIGZAG FILM',        logo: 'zigzag.png' },
+    { name: 'KARMMAN LINE',       logo: 'karmanline.png' }, /* official double-M styling */
   ];
   const PLATFORMS_ROW = [
     { name: 'TVF',              logo: 'tvf.png' },
@@ -266,6 +361,17 @@
     };
     fill('#bmqBrands', BRANDS_ROW);
     fill('#bmqPlatforms', PLATFORMS_ROW);
+
+    /* thin hero ticker — every banner, logo-first, at ticker scale */
+    const ticker = $('#ticker');
+    if (ticker) {
+      const ROW = [...BRANDS_ROW, ...PLATFORMS_ROW];
+      const tItem = b => b.logo
+        ? `<img class="marquee__logo" src="assets/img/brands/${b.logo}" alt="${b.name}" loading="lazy" />`
+        : `<span>${b.name.replace(/ /g, '&nbsp;')}</span>`;
+      const half = ROW.map(b => `${tItem(b)}<b>●</b>`).join('');
+      ticker.innerHTML = half + half;
+    }
   })();
 
   /* ============================================================
@@ -469,79 +575,6 @@
       ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { threshold: 0.12 });
     els.forEach(e => io.observe(e));
-  })();
-
-  /* ============================================================
-     REEL CAROUSEL — progress · arrows · drag · parallax
-     ============================================================ */
-  (function carousel() {
-    const strip = $('#reelStrip');
-    if (!strip) return;
-    const prev = $('#reelPrev'), next = $('#reelNext'), bar = $('#reelBar');
-    const cards = $$('.piece', strip);
-    const desktop = () => innerWidth > 900;
-
-    const update = () => {
-      const max = strip.scrollWidth - strip.clientWidth;
-      if (bar) bar.style.width = (max > 0 ? (strip.scrollLeft / max) * 100 : 0) + '%';
-      if (prev) prev.disabled = strip.scrollLeft < 8;
-      if (next) next.disabled = strip.scrollLeft > max - 8;
-      if (!reduced && desktop()) {
-        cards.forEach(c => {
-          const r = c.getBoundingClientRect();
-          if (r.right < -60 || r.left > innerWidth + 60) return;
-          const prog = ((r.left + r.width / 2) - innerWidth / 2) / (innerWidth / 2 + r.width / 2);
-          const im = c.querySelector('img');
-          if (im) im.style.setProperty('--px', (prog * 22).toFixed(1) + 'px');
-        });
-      }
-    };
-    let tick = false;
-    const onScroll = () => { if (!tick) { tick = true; requestAnimationFrame(() => { tick = false; update(); }); } };
-    strip.addEventListener('scroll', onScroll, { passive: true });
-    addEventListener('resize', onScroll);
-    update();
-
-    /* arrows — step to next / previous card edge */
-    const pad = () => parseFloat(getComputedStyle(strip).paddingLeft) || 0;
-    const step = dir => {
-      const offs = cards.map(c => c.offsetLeft - pad());
-      const x = strip.scrollLeft;
-      const target = dir > 0
-        ? offs.find(o => o > x + 8)
-        : [...offs].reverse().find(o => o < x - 8);
-      strip.scrollTo({
-        left: target !== undefined ? target : (dir > 0 ? strip.scrollWidth : 0),
-        behavior: reduced ? 'auto' : 'smooth',
-      });
-    };
-    if (prev) prev.addEventListener('click', () => step(-1));
-    if (next) next.addEventListener('click', () => step(1));
-    strip.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
-      if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
-    });
-
-    /* drag-to-scroll (mouse) — suppress the click that would open the player */
-    let down = false, dragged = false, sx = 0, sl = 0;
-    strip.addEventListener('pointerdown', e => {
-      if (e.pointerType !== 'mouse') return;
-      down = true; dragged = false; sx = e.clientX; sl = strip.scrollLeft;
-    });
-    addEventListener('pointermove', e => {
-      if (!down) return;
-      const dx = e.clientX - sx;
-      if (!dragged && Math.abs(dx) > 6) { dragged = true; strip.classList.add('dragging'); }
-      if (dragged) strip.scrollLeft = sl - dx;
-    });
-    addEventListener('pointerup', () => {
-      if (!down) return;
-      down = false;
-      if (dragged) setTimeout(() => { dragged = false; strip.classList.remove('dragging'); }, 40);
-    });
-    strip.addEventListener('click', e => {
-      if (dragged) { e.preventDefault(); e.stopPropagation(); }
-    }, true);
   })();
 
   /* ============================================================

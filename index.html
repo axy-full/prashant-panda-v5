@@ -122,32 +122,36 @@
   <a class="hero__scroll" href="#reel" aria-label="Scroll to the reel"><i></i></a>
 </section>
 
-<!-- ======== CLIENT MARQUEE (thin) ======== -->
+<!-- ======== CLIENT MARQUEE (thin logo ticker) ======== -->
 <div class="marquee" aria-hidden="true">
-  <div class="marquee__track">
-    <span>GIC</span><b>●</b><span>SNICKERS</span><b>●</b><span>ICICI&nbsp;BANK</span><b>●</b><span>PERFETTI</span><b>●</b><span>CANDID</span><b>●</b><span>GREENPLY</span><b>●</b><span>HINT</span><b>●</b><span>EVA</span><b>●</b><span>ENVY</span><b>●</b><span>TVF</span><b>●</b><span>ALTBALAJI</span><b>●</b>
-    <span>GIC</span><b>●</b><span>SNICKERS</span><b>●</b><span>ICICI&nbsp;BANK</span><b>●</b><span>PERFETTI</span><b>●</b><span>CANDID</span><b>●</b><span>GREENPLY</span><b>●</b><span>HINT</span><b>●</b><span>EVA</span><b>●</b><span>ENVY</span><b>●</b><span>TVF</span><b>●</b><span>ALTBALAJI</span><b>●</b>
-  </div>
+  <div class="marquee__track" id="ticker"><!-- logos + wordmarks injected --></div>
 </div>
 
-<!-- ======== 01 — THE REEL (asymmetric feature flow) ======== -->
+<!-- ======== 01 — THE REEL (NLE timeline) ======== -->
 <section class="reel" id="reel">
   <div class="sec-head reveal">
     <span class="kicker"><i>[●]</i> 01 — THE REEL</span>
     <h2 class="sec-title">SELECTED<br/>STORIES</h2>
-    <span class="sec-meta">SEVEN&nbsp;AD&nbsp;FILMS<br/>PLAYABLE&nbsp;IN&nbsp;SITE</span>
+    <span class="sec-meta">SEVEN&nbsp;AD&nbsp;FILMS&nbsp;—&nbsp;ONE&nbsp;TIMELINE<br/>CLIPS&nbsp;CUT&nbsp;TO&nbsp;TRUE&nbsp;LENGTH</span>
   </div>
 
-  <div class="reel__bar reveal">
-    <span class="reel__hint"><i>[●]</i>&nbsp;DRAG&nbsp;/&nbsp;SCROLL</span>
-    <div class="reel__arrows">
-      <button class="reel__arrow" id="reelPrev" aria-label="Previous film">←</button>
-      <button class="reel__arrow" id="reelNext" aria-label="Next film">→</button>
+  <div class="tl reveal" id="tl">
+    <div class="tl__scroll" id="tlScroll" role="region" aria-label="Selected stories timeline" tabindex="0">
+      <div class="tl__inner" id="tlInner">
+        <div class="tl__ruler" id="tlRuler"></div>
+        <div class="tl__lane" id="laneV2"></div>
+        <div class="tl__lane" id="laneV1"></div>
+      </div>
     </div>
+    <span class="tl__playhead" aria-hidden="true"></span>
+    <span class="tl__tag tl__tag--v2" aria-hidden="true">V2</span>
+    <span class="tl__tag tl__tag--v1" aria-hidden="true">V1</span>
+    <span class="tl__tc" id="tlTc" aria-hidden="true">00:00:00</span>
   </div>
-
-  <div class="reel__strip" id="reelStrip" role="region" aria-label="Selected work carousel" tabindex="0"><!-- pieces injected --></div>
-  <div class="reel__progress" aria-hidden="true"><i id="reelBar"></i></div>
+  <div class="tl__bar reveal">
+    <span class="tl__note" id="tlNote"><i>[●]</i>&nbsp;<b id="tlNoteTitle"></b><span id="tlNoteText"></span></span>
+    <span class="tl__hint">WHEEL&nbsp;/&nbsp;DRAG&nbsp;TO&nbsp;SCRUB&nbsp;—&nbsp;CLICK&nbsp;A&nbsp;CLIP&nbsp;TO&nbsp;PLAY</span>
+  </div>
 
   <div class="reel__more reveal">
     <a href="/work" class="reel__more-link"><span>FULL INDEX</span><i>→</i></a>
