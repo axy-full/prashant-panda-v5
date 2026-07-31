@@ -89,23 +89,23 @@
   /* art = assets/img/series/<art>.jpg — official key art; a slate
      falls back to type automatically if the file is missing */
   const SERIES = [
-    { title: 'Permanent Roommates',        years: '2014–2016', eps: 5,  rating: 8.6, platform: 'TVF',                art: 'series/permanent-roommates', yt: '' },
-    { title: 'Hostel Daze',                years: '2019–2022', eps: 3,  rating: 8.5, platform: 'TVF · Prime Video',  art: 'series/hostel-daze', yt: '' },
-    { title: 'Operation MBBS',             years: '2020–2021', eps: 2,  rating: 8.3, platform: '',                   art: 'series/operation-mbbs', yt: '' },
+    { title: 'Permanent Roommates',        years: '2014–2016', eps: 5,  rating: 8.6, platform: 'TVF',                art: 'series/permanent-roommates', yt: 'tKNQMYmQjnA' },
+    { title: 'Hostel Daze',                years: '2019–2022', eps: 3,  rating: 8.5, platform: 'TVF · Prime Video',  art: 'series/hostel-daze', yt: '6Xdj-Jn9_iI' },
+    { title: 'Operation MBBS',             years: '2020–2021', eps: 2,  rating: 8.3, platform: '',                   art: 'series/operation-mbbs', yt: 'WL_BdNa4tEU' },
     { title: 'Cheesecake',                 years: '2019',      eps: 5,  rating: 8.2, platform: '',                   art: 'series/cheesecake', yt: '' },
-    { title: 'Cartel',                     years: '2021',      eps: 14, rating: 8.0, platform: 'ALTBalaji',          art: 'series/cartel', yt: '' },
-    { title: 'Bachelors vs the World',     years: '2022',      eps: 5,  rating: 7.8, platform: '',                   art: 'series/bachelors-vs-the-world', yt: '' },
-    { title: 'Ishq Next Door',             years: '2023',      eps: 7,  rating: 7.7, platform: 'JioCinema',          art: 'series/ishq-next-door', yt: '' },
-    { title: 'Fireflies: Parth Aur Jugnu', years: '2023',      eps: 10, rating: 7.3, platform: '',                   art: 'series/fireflies', yt: '' },
+    { title: 'Cartel',                     years: '2021',      eps: 14, rating: 8.0, platform: 'ALTBalaji',          art: 'series/cartel', yt: 'EQ9zXtlMRpM' },
+    { title: 'Bachelors vs the World',     years: '2022',      eps: 5,  rating: 7.8, platform: '',                   art: 'series/bachelors-vs-the-world', yt: 'bdh9UmsuEGw' },
+    { title: 'Ishq Next Door',             years: '2023',      eps: 7,  rating: 7.7, platform: 'JioCinema',          art: 'series/ishq-next-door', yt: 'lGTjxQavLc4' },
+    { title: 'Fireflies: Parth Aur Jugnu', years: '2023',      eps: 10, rating: 7.3, platform: '',                   art: 'series/fireflies', yt: '1MbGjbyYqrI' },
     { title: 'CLASS of 2017',              years: '2017',      eps: 20, rating: 7.3, platform: 'ALTBalaji',          art: 'series/class-of-2017', yt: '' },
-    { title: "TSP's Zeroes",               years: '2018',      eps: 3,  rating: 7.2, platform: 'The Screen Patti',   art: 'series/tsps-zeroes', yt: '' },
-    { title: 'PA-Gals',                    years: '2017',      eps: 3,  rating: 6.6, platform: '',                   art: 'series/pa-gals', yt: '' },
-    { title: 'Puncch Beat',                years: '2018–2019', eps: 13, rating: 6.2, platform: 'ALTBalaji',          art: 'series/puncch-beat', yt: '' },
-    { title: 'Ragini MMS Returns',         years: '2017–2018', eps: 11, rating: 4.1, platform: 'ALTBalaji',          art: 'series/ragini-mms-returns', yt: '' },
+    { title: "TSP's Zeroes",               years: '2018',      eps: 3,  rating: 7.2, platform: 'The Screen Patti',   art: 'series/tsps-zeroes', yt: 'LwIaKhvI3r0' },
+    { title: 'PA-Gals',                    years: '2017',      eps: 3,  rating: 6.6, platform: '',                   art: 'series/pa-gals', yt: 'lzI9ilVNzno' },
+    { title: 'Puncch Beat',                years: '2018–2019', eps: 13, rating: 6.2, platform: 'ALTBalaji',          art: 'series/puncch-beat', yt: 'j8Sdmrb1l2Q' },
+    { title: 'Ragini MMS Returns',         years: '2017–2018', eps: 11, rating: 4.1, platform: 'ALTBalaji',          art: 'series/ragini-mms-returns', yt: 'G8Xud9tnS-M' },
   ];
   const FILMS = [
-    { title: 'Rabia and Olivia', year: '2023', role: 'Editor',                note: 'Feature film',    art: 'films/rabia-and-olivia', yt: '' },
-    { title: 'My Name Is Khan',  year: '2010', role: 'Associate Film Editor', note: 'Dir. Karan Johar', art: 'films/my-name-is-khan',  yt: '' },
+    { title: 'Rabia and Olivia', year: '2023', role: 'Editor',                note: 'Feature film',    art: 'films/rabia-and-olivia', yt: 'dYTUwZAVCrk' },
+    { title: 'My Name Is Khan',  year: '2010', role: 'Associate Film Editor', note: 'Dir. Karan Johar', art: 'films/my-name-is-khan',  yt: 'nqxgYT3TYzY' },
     { title: 'Paying Guest',     year: '',     role: 'Associate Film Editor', note: '',                 art: 'films/paying-guest',     yt: '' },
   ];
   /* the upcoming feature — hero of the films shelf; drops in
