@@ -11,8 +11,8 @@
      · My Name Is Khan + Paying Guest listed as ASSOCIATE FILM
        EDITOR (Prashant's own credit correction); the remaining
        editorial-department titles stay excluded
-     · ad-film genre tags (humor/storytelling/action/stylish)
-       are DRAFT assignments — awaiting Prashant's corrections
+     · ad-film genre tags researched per film (stills + campaign
+       press + upload metadata) — final say stays with Prashant
      · awards list + music-video reel pending from Prashant
      · no email anywhere until Prashant supplies his address
    ============================================================ */
@@ -41,40 +41,40 @@
     { id: 8, vid: '1149446709', hash: '45c47a44bc', title: 'Hint — Pyaar ka Take-off', client: 'Hint', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 50, tag: 'STORYTELLING' },
     { id: 9, vid: '1088994415', hash: '270d911f7c', title: 'GIC — Integrated', client: 'GIC Insurance', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 30, tag: 'STORYTELLING' },
     { id: 10, vid: '1106435260', hash: 'ec61b93f55', title: 'ENVY', client: 'ENVY', credits: 'Dir. Vivek Daschaudhary', dur: 40, tag: 'STYLISH' },
-    { id: 11, vid: '949624577', hash: '0aecd8d238', title: 'ICC T20 World Cup — Biggest Love', client: 'ICC T20 World Cup', credits: '', dur: 70, tag: '' },
-    { id: 12, vid: '1167725115', hash: '2ad055a2ad', title: 'Kotak Neo', client: 'Kotak Neo', credits: '', dur: 45, tag: '' },
-    { id: 13, vid: '571746432', hash: '3ca0813643', title: 'Society Tea — Brand New Day', client: 'Society Tea', credits: '', dur: 257, tag: '' },
-    { id: 14, vid: '1162055404', hash: '542ab9265a', title: 'MG Hector', client: 'MG Motor', credits: '', dur: 60, tag: '' },
-    { id: 15, vid: '1135694596', hash: '4e54adecb1', title: 'It\'s Your Moment — Festive \'25', client: '', credits: '', dur: 60, tag: '' },
-    { id: 16, vid: '958465600', hash: '9b8803648b', title: 'Dare Kiya Toh Darna Kya', client: '', credits: '', dur: 40, tag: '' },
-    { id: 17, vid: '1020985979', hash: '2c2597bb82', title: 'Birla Opus — Ghost', client: 'Birla Opus', credits: '', dur: 140, tag: '' },
-    { id: 18, vid: '1011935988', hash: '16db53c95f', title: 'Birla Opus — Kidnapper', client: 'Birla Opus', credits: '', dur: 168, tag: '' },
-    { id: 19, vid: '709084029', hash: 'e53fc093be', title: 'Swiggy — All The Food You Love', client: 'Swiggy', credits: '', dur: 15, tag: '' },
-    { id: 20, vid: '642944186', hash: '193722126e', title: 'Bingo! Tedhe Medhe ft. Ranveer Singh', client: 'Bingo!', credits: '', dur: 15, tag: '' },
-    { id: 21, vid: '634280547', hash: 'bf91cde5d0', title: 'Bingo! Mad Angles ft. Ranveer Singh', client: 'Bingo!', credits: '', dur: 30, tag: '' },
-    { id: 22, vid: '747936616', hash: '39ddb035cb', title: 'Meesho — Electronics MegaBlockbuster', client: 'Meesho', credits: '', dur: 20, tag: '' },
-    { id: 23, vid: '539977032', hash: 'dd66e499b8', title: 'PGIM India — Gain From Experience', client: 'PGIM India', credits: '', dur: 55, tag: '' },
-    { id: 24, vid: '904713196', hash: 'b63d40fc61', title: 'Sunfeast', client: 'ITC Sunfeast', credits: '', dur: 43, tag: '' },
-    { id: 25, vid: '1174664059', hash: '2c95939b18', title: 'Britannia — Dugout', client: 'Britannia', credits: '', dur: 31, tag: '' },
-    { id: 26, vid: '763773061', hash: 'abe977a192', title: 'MPL — Pool Champs', client: 'MPL', credits: '', dur: 29, tag: '' },
-    { id: 27, vid: '535421247', hash: '6eecab7289', title: '#DeliverTheLove — Bhai Dooj', client: '', credits: '', dur: 112, tag: '' },
-    { id: 28, vid: '995053082', hash: '0f47f2dbab', title: 'Omnigel', client: 'Omnigel', credits: '', dur: 42, tag: '' },
-    { id: 29, vid: '948625099', hash: '8bc2c8aa54', title: 'Birla Opus — Gorilla', client: 'Birla Opus', credits: '', dur: 146, tag: '' },
-    { id: 30, vid: '1176230484', hash: '31f3be9440', title: 'Tata IPL', client: 'Tata IPL', credits: '', dur: 90, tag: '' },
-    { id: 31, vid: '1174664439', hash: 'e17b297944', title: 'Hershey\'s', client: 'Hershey\'s', credits: '', dur: 61, tag: '' },
-    { id: 32, vid: '535424849', hash: 'a1ece44b88', title: 'Hero — Halwa', client: 'Hero', credits: '', dur: 42, tag: '' },
-    { id: 33, vid: '535422129', hash: '146793b802', title: 'Bajaj — Umbrella', client: 'Bajaj', credits: '', dur: 41, tag: '' },
-    { id: 34, vid: '535421448', hash: 'bcd4f2c473', title: 'Bajaj — Paperboat', client: 'Bajaj', credits: '', dur: 46, tag: '' },
-    { id: 35, vid: '854322510', hash: '4e43202996', title: 'MPL — Ludo', client: 'MPL', credits: '', dur: 30, tag: '' },
-    { id: 36, vid: '747936708', hash: 'cfb4e9b082', title: 'Meesho — MegaBlockbuster Sale', client: 'Meesho', credits: '', dur: 29, tag: '' },
-    { id: 37, vid: '1179531910', hash: 'be8e6f7f01', title: 'Gillette Guard 3-in-1', client: 'Gillette', credits: '', dur: 30, tag: '' },
-    { id: 38, vid: '1179533196', hash: 'b39fd32b44', title: 'IPL — Migrant', client: '', credits: '', dur: 60, tag: '' },
-    { id: 39, vid: '948622574', hash: 'cdfcad98cb', title: 'Bajaj Allianz Life — Happy Bonus', client: 'Bajaj Allianz Life', credits: '', dur: 55, tag: '' },
-    { id: 40, vid: '1006193461', hash: 'b2f117028b', title: 'JK Wipeazy', client: 'JK Wipeazy', credits: '', dur: 36, tag: '' },
-    { id: 41, vid: '1194290610', hash: '0abd367ed4', title: 'Soulmate — 15s Digital', client: '', credits: '', dur: 15, tag: '' },
-    { id: 42, vid: '1194256626', hash: '3fdcc1ecb0', title: 'Popeyes', client: 'Popeyes', credits: '', dur: 40, tag: '' },
-    { id: 43, vid: '1176234899', hash: '4b3fdf00d8', title: 'Equus Asinus', client: '', credits: '', dur: 50, tag: '' },
-    { id: 44, vid: '1202512344', hash: '2f299c22f5', title: 'Agami Reality', client: 'Agami Reality', credits: '', dur: 78, tag: '' },
+    { id: 11, vid: '949624577', hash: '0aecd8d238', title: 'ICC T20 World Cup — Biggest Love', client: 'Star Sports', credits: 'Star Sports · Jamic Films · Dir. Nikhil Rao', dur: 70, tag: 'STORYTELLING' },
+    { id: 12, vid: '1167725115', hash: '2ad055a2ad', title: 'Kotak Neo', client: 'Kotak Neo', credits: '', dur: 45, tag: 'STYLISH' },
+    { id: 13, vid: '571746432', hash: '3ca0813643', title: 'Society Tea — Brand New Day', client: 'Society Tea', credits: '', dur: 257, tag: 'STORYTELLING' },
+    { id: 14, vid: '1162055404', hash: '542ab9265a', title: 'MG Hector', client: 'MG Motor', credits: '', dur: 60, tag: 'STORYTELLING' },
+    { id: 15, vid: '1135694596', hash: '4e54adecb1', title: 'It\'s Your Moment — Festive \'25', client: 'amanté', credits: '', dur: 60, tag: 'STYLISH' },
+    { id: 16, vid: '958465600', hash: '9b8803648b', title: 'Dare Kiya Toh Darna Kya', client: 'Hint', credits: 'Jamic Films · Dir. Shirish Daiya · ft. Tiger Shroff', dur: 40, tag: 'ACTION' },
+    { id: 17, vid: '1020985979', hash: '2c2597bb82', title: 'Birla Opus — Ghost', client: 'Birla Opus', credits: 'Colonial Films · Dir. Rishabh Dubey', dur: 140, tag: 'HUMOR' },
+    { id: 18, vid: '1011935988', hash: '16db53c95f', title: 'Birla Opus — Kidnapper', client: 'Birla Opus', credits: '', dur: 168, tag: 'STORYTELLING' },
+    { id: 19, vid: '709084029', hash: 'e53fc093be', title: 'Swiggy — All The Food You Love', client: 'Swiggy', credits: '', dur: 15, tag: 'STORYTELLING' },
+    { id: 20, vid: '642944186', hash: '193722126e', title: 'Bingo! Tedhe Medhe ft. Ranveer Singh', client: 'Bingo!', credits: '', dur: 15, tag: 'HUMOR' },
+    { id: 21, vid: '634280547', hash: 'bf91cde5d0', title: 'Bingo! Mad Angles ft. Ranveer Singh', client: 'Bingo!', credits: '', dur: 30, tag: 'HUMOR' },
+    { id: 22, vid: '747936616', hash: '39ddb035cb', title: 'Meesho — Electronics MegaBlockbuster', client: 'Meesho', credits: '', dur: 20, tag: 'HUMOR' },
+    { id: 23, vid: '539977032', hash: 'dd66e499b8', title: 'PGIM India — Gain From Experience', client: 'PGIM India', credits: '', dur: 55, tag: 'STORYTELLING' },
+    { id: 24, vid: '904713196', hash: 'b63d40fc61', title: 'Sunfeast', client: 'ITC Sunfeast', credits: '', dur: 43, tag: 'HUMOR' },
+    { id: 25, vid: '1174664059', hash: '2c95939b18', title: 'Britannia — Dugout', client: 'Britannia', credits: '', dur: 31, tag: 'HUMOR' },
+    { id: 26, vid: '763773061', hash: 'abe977a192', title: 'MPL — Pool Champs', client: 'MPL', credits: '', dur: 29, tag: 'HUMOR' },
+    { id: 27, vid: '535421247', hash: '6eecab7289', title: '#DeliverTheLove — Bhai Dooj', client: 'Amazon India', credits: '', dur: 112, tag: 'STORYTELLING' },
+    { id: 28, vid: '995053082', hash: '0f47f2dbab', title: 'Omnigel', client: 'Omnigel', credits: '', dur: 42, tag: 'HUMOR' },
+    { id: 29, vid: '948625099', hash: '8bc2c8aa54', title: 'Birla Opus — Gorilla', client: 'Birla Opus', credits: 'Colonial Films · Dir. Rishabh Dubey', dur: 146, tag: 'HUMOR' },
+    { id: 30, vid: '1176230484', hash: '31f3be9440', title: 'Tata IPL', client: 'Tata IPL', credits: 'Dir. Nikhil Rao', dur: 90, tag: 'STORYTELLING' },
+    { id: 31, vid: '1174664439', hash: 'e17b297944', title: 'Hershey\'s', client: 'Hershey\'s', credits: '', dur: 61, tag: 'HUMOR' },
+    { id: 32, vid: '535424849', hash: 'a1ece44b88', title: 'Hero — Halwa', client: 'Hero', credits: '', dur: 42, tag: 'STORYTELLING' },
+    { id: 33, vid: '535422129', hash: '146793b802', title: 'Bajaj — Umbrella', client: 'Bajaj', credits: '', dur: 41, tag: 'STORYTELLING' },
+    { id: 34, vid: '535421448', hash: 'bcd4f2c473', title: 'Bajaj — Paperboat', client: 'Bajaj', credits: '', dur: 46, tag: 'STORYTELLING' },
+    { id: 35, vid: '854322510', hash: '4e43202996', title: 'MPL — Ludo', client: 'MPL', credits: '', dur: 30, tag: 'HUMOR' },
+    { id: 36, vid: '747936708', hash: 'cfb4e9b082', title: 'Meesho — MegaBlockbuster Sale', client: 'Meesho', credits: '', dur: 29, tag: 'HUMOR' },
+    { id: 37, vid: '1179531910', hash: 'be8e6f7f01', title: 'Gillette Guard 3-in-1', client: 'Gillette', credits: 'Keroscene Films · Dir. Rajesh Saathi', dur: 30, tag: 'STYLISH' },
+    { id: 38, vid: '1179533196', hash: 'b39fd32b44', title: 'IPL — Migrant', client: 'Astral Pipes', credits: '', dur: 60, tag: 'STORYTELLING' },
+    { id: 39, vid: '948622574', hash: 'cdfcad98cb', title: 'Bajaj Allianz Life — Happy Bonus', client: 'Bajaj Allianz Life', credits: '', dur: 55, tag: 'STORYTELLING' },
+    { id: 40, vid: '1006193461', hash: 'b2f117028b', title: 'JK Wipeazy', client: 'JK Wipeazy', credits: '', dur: 36, tag: 'HUMOR' },
+    { id: 41, vid: '1194290610', hash: '0abd367ed4', title: 'Soulmate — 15s Digital', client: 'Call Me Chunky', credits: '', dur: 15, tag: 'HUMOR' },
+    { id: 42, vid: '1194256626', hash: '3fdcc1ecb0', title: 'Popeyes', client: 'Popeyes', credits: '', dur: 40, tag: 'HUMOR' },
+    { id: 43, vid: '1176234899', hash: '4b3fdf00d8', title: 'Equus Asinus', client: '', credits: '', dur: 50, tag: 'HUMOR' },
+    { id: 44, vid: '1202512344', hash: '2f299c22f5', title: 'Agami Realty', client: 'Agami Realty', credits: '', dur: 78, tag: 'STORYTELLING' },
   ];
   const TAGS = ['HUMOR', 'STORYTELLING', 'ACTION', 'STYLISH'];
   const img = p => `assets/img/work/${p.vid}.jpg`;
@@ -137,11 +137,11 @@
      works get an "in assembly" panel until he sends the titles.
      ============================================================ */
   const DIRECTORS = [
-    { name: 'NIKHIL RAO',         house: 'JAMIC FILMS / CARROM FILMS', works: [2, 7],    still: '867458294' },
-    { name: 'SHIRISH DAIYA',      house: 'JAMIC FILMS',                works: [1, 9, 8], still: '1088993725' },
-    { name: 'RAJESH SAATHI',      house: 'KEROSCENE FILMS',            works: [],        still: '' },
+    { name: 'NIKHIL RAO',         house: 'JAMIC FILMS / CARROM FILMS', works: [2, 7, 11, 30], still: '867458294' },
+    { name: 'SHIRISH DAIYA',      house: 'JAMIC FILMS',                works: [1, 9, 8, 16], still: '1088993725' },
+    { name: 'RAJESH SAATHI',      house: 'KEROSCENE FILMS',            works: [37],      still: '1179531910' },
     { name: 'SAPNA SINGH',        house: '',                           works: [],        still: '' },
-    { name: 'RISHABH DUBEY',      house: 'BBDO / DUCKTAPE',            works: [4, 6],    still: '1073818885' },
+    { name: 'RISHABH DUBEY',      house: 'BBDO / DUCKTAPE / COLONIAL', works: [4, 6, 17, 29], still: '1073818885' },
     { name: 'RAHUL SRIVASTAVA',   house: '',                           works: [],        still: '' },
     { name: 'ABHIJIT SUDAKAR',    house: 'ZIGZAG FILM',                works: [],        still: '' },
     { name: 'VIVEK DASCHAUDHARY', house: 'KARMMAN LINE',               works: [10],      still: '1106435260' },
@@ -459,7 +459,7 @@
     DIRECTORS.forEach((d, i) => {
       const cuts = d.works.map(byId);
       const metaTop = cuts.length ? cuts.map(w => w.title.toUpperCase()).join(' · ') : 'CUTS — LIST IN ASSEMBLY';
-      const metaBot = [cuts.length ? `${pad2(cuts.length)} CUTS` : '', d.house].filter(Boolean).join(' — ') || '&nbsp;';
+      const metaBot = [cuts.length ? `${pad2(cuts.length)} ${cuts.length === 1 ? 'CUT' : 'CUTS'}` : '', d.house].filter(Boolean).join(' — ') || '&nbsp;';
       const chips = cuts.length
         ? cuts.map(w => `<button type="button" class="dirchip" data-play="${w.id}">${w.title.toUpperCase()}&nbsp;▸</button>`).join('')
         : '<span class="dirchip dirchip--tbc">FULL LIST IN ASSEMBLY — SOON</span>';
