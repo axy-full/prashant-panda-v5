@@ -14,7 +14,7 @@
      · ad-film genre tags researched per film (stills + campaign
        press + upload metadata) — final say stays with Prashant
      · awards list + music-video reel pending from Prashant
-     · no email anywhere until Prashant supplies his address
+     · contact email: ppanda.79@gmail.com (live since 2026-08-01)
    ============================================================ */
 (() => {
   'use strict';
@@ -376,7 +376,7 @@
      the EMAIL button on /contact (stays a muted "in assembly"
      row while empty — the no-invented-email rule holds)
      ============================================================ */
-  const EMAIL = '';
+  const EMAIL = 'ppanda.79@gmail.com';
   (function emailButton() {
     const row = $('#emailRow');
     if (!row) return;
