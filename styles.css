@@ -23,6 +23,9 @@
 
   --pad: clamp(20px, 4.5vw, 84px);
   --ease: cubic-bezier(.19,1,.22,1);
+
+  /* NLE arrow — condensed ink pointer, hairline bone edge */
+  --cur: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M5 1.5L5 17.2 8.1 14 10.1 18.8 12.6 17.7 10.5 13 13.6 13Z' fill='%230f0d0d' stroke='%23f2efe6' stroke-width='1.1' stroke-linejoin='round'/%3E%3C/svg%3E") 5 1, default;
 }
 
 *{ box-sizing:border-box; margin:0; padding:0; }
@@ -37,11 +40,12 @@ body{
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
-  cursor:none;
+  cursor:var(--cur);
 }
 @media (max-width:900px){ body{ cursor:auto; } }
 
-a{ color:inherit; text-decoration:none; }
+a{ color:inherit; text-decoration:none; cursor:var(--cur); }
+@media (max-width:900px){ a{ cursor:auto; } }
 button{ font-family:inherit; color:inherit; }
 img{ display:block; }
 ::selection{ background:var(--red); color:var(--bone); }
@@ -74,26 +78,6 @@ img{ display:block; }
   position:fixed; inset:0; z-index:8999; pointer-events:none;
   background:radial-gradient(120% 120% at 50% 42%, transparent 55%, rgba(0,0,0,.5) 100%);
 }
-
-/* ---------- custom cursor ---------- */
-.cursor{ position:fixed; top:0; left:0; z-index:9999; pointer-events:none; mix-blend-mode:difference; }
-.cursor__dot{ position:absolute; width:6px; height:6px; border-radius:50%; background:#fff;
-  transform:translate(-50%,-50%); transition:opacity .2s; }
-.cursor__ring{
-  position:absolute; width:36px; height:36px; border:1px solid rgba(255,255,255,.6);
-  border-radius:50%; transform:translate(-50%,-50%);
-  transition:width .25s var(--ease), height .25s var(--ease), border-color .25s;
-}
-.cursor__label{
-  position:absolute; inset:0; display:grid; place-items:center;
-  font-family:var(--mono); font-size:8px; letter-spacing:.16em; font-weight:700;
-  color:#fff; opacity:0; transition:opacity .2s;
-}
-.cursor.is-hot .cursor__ring{ width:52px; height:52px; }
-.cursor.is-play .cursor__ring{ width:66px; height:66px; border-color:#fff; }
-.cursor.is-play .cursor__label{ opacity:1; }
-.cursor.is-play .cursor__dot{ opacity:0; }
-@media (max-width:900px){ .cursor{ display:none; } }
 
 /* ---------- HUD (scroll timecode) ---------- */
 .hud{
@@ -161,7 +145,7 @@ body.menu-open .nav{ background:transparent; backdrop-filter:none; border-color:
 .nav__link:hover::after{ width:100%; }
 .nav__burger{
   display:flex; align-items:center; gap:10px; background:none; border:0;
-  color:var(--bone); cursor:none;
+  color:var(--bone); cursor:var(--cur);
 }
 @media (max-width:900px){ .nav__burger{ cursor:pointer; } }
 .nav__burger-label{ font-family:var(--mono); font-size:10.5px; letter-spacing:.18em; }
@@ -295,7 +279,7 @@ body.loaded .hero__center{ opacity:1; transform:none; }
 .hero__play{
   position:relative; margin-top:clamp(34px,6vh,72px);
   width:clamp(98px,11.5vw,140px); aspect-ratio:1; border-radius:50%;
-  background:none; border:0; cursor:none; color:var(--bone);
+  background:none; border:0; cursor:var(--cur); color:var(--bone);
 }
 @media (max-width:900px){ .hero__play{ cursor:pointer; } }
 .hero__play::before{
@@ -385,7 +369,7 @@ body.loaded .hero__center{ opacity:1; transform:none; }
 .tclip{
   position:absolute; top:8px; bottom:8px; padding:0;
   border:1px solid rgba(242,239,230,.18); border-radius:2px; overflow:hidden;
-  background:var(--bg); color:var(--bone); cursor:none;
+  background:var(--bg); color:var(--bone); cursor:var(--cur);
 }
 @media (max-width:900px){ .tclip{ cursor:pointer; } }
 .tclip img{
@@ -481,7 +465,7 @@ body.loaded .hero__center{ opacity:1; transform:none; }
 }
 .tile{
   position:relative; aspect-ratio:16/9; overflow:hidden;
-  background:var(--bg); border:0; padding:0; cursor:none; color:var(--bone);
+  background:var(--bg); border:0; padding:0; cursor:var(--cur); color:var(--bone);
   outline:1px solid var(--line); outline-offset:0;
 }
 @media (max-width:900px){ .tile{ cursor:pointer; } }
@@ -511,7 +495,7 @@ body.loaded .hero__center{ opacity:1; transform:none; }
 .pill{
   font-family:var(--mono); font-size:10px; letter-spacing:.16em; color:var(--mut);
   background:none; border:1px solid var(--line); border-radius:100px;
-  padding:9px 16px; cursor:none; transition:.3s var(--ease);
+  padding:9px 16px; cursor:var(--cur); transition:.3s var(--ease);
 }
 @media (max-width:900px){ .pill{ cursor:pointer; } }
 .pill:hover{ color:var(--bone); border-color:var(--bone-dim); }
@@ -537,7 +521,7 @@ body.loaded .hero__center{ opacity:1; transform:none; }
 /* slate tiles — series & films without embeddable video */
 .tile--slate{
   display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-end;
-  padding:14px 16px; background:var(--bg-2); cursor:default;
+  padding:14px 16px; background:var(--bg-2); cursor:var(--cur);
   transition:background .45s var(--ease);
 }
 .tile--slate:hover{ background:#1b1517; }
@@ -589,7 +573,7 @@ body.loaded .hero__center{ opacity:1; transform:none; }
 }
 
 /* trailer-linked slates */
-button.tile--slate{ cursor:none; text-align:left; font:inherit; color:var(--bone); border:0; }
+button.tile--slate{ cursor:var(--cur); text-align:left; font:inherit; color:var(--bone); border:0; }
 @media (max-width:900px){ button.tile--slate{ cursor:pointer; } }
 .slate__chip{
   position:absolute; right:12px; bottom:12px; z-index:2;
@@ -606,7 +590,7 @@ button.tile--slate:hover .slate__chip i{ color:var(--bone); }
 
 /* end strip — a full-width leader row closing each shelf */
 .tile--end{ grid-column:1/-1; aspect-ratio:auto; min-height:84px;
-  display:grid; place-items:center; background:var(--bg); cursor:default; }
+  display:grid; place-items:center; background:var(--bg); cursor:var(--cur); }
 .tile--end span{ font-family:var(--mono); font-size:10px; letter-spacing:.26em;
   color:var(--mut-2); text-align:center; padding:0 14px; }
 .tile--end i{ color:var(--red); font-style:normal; }
@@ -681,7 +665,7 @@ button.tile--slate:hover .slate__chip i{ color:var(--bone); }
   color:var(--mut-2); text-align:right; line-height:1.9; }
 
 /* tap a director → their cuts unfold */
-.dir{ cursor:none; }
+.dir{ cursor:var(--cur); }
 @media (max-width:900px){ .dir{ cursor:pointer; } }
 .dir__works{
   grid-column:2/-1; display:none; flex-wrap:wrap; gap:10px;
@@ -692,7 +676,7 @@ button.tile--slate:hover .slate__chip i{ color:var(--bone); }
 .dirchip{
   font-family:var(--mono); font-size:10px; letter-spacing:.14em; color:var(--bone);
   background:none; border:1px solid var(--line); border-radius:100px;
-  padding:9px 16px; cursor:none; transition:.3s var(--ease);
+  padding:9px 16px; cursor:var(--cur); transition:.3s var(--ease);
 }
 @media (max-width:900px){ .dirchip{ cursor:pointer; } }
 .dirchip:hover{ background:var(--red); border-color:var(--red); }
@@ -872,7 +856,7 @@ button.tile--slate:hover .slate__chip i{ color:var(--bone); }
 .player__close{
   font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--bone);
   background:none; border:1px solid var(--line); border-radius:100px;
-  padding:9px 16px; cursor:none; transition:.3s var(--ease);
+  padding:9px 16px; cursor:var(--cur); transition:.3s var(--ease);
 }
 .player__close:hover{ background:var(--red); border-color:var(--red); }
 .player__stage{ flex:1; display:grid; place-items:center; padding:20px var(--pad); min-height:0; }
@@ -887,7 +871,7 @@ button.tile--slate:hover .slate__chip i{ color:var(--bone); }
 }
 .player__nav{
   font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--bone);
-  background:none; border:0; cursor:none; transition:color .25s; padding:6px 0;
+  background:none; border:0; cursor:var(--cur); transition:color .25s; padding:6px 0;
 }
 .player__nav:hover{ color:var(--red); }
 .player__count{ font-family:var(--mono); font-size:10px; letter-spacing:.18em; color:var(--mut-2); }
@@ -918,7 +902,7 @@ a:focus-visible, button:focus-visible{
 }
 
 /* screenshot mode (dev helper) */
-html.shot .grain, html.shot .vignette, html.shot .cursor, html.shot .hud,
+html.shot .grain, html.shot .vignette, html.shot .hud,
 html.shot .dirfloat{ display:none !important; }
 html.shot .marquee__track, html.shot .bmq__track, html.shot .hero__play svg,
 html.shot .hero__slides, html.shot .loader__mark i, html.shot .player__now i{ animation:none !important; }

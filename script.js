@@ -543,31 +543,6 @@
   })();
 
   /* ============================================================
-     CUSTOM CURSOR — ring becomes PLAY over film media
-     ============================================================ */
-  (function cursor() {
-    const el = $('#cursor');
-    if (!el || window.matchMedia('(max-width:900px)').matches) return;
-    let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
-    addEventListener('mousemove', e => { x = e.clientX; y = e.clientY; });
-    const loop = () => {
-      cx += (x - cx) * 0.2; cy += (y - cy) * 0.2;
-      el.style.transform = `translate(${cx}px,${cy}px)`;
-      requestAnimationFrame(loop);
-    };
-    loop();
-    document.addEventListener('mouseover', e => {
-      const play = e.target.closest('[data-play], .hero__play');
-      const hot = e.target.closest('a, button');
-      el.classList.toggle('is-play', !!play);
-      el.classList.toggle('is-hot', !!hot && !play);
-    });
-    document.addEventListener('mouseout', () => {
-      el.classList.remove('is-play', 'is-hot');
-    });
-  })();
-
-  /* ============================================================
      NAV + FULLSCREEN MENU (hover = still preview)
      ============================================================ */
   const menu = $('#menu'), burger = $('#burger'), burgerLabel = $('#burgerLabel');
