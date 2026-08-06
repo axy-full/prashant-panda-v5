@@ -16,9 +16,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=3" />
+<link rel="stylesheet" href="styles.css?v=5" />
 </head>
-<body data-page="home" data-tc="445">
+<body class="opening" data-page="home" data-tc="445">
 
 <!-- ======== FILM GRAIN + VIGNETTE ======== -->
 <div class="grain" aria-hidden="true"></div>
@@ -30,13 +30,9 @@
   <span class="hud__r">TC <b id="tc">00:00:00:00</b> / 25FPS</span>
 </div>
 
-<!-- ======== PRELOADER (home only) ======== -->
+<!-- ======== OPENING VEIL (home only) — the hero lockup assembles above it ======== -->
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader__row"><span>PRASHANT PANDA</span><span>MUMBAI</span></div>
-  <div class="loader__center">
-    <img class="loader__lockup" src="assets/img/brand/pp-lockup-plain-white.png?v=3" alt="PRASHANT PANDA" />
-    <div class="loader__films"><i></i><span>EDITOR&nbsp;·&nbsp;STORYTELLER&nbsp;·&nbsp;FILMMAKER</span><i></i></div>
-  </div>
   <div class="loader__row loader__row--bottom">
     <span>LOADING TIMELINE</span>
     <span class="loader__bar" aria-hidden="true"><i id="loaderFill"></i></span>
@@ -101,8 +97,17 @@
 
   <div class="hero__center">
     <h1 class="hero__mark">
-      <img class="hero__lockup" src="assets/img/brand/pp-lockup-primary-white.png?v=3" alt="PRASHANT PANDA" />
-      <span class="hero__films"><i></i><span>EDITOR&nbsp;·&nbsp;STORYTELLER&nbsp;·&nbsp;FILMMAKER</span><i></i></span>
+      <!-- the lockup assembles: playhead drops in, then the two tracks slide into place -->
+      <span class="lockup" role="img" aria-label="PRASHANT PANDA">
+        <img class="lockup__lay lockup__scrub" src="assets/img/brand/pp-hero-scrub.png?v=1" alt="" />
+        <img class="lockup__lay lockup__p1" src="assets/img/brand/pp-hero-prashant.png?v=1" alt="" />
+        <img class="lockup__lay lockup__p2" src="assets/img/brand/pp-hero-panda.png?v=1" alt="" />
+      </span>
+      <span class="hero__films">
+        <i></i>
+        <span class="hero__films-words"><b>EDITOR</b><em>&nbsp;·&nbsp;</em><b>STORYTELLER</b><em>&nbsp;·&nbsp;</em><b>FILMMAKER</b></span>
+        <i></i>
+      </span>
     </h1>
     <button class="hero__play" id="playReel" aria-label="Play the reel">
       <svg viewBox="0 0 120 120" aria-hidden="true">
@@ -125,7 +130,7 @@
 <section class="reel" id="reel">
   <div class="sec-head reveal">
     <span class="kicker"><i>[●]</i> 01 — THE REEL</span>
-    <h2 class="sec-title">SELECTED<br/>STORIES</h2>
+    <h2 class="sec-title sec-title--drop"><b>S</b><i>elected</i><br/><b>S</b><i>tories</i></h2>
     <span class="sec-meta">SCROLL&nbsp;DOWN<br/>FOR&nbsp;MORE&nbsp;WORK</span>
   </div>
 
@@ -181,6 +186,6 @@
   </div>
 </div>
 
-<script src="script.js?v=6"></script>
+<script src="script.js?v=8"></script>
 </body>
 </html>

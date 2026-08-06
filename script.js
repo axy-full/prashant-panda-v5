@@ -137,7 +137,7 @@
      works get an "in assembly" panel until he sends the titles.
      ============================================================ */
   const DIRECTORS = [
-    { name: 'NIKHIL RAO',         house: 'JAMIC FILMS / CARROM FILMS', works: [2, 7, 11, 30], still: '867458294' },
+    { name: 'NIKHIL RAO',         house: 'JAMIC FILMS / LINTAS',       works: [2, 7, 11, 30], still: '867458294' },
     { name: 'SHIRISH DAIYA',      house: 'JAMIC FILMS',                works: [1, 9, 8, 16], still: '1088993725' },
     { name: 'RAJESH SAATHI',      house: 'KEROSCENE FILMS',            works: [37],      still: '1179531910' },
     { name: 'SAPNA SINGH',        house: '',                           works: [],        still: '' },
@@ -410,7 +410,7 @@
     { name: 'BBDO INDIA',         logo: 'bbdo.svg' },
     { name: 'JAMIC FILMS',        logo: 'jamic-films.png' },
     { name: 'DUCKTAPE',           logo: 'ducktape.png' },
-    { name: 'CARROM FILMS',       logo: null },
+    { name: 'LINTAS',             logo: null },
     { name: 'KEROSCENE FILMS',    logo: 'keroscene.png' },
     { name: 'ZIGZAG FILM',        logo: 'zigzag.png' },
     { name: 'KARMMAN LINE',       logo: 'karmanline.png' }, /* official double-M styling */
@@ -448,6 +448,22 @@
       const half = ROW.map(b => `${tItem(b)}<b>●</b>`).join('');
       ticker.innerHTML = half + half;
     }
+
+    /* equalise the strips by optical AREA, not raw height: a long
+       wordmark set to the same height as a compact mark reads twice
+       as loud. h = base · √(REF/aspect), held inside sane bounds. */
+    const REF = 3.2;
+    const size = el => {
+      const w = el.naturalWidth, h = el.naturalHeight;
+      if (!w || !h) return;
+      /* held to ±25% so a stacked mark can't tower over the strip */
+      const k = Math.min(1.25, Math.max(.82, Math.sqrt(REF / (w / h))));
+      el.style.setProperty('--k', k.toFixed(3));
+    };
+    $$('.marquee__logo, .bmq__logo').forEach(el => {
+      if (el.complete) size(el);
+      else el.addEventListener('load', () => size(el), { once: true });
+    });
   })();
 
   /* ============================================================
@@ -523,23 +539,35 @@
      PRELOADER
      ============================================================ */
   const loader = $('#loader');
-  (function preload() {
-    if (!loader) return;
+  (function opening() {
+    const body = document.body;
+    if (!loader) { body.classList.remove('opening'); body.classList.add('loaded', 'opened'); return; }
+
+    /* the title sequence, in beats:
+         playhead forms → PRASHANT pulls left → PANDA pulls right
+         → the site opens out from behind the mark → the three roles
+       CSS owns the motion; this just drops `opening` and lifts the veil. */
+    const ASSEMBLE = reduced ? 0 : 2500;   /* scrubber + both words, per the CSS delays */
     const fill = $('#loaderFill'), num = $('#loaderNum');
-    let p = 0;
-    const tick = () => {
-      p += Math.random() * 22 + 9;
-      if (p >= 100) p = 100;
-      if (fill) fill.style.width = p + '%';
-      if (num) num.textContent = pad2(Math.floor(p) === 100 ? 99 : Math.floor(p));
-      if (p < 100) setTimeout(tick, 70 + Math.random() * 90);
-      else setTimeout(() => {
-        if (num) num.textContent = '100';
-        loader.classList.add('done');
-        document.body.classList.add('loaded');
-      }, 260);
+
+    requestAnimationFrame(() => body.classList.remove('opening'));
+
+    /* the bar tracks the assembly instead of running on its own clock */
+    const t0 = performance.now();
+    const tick = now => {
+      const k = Math.min(1, (now - t0) / Math.max(ASSEMBLE, 1));
+      if (fill) fill.style.width = (k * 100).toFixed(1) + '%';
+      if (num) num.textContent = k < 1 ? pad2(Math.floor(k * 100)) : '100';
+      if (k < 1) requestAnimationFrame(tick);
     };
-    setTimeout(tick, 200);
+    requestAnimationFrame(tick);
+
+    setTimeout(() => {
+      loader.classList.add('done');
+      body.classList.add('loaded');
+      /* hold the mark above the veil until it has finished fading out */
+      setTimeout(() => body.classList.add('opened'), 700);
+    }, ASSEMBLE + (reduced ? 0 : 140));
   })();
 
   /* ============================================================
@@ -632,20 +660,22 @@
      STATS COUNT-UP
      ============================================================ */
   (function stats() {
-    const els = $$('.stat b');
+    /* '&' in the "and counting" tail carries no count — skip it */
+    const els = $$('.stat b').filter(e => e.dataset.count);
     if (!els.length) return;
+    const done = e => e.textContent = e.dataset.count + (e.dataset.suffix || '');
     if (reduced || !('IntersectionObserver' in window)) {
-      els.forEach(e => e.textContent = e.dataset.count); return;
+      els.forEach(done); return;
     }
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (!e.isIntersecting) return;
         io.unobserve(e.target);
-        const target = +e.target.dataset.count;
+        const el = e.target, target = +el.dataset.count, suffix = el.dataset.suffix || '';
         const t0 = performance.now(), dur = 1300;
         const tick = now => {
           const k = Math.min(1, (now - t0) / dur);
-          e.target.textContent = Math.round(target * (1 - Math.pow(1 - k, 3)));
+          el.textContent = Math.round(target * (1 - Math.pow(1 - k, 3))) + (k === 1 ? suffix : '');
           if (k < 1) requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
@@ -776,7 +806,8 @@
       setTimeout(() => {
         const parts = jump.split('|');
         const l = $('#loader'); if (l) l.remove();
-        document.body.classList.add('loaded');
+        document.body.classList.remove('opening');
+        document.body.classList.add('loaded', 'opened');
         $$('.reveal').forEach(e => e.classList.add('in'));
         parts.forEach(part => {
           if (part === 'SHOT') document.documentElement.classList.add('shot');
