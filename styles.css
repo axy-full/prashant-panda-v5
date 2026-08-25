@@ -127,8 +127,12 @@ body.menu-open .nav{ background:transparent; backdrop-filter:none; border-color:
   font-stretch:125%; font-weight:900; font-size:15px; letter-spacing:.04em;
   text-transform:uppercase; line-height:1; display:block;
 }
-.nav__brand img{ display:block; height:21px; width:auto; }
-@media (max-width:640px){ .nav__brand img{ height:17px; } }
+/* the stacked lockup — same artwork the title sequence assembles,
+   so the mark can fly straight into this box and hand over */
+.nav__brand img{ display:block; height:clamp(44px,5.4vw,68px); width:auto; }
+@media (max-width:640px){ .nav__brand img{ height:36px; } }
+/* on home the nav mark stays hidden until the flying mark lands on it */
+body[data-page="home"]:not(.opened) .nav__brand img{ opacity:0; }
 .nav__right{ display:flex; align-items:center; gap:28px; }
 .nav__link{ font-family:var(--mono); font-size:10.5px; letter-spacing:.18em;
   color:var(--mut); transition:color .25s; position:relative; }
@@ -238,33 +242,27 @@ body.menu-open .nav{ background:transparent; backdrop-filter:none; border-color:
 /* ============================================================
    HERO
    ============================================================ */
-.hero{
-  position:relative; min-height:100svh; display:grid; place-items:center;
-  padding:var(--pad); overflow:hidden;
+/* ============================================================
+   TITLE SEQUENCE — the home opening. Rides above the veil so the
+   mark builds on black, then flies into the nav's logo slot.
+   ============================================================ */
+.titleseq{
+  position:fixed; inset:0; z-index:9650; pointer-events:none;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:var(--pad);
 }
-.hero__slides{
-  position:absolute; inset:0; z-index:0;
-  animation:herozoom 30s ease-in-out infinite alternate;
+.titleseq__mark{
+  width:min(80vw,680px);
+  transition:transform 1.05s var(--ease);
+  transform-origin:50% 50%; will-change:transform;
 }
-@keyframes herozoom{ from{ transform:scale(1); } to{ transform:scale(1.07); } }
-.hero__slide{
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-  opacity:0; transition:opacity 1.4s var(--ease);
-  filter:grayscale(1) contrast(1.05) brightness(.68);
+.titleseq__meta{
+  width:min(92vw,1160px); text-align:center;
+  transition:opacity .5s var(--ease);
 }
-.hero__slide.on{ opacity:1; }
-.hero__scrim{ position:absolute; inset:0; z-index:1; pointer-events:none;
-  background:
-    radial-gradient(85% 70% at 50% 44%, transparent 30%, rgba(10,8,9,.55) 100%),
-    linear-gradient(180deg, rgba(10,8,9,.5) 0%, transparent 32%, rgba(10,8,9,.72) 100%);
-}
-.hero__center{
-  position:relative; z-index:2; display:flex; flex-direction:column; align-items:center;
-  width:min(92vw, 1160px); text-align:center;
-}
-/* while the veil is up the mark rides above it — the logo builds on black */
-body:not(.opened) .hero__center{ z-index:9650; }
-.hero__mark{ width:100%; }
+body.settling .titleseq__meta{ opacity:0; }
+/* once the mark has landed the overlay is done — the nav owns the logo */
+body.opened .titleseq{ opacity:0; visibility:hidden; }
 
 /* ---------- the lockup, in three tracks ----------
    scrub / PRASHANT / PANDA are full-canvas slices of the brand
@@ -273,13 +271,13 @@ body:not(.opened) .hero__center{ z-index:9650; }
    so removing that class plays the sequence via these delays. */
 .lockup{
   position:relative; display:block; margin:0 auto;
-  width:min(80vw,680px); aspect-ratio:1300/568;
+  width:100%; aspect-ratio:1300/568;
   filter:drop-shadow(0 6px clamp(14px,3vw,40px) rgba(0,0,0,.55));
 }
 .lockup__lay{ position:absolute; inset:0; width:100%; height:auto; }
-.lockup__scrub{ transform-origin:50% 0; transition:transform .45s var(--ease) .1s; }
-.lockup__p1{ transition:transform .85s var(--ease) .65s, opacity .4s linear .65s; }
-.lockup__p2{ transition:transform .85s var(--ease) 1.55s, opacity .4s linear 1.55s; }
+.lockup__scrub{ transform-origin:50% 0; transition:transform .7s var(--ease) .2s; }
+.lockup__p1{ transition:transform 1.15s var(--ease) .9s, opacity .55s linear .9s; }
+.lockup__p2{ transition:transform 1.15s var(--ease) 1.95s, opacity .55s linear 1.95s; }
 /* 26% parks each word's near edge on the playhead — measured off the artwork */
 body.opening .lockup__scrub{ transform:scaleY(0); }
 body.opening .lockup__p1{ transform:translateX(26%); opacity:0; }
@@ -298,14 +296,14 @@ body.loaded .hero__films i{ transform:none; }
 /* once the site is open: editor, then storyteller, then filmmaker */
 .hero__films-words > *{
   display:inline-block; opacity:0; transform:translateY(.4em);
-  transition:opacity .45s var(--ease), transform .45s var(--ease);
+  transition:opacity .7s var(--ease), transform .7s var(--ease);
 }
 body.loaded .hero__films-words > *{ opacity:1; transform:none; }
-body.loaded .hero__films-words > :nth-child(1){ transition-delay:.2s; }
-body.loaded .hero__films-words > :nth-child(2){ transition-delay:.35s; }
-body.loaded .hero__films-words > :nth-child(3){ transition-delay:.4s; }
-body.loaded .hero__films-words > :nth-child(4){ transition-delay:.55s; }
-body.loaded .hero__films-words > :nth-child(5){ transition-delay:.6s; }
+body.loaded .hero__films-words > :nth-child(1){ transition-delay:.15s; }
+body.loaded .hero__films-words > :nth-child(2){ transition-delay:.3s; }
+body.loaded .hero__films-words > :nth-child(3){ transition-delay:.45s; }
+body.loaded .hero__films-words > :nth-child(4){ transition-delay:.6s; }
+body.loaded .hero__films-words > :nth-child(5){ transition-delay:.75s; }
 
 /* the category line lands last, under the flanked role line */
 .hero__cats{
@@ -313,47 +311,18 @@ body.loaded .hero__films-words > :nth-child(5){ transition-delay:.6s; }
   font-family:var(--mono); font-size:clamp(8px,.85vw,11px);
   letter-spacing:.24em; color:var(--mut); white-space:nowrap;
   opacity:0; transform:translateY(.4em);
-  transition:opacity .45s var(--ease), transform .45s var(--ease);
+  transition:opacity .6s var(--ease), transform .6s var(--ease);
 }
-body.loaded .hero__cats{ opacity:1; transform:none; transition-delay:.7s; }
+body.loaded .hero__cats{ opacity:1; transform:none; transition-delay:.95s; }
 
-/* circular play */
-.hero__play{
-  position:relative; margin-top:clamp(34px,6vh,72px);
-  width:clamp(98px,11.5vw,140px); aspect-ratio:1; border-radius:50%;
-  background:none; border:0; cursor:var(--cur); color:var(--bone);
-  opacity:0; transition:opacity .6s var(--ease) .9s;
-}
-body.loaded .hero__play{ opacity:1; }
-@media (max-width:900px){ .hero__play{ cursor:pointer; } }
-.hero__play::before{
-  content:''; position:absolute; inset:23%; border-radius:50%;
-  border:1px solid rgba(242,239,230,.4); background:rgba(10,8,9,.28);
-  backdrop-filter:blur(3px);
-  transition:background .35s var(--ease), border-color .35s, transform .35s var(--ease);
-}
-.hero__play svg{ position:absolute; inset:0; width:100%; height:100%;
-  animation:spin 16s linear infinite; }
-.hero__play svg text{ font-family:var(--mono); font-size:9.2px; letter-spacing:.3em;
-  fill:rgba(242,239,230,.78); }
-@keyframes spin{ to{ transform:rotate(360deg); } }
-.hero__play-tri{
-  position:absolute; top:50%; left:50%; transform:translate(-38%,-50%); z-index:2;
-  width:0; height:0; border-top:9px solid transparent; border-bottom:9px solid transparent;
-  border-left:15px solid var(--bone); transition:border-left-color .35s;
-}
-.hero__play:hover::before{ background:var(--red); border-color:var(--red); transform:scale(1.07); }
-.hero__play:hover svg text{ fill:var(--bone); }
-
-.hero__scroll{ position:absolute; bottom:38px; left:50%; transform:translateX(-50%); z-index:2; }
-.hero__scroll i{ display:block; width:1px; height:52px; position:relative; overflow:hidden;
-  background:rgba(242,239,230,.18); }
-.hero__scroll i::after{ content:''; position:absolute; top:-50%; left:0; width:100%; height:50%;
-  background:var(--red); animation:scrolldrop 1.8s var(--ease) infinite; }
-@keyframes scrolldrop{ 0%{ transform:translateY(-100%) } 100%{ transform:translateY(300%) } }
+/* the reel is now the first thing on the page — clear the fixed nav.
+   It stays hidden until the title sequence has handed off. */
+.reel--first{ padding-top:clamp(120px,17vh,190px); }
+body[data-page="home"]:not(.opened) main{ opacity:0; }
+body[data-page="home"] main{ transition:opacity .7s var(--ease); }
 
 /* ============================================================
-   MARQUEE (thin — under hero)
+   MARQUEE (thin logo ticker)
    ============================================================ */
 .marquee{ border-top:1px solid var(--line); border-bottom:1px solid var(--line);
   overflow:hidden; padding:15px 0; background:var(--bg-2); }
@@ -534,19 +503,10 @@ body.loaded .hero__play{ opacity:1; }
   color:rgba(242,239,230,.6); text-shadow:0 1px 8px rgba(0,0,0,.6);
 }
 
-/* genre filter pills (ad films shelf) */
-.filters{
-  display:flex; flex-wrap:wrap; gap:10px;
-  padding:0 var(--pad) clamp(16px,3vh,26px);
-}
-.pill{
-  font-family:var(--mono); font-size:10px; letter-spacing:.16em; color:var(--mut);
-  background:none; border:1px solid var(--line); border-radius:100px;
-  padding:9px 16px; cursor:var(--cur); transition:.3s var(--ease);
-}
-@media (max-width:900px){ .pill{ cursor:pointer; } }
-.pill:hover{ color:var(--bone); border-color:var(--bone-dim); }
-.pill.on{ background:var(--red); border-color:var(--red); color:var(--bone); }
+/* the ad shelf is grouped by genre — a lighter head per group so
+   the four lenses read as sub-shelves, not as four new sections */
+.subhead--genre{ padding-bottom:clamp(10px,1.6vh,16px); }
+.subhead--genre .subhead__title{ font-size:clamp(22px,4vw,52px); }
 .tile::before{
   content:''; position:absolute; left:0; top:0; width:100%; height:2px; z-index:3;
   background:var(--red); transform:scaleX(0); transform-origin:left;
@@ -947,11 +907,13 @@ a:focus-visible, button:focus-visible{
 
 @media (prefers-reduced-motion: reduce){
   .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
-  .grain, .marquee__track, .bmq__track, .hero__scroll i::after, .hero__play svg,
-  .hero__slides, .loader__mark i, .player__now i{ animation:none !important; }
-  .hero__center{ opacity:1; transform:none; transition:none; }
-  /* the lockup arrives assembled — no title sequence */
-  .lockup__lay, .hero__films i, .hero__films-words > *, .hero__cats, .hero__play{
+  .grain, .marquee__track, .bmq__track,
+  .loader__mark i, .player__now i{ animation:none !important; }
+  /* no title sequence — the page is simply already open */
+  .titleseq{ display:none !important; }
+  body[data-page="home"] main{ opacity:1 !important; transition:none !important; }
+  body[data-page="home"] .nav__brand img{ opacity:1 !important; }
+  .lockup__lay, .hero__films i, .hero__films-words > *, .hero__cats{
     opacity:1 !important; transform:none !important; transition:none !important;
   }
 }
@@ -959,11 +921,14 @@ a:focus-visible, button:focus-visible{
 /* screenshot mode (dev helper) */
 html.shot .grain, html.shot .vignette, html.shot .hud,
 html.shot .dirfloat{ display:none !important; }
-html.shot .marquee__track, html.shot .bmq__track, html.shot .hero__play svg,
-html.shot .hero__slides, html.shot .loader__mark i, html.shot .player__now i{ animation:none !important; }
-html.shot .reveal, html.shot .hero__center{ opacity:1 !important; transform:none !important; }
+html.shot .marquee__track, html.shot .bmq__track,
+html.shot .loader__mark i, html.shot .player__now i{ animation:none !important; }
+html.shot .reveal{ opacity:1 !important; transform:none !important; }
+html.shot .titleseq{ display:none !important; }
+html.shot main{ opacity:1 !important; }
+html.shot .nav__brand img{ opacity:1 !important; }
 html.shot .lockup__lay, html.shot .hero__films i,
-html.shot .hero__films-words > *, html.shot .hero__cats, html.shot .hero__play{
+html.shot .hero__films-words > *, html.shot .hero__cats{
   opacity:1 !important; transform:none !important; transition:none !important;
 }
 
@@ -992,6 +957,38 @@ html.shot .hero__films-words > *, html.shot .hero__cats, html.shot .hero__play{
   .tile--wide{ grid-column:auto; }
   .menu__links a{ grid-template-columns:34px 1fr auto; }
 }
+
+/* ============================================================
+   ABOUT — vice-president credit. The company mark is pending from
+   Prashant; the img auto-hides until the file lands.
+   ============================================================ */
+.producer__vp{
+  display:flex; align-items:center; gap:14px;
+  margin-top:clamp(14px,2vh,20px);
+}
+.producer__vp-k{
+  font-family:var(--mono); font-size:10px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--ink);
+  border:1px solid var(--line-ink); border-radius:999px; padding:5px 12px;
+}
+.producer__vp-logo{ height:26px; width:auto; opacity:.9; }
+.producer__vp-logo.missing{ display:none; }
+
+/* ============================================================
+   SELECTED STORIES — one giant S, two lines tall, with "elected"
+   on the first line and "tories" on the second
+   ============================================================ */
+.sec-title--bigS{
+  display:flex; align-items:center; gap:.04em;
+  line-height:.88; letter-spacing:-.02em;
+}
+.sec-title--bigS b{
+  font-weight:900; font-size:2.05em; line-height:.78;
+  /* optical: the S sits a touch low against the two-line block */
+  transform:translateY(.015em);
+}
+.sec-title--bigS > span{ display:flex; flex-direction:column; }
+.sec-title--bigS i{ font-style:normal; display:block; }
 
 /* ============================================================
    TIMELINE STORY NOTE — the thought behind the clip under the
@@ -1025,22 +1022,24 @@ html.shot .hero__films-words > *, html.shot .hero__cats, html.shot .hero__play{
   margin-top:10px; max-width:56ch;
   font-size:clamp(13px,1.15vw,16px); line-height:1.5; color:var(--bone);
 }
+/* a proper column of credits — one title per row, ruled like a
+   call sheet rather than run together as a sentence */
 .credits__list{
   list-style:none; margin-top:clamp(14px,2vh,22px);
-  display:flex; flex-wrap:wrap; gap:0 clamp(14px,1.8vw,26px);
+  border-top:1px solid var(--line);
 }
 .credits__list li{
-  position:relative; padding:6px 0;
+  position:relative; padding:11px 0 11px 26px;
+  border-bottom:1px solid var(--line);
   font-family:var(--mono); font-size:11px; letter-spacing:.12em;
   text-transform:uppercase; color:var(--mut);
-  transition:color .3s var(--ease);
+  transition:color .3s var(--ease), padding-left .3s var(--ease);
 }
-.credits__list li + li::before{
-  content:'●'; position:absolute; left:calc(clamp(14px,1.8vw,26px) / -2);
-  transform:translateX(-50%); color:var(--red); font-size:6px; top:50%;
-  margin-top:-3px; opacity:.6;
+.credits__list li::before{
+  content:'●'; position:absolute; left:6px; top:50%; margin-top:-6px;
+  color:var(--red); font-size:6px; opacity:.7;
 }
-.credits__list li:hover{ color:var(--bone); }
+.credits__list li:hover{ color:var(--bone); padding-left:32px; }
 
 /* ============================================================
    04·B — WHAT I DO (two crafts, one profile)
@@ -1108,7 +1107,8 @@ html.shot .hero__films-words > *, html.shot .hero__cats, html.shot .hero__play{
 .doing__col:hover .doing__title{
   text-transform:uppercase;
 }
-/* the drop-cap title is cased by hand — only its tail flips */
-.sec-title--drop, .sec-title--drop:hover{ text-transform:none; }
-.sec-title--drop i{ text-transform:lowercase; }
-.sec-title--drop:hover i{ text-transform:uppercase; }
+/* the drop-cap titles are cased by hand — only their tails flip */
+.sec-title--drop, .sec-title--drop:hover,
+.sec-title--bigS, .sec-title--bigS:hover{ text-transform:none; }
+.sec-title--drop i, .sec-title--bigS i{ text-transform:lowercase; }
+.sec-title--drop:hover i, .sec-title--bigS:hover i{ text-transform:uppercase; }

@@ -145,30 +145,27 @@
      assets/img/films/rotten-apple.jpg automatically when supplied */
   const UPCOMING = { title: 'Rotten Apple', note: 'Feature film', art: 'films/rotten-apple' };
 
-  /* THE PORTFOLIO — Prashant's own ten, in his order (his
-     "On The Timeline" list of 2026-08-25). Clips run at true
-     duration; note = the thought behind the story (craft copy). */
+  /* SELECTED STORIES — Prashant's own running order, 2026-08-25.
+     note = the thought behind the story (craft copy, not fact). */
   const REEL = [
-    { id: 2,   t: 'CARROM',                   ar: '34',
+    { id: 2,   t: 'CHUPA CHUPS — CARROM',     ar: '34',
       note: 'A quiet joke built frame by frame. Comedy timing is edit timing — hold, hold, pay off.' },
     { id: 1,   t: 'MARY AUNTY',               ar: '169',
       note: 'Insurance sold as belonging — a stray who stays. The cut sits still and lets the bond do the talking.' },
-    { id: 10,  t: 'ENVY',                     ar: '43',
-      note: 'Fragrance is pure mood — no plot, only tempo. The edit wears the perfume.' },
     { id: 20,  t: 'JAB HAATH AUR BINGO',      ar: '11', tick: 'FT. RANVEER SINGH',
       note: 'Fifteen seconds, one running gag, no room to breathe. The shortest cuts leave the least to hide behind.' },
-    { id: 6,   t: 'CANDID',                   ar: '169',
-      note: 'Discomfort has a rhythm: squirm, beat, relief. A remedy told as situational comedy.' },
+    { id: 42,  t: 'POPEYES',                  ar: '43',
+      note: 'Appetite is a tempo problem. Cut on the crunch and the audience tastes it before they read it.' },
     { id: 37,  t: 'GILLETTE',                 ar: '45', tick: 'DIR. RAJESH SAATHI',
       note: 'Three blades, one clean line. Product films live or die on where you choose to stop looking.' },
-    { id: 44,  t: 'AGAMI REALTY',             ar: '239',
-      note: 'A home is a promise you cut toward. Long lenses, longer holds — let the space do the selling.' },
-    { id: 13,  t: 'SOCIETY TEA',              ar: '169',
-      note: 'A brand-new day at four minutes. Room enough to let a morning actually arrive.' },
-    { id: 18,  t: 'BIRLA OPUS — KIDNAPPER',   ar: '43',
-      note: 'A long-form comedy that has to keep earning its runtime. The joke is the structure, not the punchline.' },
-    { id: 101, t: 'TU JAANA NA PIYA',         ar: '169', tick: 'KING — NEW LIFE',
-      note: 'A song cut to the voice, not the beat. Music video editing is listening with your hands.' },
+    { id: 31,  t: "HERSHEY'S",                ar: '169',
+      note: 'Sweetness without sentiment. Let the pauses carry it and the product never has to shout.' },
+    { id: 8,   t: 'HINT — PYAAR KA TAKE-OFF', ar: '45',
+      note: 'A love story boarding in fifty seconds. Looks traded like dialogue — the edit does the flirting.' },
+    { id: 4,   t: 'SNICKERS',                 ar: '11',
+      note: 'Hunger changes people — the gag only lands if the switch is invisible. Blink, and the cut already happened.' },
+    { id: 10,  t: 'ENVY',                     ar: '43',
+      note: 'Fragrance is pure mood — no plot, only tempo. The edit wears the perfume.' },
   ];
 
   /* ============================================================
@@ -366,41 +363,38 @@
       return el;
     };
 
-    const gAds = $('#gridAds');
-    if (gAds) {
-      ADS.forEach((p, i) => {
-        const el = document.createElement('button');
-        el.type = 'button';
-        el.className = 'tile';
-        el.dataset.play = p.id;
-        el.dataset.tag = p.tag;
-        el.setAttribute('aria-label', `Play — ${p.title}`);
-        const capMeta = [p.client.toUpperCase(), mmss(p.dur)].filter(Boolean).join(' — ');
-        el.innerHTML = `
-          <img loading="lazy" src="${img(p)}" alt="${p.title} — film still" />
-          <span class="tile__no">${pad2(i + 1)} / ${pad2(ADS.length)}</span>
-          ${p.tag ? `<span class="tile__tag">${p.tag}</span>` : ''}
-          <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${capMeta}</span></span>`;
-        gAds.appendChild(el);
-      });
-      endStrip(gAds, `END OF AD FILMS — ${pad2(ADS.length)} CUTS`);
-    }
-
-    /* genre filter pills — Prashant's four lenses on the ad shelf */
-    const filters = $('#adFilters');
-    if (filters && gAds) {
-      const counts = t => ADS.filter(p => p.tag === t).length;
-      filters.innerHTML =
-        `<button type="button" class="pill on" data-filter="ALL">ALL — ${pad2(ADS.length)}</button>` +
-        TAGS.map(t => `<button type="button" class="pill" data-filter="${t}">${t} — ${pad2(counts(t))}</button>`).join('');
-      filters.addEventListener('click', e => {
-        const pill = e.target.closest('.pill');
-        if (!pill) return;
-        $$('.pill', filters).forEach(p => p.classList.toggle('on', p === pill));
-        const f = pill.dataset.filter;
-        $$('.tile[data-play]', gAds).forEach(t => {
-          t.style.display = (f === 'ALL' || t.dataset.tag === f) ? '' : 'none';
-        });
+    /* the ad shelf is grouped into Prashant's four genres — one
+       titled shelf each, no filter pills and no running total */
+    const adTile = p => {
+      const el = document.createElement('button');
+      el.type = 'button';
+      el.className = 'tile';
+      el.dataset.play = p.id;
+      el.dataset.tag = p.tag;
+      el.setAttribute('aria-label', `Play — ${p.title}`);
+      const capMeta = [p.client.toUpperCase(), mmss(p.dur)].filter(Boolean).join(' — ');
+      el.innerHTML = `
+        <img loading="lazy" src="${img(p)}" alt="${p.title} — film still" />
+        <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${capMeta}</span></span>`;
+      return el;
+    };
+    const genres = $('#adGenres');
+    if (genres) {
+      TAGS.forEach((tag, gi) => {
+        const films = ADS.filter(p => p.tag === tag);
+        if (!films.length) return;
+        const head = document.createElement('div');
+        head.className = 'subhead subhead--genre reveal';
+        head.id = 'genre-' + tag.toLowerCase();
+        head.innerHTML =
+          `<span class="kicker"><i>[●]</i> 02·A${gi + 1}</span>` +
+          `<h3 class="subhead__title">${tag}</h3>`;
+        genres.appendChild(head);
+        const grid = document.createElement('div');
+        grid.className = 'index__grid';
+        genres.appendChild(grid);
+        films.forEach(p => grid.appendChild(adTile(p)));
+        endStrip(grid, `END OF ${tag}`);
       });
     }
 
@@ -463,6 +457,15 @@
      the EMAIL button on /contact (stays a muted "in assembly"
      row while empty — the no-invented-email rule holds)
      ============================================================ */
+  /* the VP company mark is pending from Prashant — hide the slot
+     until the file exists so the row never shows a broken image */
+  (function vpLogo() {
+    const el = $('#vpLogo');
+    if (!el) return;
+    el.addEventListener('error', () => el.classList.add('missing'), { once: true });
+    if (el.complete && !el.naturalWidth) el.classList.add('missing');
+  })();
+
   const EMAIL = 'ppanda.79@gmail.com';
   (function emailButton() {
     const row = $('#emailRow');
@@ -503,9 +506,10 @@
     { name: 'KEROSCENE FILMS',    logo: 'keroscene.png' },
     { name: 'ZIGZAG FILM',        logo: 'zigzag.png' },
     { name: 'KARMMAN LINE',       logo: 'karmanline.png' }, /* official double-M styling */
-    /* added per Prashant, 2026-08-25 — type until official marks land */
+    /* added per Prashant, 2026-08-25 — Dharma is the house behind the
+       associate-editor features; Entourage is type until a mark lands */
+    { name: 'DHARMA PRODUCTIONS', logo: 'dharma.svg' },
     { name: 'ENTOURAGE',          logo: null },
-    { name: 'DHARMA',             logo: null },
   ];
   const PLATFORMS_ROW = [
     { name: 'TVF',              logo: 'tvf.png' },
@@ -556,6 +560,26 @@
       if (el.complete) size(el);
       else el.addEventListener('load', () => size(el), { once: true });
     });
+
+    /* type fallbacks get the same optical-area treatment — a long
+       wordmark set in 125%-stretch black otherwise outweighs every
+       compact mark beside it. A text box's aspect doesn't change with
+       font-size, so one measurement is enough. Floor is lower than the
+       logos' because these words run much wider than a mark. */
+    const sizeType = el => {
+      if (el.dataset.sized) return;            /* never compound the scale */
+      const r = el.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      const k = Math.min(1.15, Math.max(.6, Math.sqrt(REF / (r.width / r.height))));
+      el.style.fontSize = `calc(${getComputedStyle(el).fontSize} * ${k.toFixed(3)})`;
+      el.dataset.sized = '1';
+    };
+    /* fonts.ready, not rAF — the measurement needs the web font's real
+       metrics, and rAF is parked in a background tab so the strip would
+       be left unequalised for anyone who opens the site in a new tab */
+    const applyType = () => $$('.marquee__track span, .bmq__track span').forEach(sizeType);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(applyType);
+    else applyType();
   })();
 
   /* ============================================================
@@ -636,30 +660,70 @@
     if (!loader) { body.classList.remove('opening'); body.classList.add('loaded', 'opened'); return; }
 
     /* the title sequence, in beats:
-         playhead forms → PRASHANT pulls left → PANDA pulls right
-         → the site opens out from behind the mark → the three roles
-       CSS owns the motion; this just drops `opening` and lifts the veil. */
-    const ASSEMBLE = reduced ? 0 : 2500;   /* scrubber + both words, per the CSS delays */
+         playhead draws → PRASHANT pulls left → PANDA pulls right
+         → the roles land → the finished mark flies up and settles
+         into the nav's logo slot, and the page is revealed behind it.
+       CSS owns the motion; this drops `opening`, lifts the veil, then
+       measures the nav slot and hands the mark over. */
+    const ASSEMBLE = reduced ? 0 : 3100;   /* scrubber + both words, per the CSS delays */
+    const SETTLE   = reduced ? 0 : 1750;   /* roles + categories, then fly */
+    const FLY      = reduced ? 0 : 1100;   /* matches .titleseq__mark transition */
     const fill = $('#loaderFill'), num = $('#loaderNum');
 
-    requestAnimationFrame(() => body.classList.remove('opening'));
+    /* fly the assembled mark from centre screen onto the nav logo.
+       Both are the same artwork, so the landing is a straight swap.
+       If the box measures zero (fonts/images not laid out yet) skip
+       the flight rather than launching the mark to a wrong place. */
+    function settleIntoNav() {
+      const mark = $('#tsMark'), slot = $('#navBrandImg');
+      if (!mark || !slot) return;
+      const a = mark.getBoundingClientRect();
+      const b = slot.getBoundingClientRect();
+      if (!a.width || !b.width) return;
+      const s = b.width / a.width;
+      const dx = (b.left + b.width / 2) - (a.left + a.width / 2);
+      const dy = (b.top + b.height / 2) - (a.top + a.height / 2);
+      mark.style.transform = `translate(${dx}px, ${dy}px) scale(${s})`;
+    }
 
-    /* the bar tracks the assembly instead of running on its own clock */
-    const t0 = performance.now();
-    const tick = now => {
-      const k = Math.min(1, (now - t0) / Math.max(ASSEMBLE, 1));
-      if (fill) fill.style.width = (k * 100).toFixed(1) + '%';
-      if (num) num.textContent = k < 1 ? pad2(Math.floor(k * 100)) : '100';
-      if (k < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
+    function play() {
+      requestAnimationFrame(() => body.classList.remove('opening'));
 
-    setTimeout(() => {
-      loader.classList.add('done');
-      body.classList.add('loaded');
-      /* hold the mark above the veil until it has finished fading out */
-      setTimeout(() => body.classList.add('opened'), 700);
-    }, ASSEMBLE + (reduced ? 0 : 140));
+      /* the bar tracks the assembly instead of running on its own clock */
+      const t0 = performance.now();
+      const tick = now => {
+        const k = Math.min(1, (now - t0) / Math.max(ASSEMBLE, 1));
+        if (fill) fill.style.width = (k * 100).toFixed(1) + '%';
+        if (num) num.textContent = k < 1 ? pad2(Math.floor(k * 100)) : '100';
+        if (k < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+
+      setTimeout(() => {
+        loader.classList.add('done');
+        body.classList.add('loaded');           /* veil lifts, roles land */
+        setTimeout(() => {
+          body.classList.add('settling');       /* meta fades, mark flies */
+          settleIntoNav();
+          setTimeout(() => body.classList.add('opened'), FLY);
+        }, SETTLE);
+      }, ASSEMBLE + (reduced ? 0 : 140));
+    }
+
+    /* Don't start the sequence in a background tab: rAF is parked and
+       transitions don't advance there, so the timers would run out
+       while nothing moved — the visitor would return to a logo that
+       snaps together, or to a mark measured against a stale layout.
+       Wait until the page is actually on screen, then play it. */
+    if (document.visibilityState === 'visible') {
+      play();
+    } else {
+      document.addEventListener('visibilitychange', function onShow() {
+        if (document.visibilityState !== 'visible') return;
+        document.removeEventListener('visibilitychange', onShow);
+        play();
+      });
+    }
   })();
 
   /* ============================================================
@@ -898,8 +962,9 @@
       setTimeout(() => {
         const parts = jump.split('|');
         const l = $('#loader'); if (l) l.remove();
+        const ts = $('#titleseq'); if (ts) ts.remove();
         document.body.classList.remove('opening');
-        document.body.classList.add('loaded', 'opened');
+        document.body.classList.add('loaded', 'settling', 'opened');
         $$('.reveal').forEach(e => e.classList.add('in'));
         parts.forEach(part => {
           if (part === 'SHOT') document.documentElement.classList.add('shot');

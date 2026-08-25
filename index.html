@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=6" />
+<link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body class="opening" data-page="home" data-tc="625">
 
@@ -30,7 +30,7 @@
   <span class="hud__r">TC <b id="tc">00:00:00:00</b> / 25FPS</span>
 </div>
 
-<!-- ======== OPENING VEIL (home only) — the hero lockup assembles above it ======== -->
+<!-- ======== OPENING VEIL (home only) — the mark assembles above it ======== -->
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader__row"><span>PRASHANT PANDA</span><span>MUMBAI</span></div>
   <div class="loader__row loader__row--bottom">
@@ -40,11 +40,34 @@
   </div>
 </div>
 
+<!-- ======== TITLE SEQUENCE (home only) ========
+     the playhead draws, PRASHANT pulls left, PANDA pulls right,
+     the roles land — then the finished mark flies up and settles
+     into the nav as the top-left logo button. Same artwork in both
+     places, so the handoff is seamless. -->
+<div class="titleseq" id="titleseq" aria-hidden="true">
+  <div class="titleseq__mark" id="tsMark">
+    <span class="lockup" role="img" aria-label="PRASHANT PANDA">
+      <img class="lockup__lay lockup__scrub" src="assets/img/brand/pp-hero-scrub.png?v=1" alt="" />
+      <img class="lockup__lay lockup__p1" src="assets/img/brand/pp-hero-prashant.png?v=1" alt="" />
+      <img class="lockup__lay lockup__p2" src="assets/img/brand/pp-hero-panda.png?v=1" alt="" />
+    </span>
+  </div>
+  <div class="titleseq__meta" id="tsMeta">
+    <span class="hero__films">
+      <i></i>
+      <span class="hero__films-words"><b>FILM&nbsp;EDITOR</b><em>&nbsp;&amp;&nbsp;</em><b>CREATIVE&nbsp;PRODUCER</b></span>
+      <i></i>
+    </span>
+    <span class="hero__cats">FILMS&nbsp;·&nbsp;SERIES&nbsp;·&nbsp;ADVERTISING&nbsp;·&nbsp;MUSIC&nbsp;VIDEOS</span>
+  </div>
+</div>
+
 <!-- ======== NAV ======== -->
 <header class="nav" id="nav">
-  <a class="nav__brand" href="/" aria-label="Prashant Panda — home"><img src="assets/img/brand/pp-lockup-inline-white.png?v=3" alt="PRASHANT PANDA" /></a>
+  <a class="nav__brand" href="/" aria-label="Prashant Panda — home"><img id="navBrandImg" src="assets/img/brand/pp-lockup-primary-white.png?v=3" alt="PRASHANT PANDA" /></a>
   <div class="nav__right">
-    <a class="nav__link" href="https://vimeo.com/showcase/8346821" target="_blank" rel="noopener">VIMEO</a>
+    <a class="nav__link" href="https://vimeo.com/prashantpanda" target="_blank" rel="noopener">VIMEO</a>
     <a class="nav__link" href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">INSTAGRAM</a>
     <a class="nav__link" href="https://www.imdb.com/name/nm8079333/" target="_blank" rel="noopener">IMDB</a>
     <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu">
@@ -73,7 +96,7 @@
   <div class="menu__foot">
     <a href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">@PPCUT_EDIT</a>
     <span class="menu__foot-right">
-      <a href="https://vimeo.com/showcase/8346821" target="_blank" rel="noopener">VIMEO&nbsp;↗</a>
+      <a href="https://vimeo.com/prashantpanda" target="_blank" rel="noopener">VIMEO&nbsp;↗</a>
       <a href="https://www.instagram.com/prashantpanda79/" target="_blank" rel="noopener">INSTAGRAM&nbsp;↗</a>
       <a href="https://www.imdb.com/name/nm8079333/" target="_blank" rel="noopener">IMDB&nbsp;↗</a>
     </span>
@@ -82,56 +105,13 @@
 
 <main>
 
-<!-- ======== HERO ======== -->
-<section class="hero" id="top">
-  <div class="hero__slides" aria-hidden="true">
-    <img id="heroA" class="hero__slide on" src="assets/img/work/1088993725.jpg" alt="" />
-    <img id="heroB" class="hero__slide" src="assets/img/work/867458294.jpg" alt="" />
-  </div>
-  <div class="hero__scrim" aria-hidden="true"></div>
-
-  <span class="frametick frametick--tl">OFFLINE&nbsp;—&nbsp;LOCK&nbsp;—&nbsp;ONLINE&nbsp;—&nbsp;GRADE&nbsp;—&nbsp;DELIVERY</span>
-  <span class="frametick frametick--tr">SINCE&nbsp;MMV</span>
-  <span class="frametick frametick--bl">19.0760°N&nbsp;/&nbsp;72.8777°E</span>
-  <span class="frametick frametick--br">CUTS&nbsp;01—76</span>
-
-  <div class="hero__center">
-    <h1 class="hero__mark">
-      <!-- the lockup assembles: playhead drops in, then the two tracks slide into place -->
-      <span class="lockup" role="img" aria-label="PRASHANT PANDA">
-        <img class="lockup__lay lockup__scrub" src="assets/img/brand/pp-hero-scrub.png?v=1" alt="" />
-        <img class="lockup__lay lockup__p1" src="assets/img/brand/pp-hero-prashant.png?v=1" alt="" />
-        <img class="lockup__lay lockup__p2" src="assets/img/brand/pp-hero-panda.png?v=1" alt="" />
-      </span>
-      <span class="hero__films">
-        <i></i>
-        <span class="hero__films-words"><b>FILM&nbsp;EDITOR</b><em>&nbsp;&amp;&nbsp;</em><b>CREATIVE&nbsp;PRODUCER</b></span>
-        <i></i>
-      </span>
-      <span class="hero__cats">FILMS&nbsp;·&nbsp;SERIES&nbsp;·&nbsp;ADVERTISING&nbsp;·&nbsp;MUSIC&nbsp;VIDEOS</span>
-    </h1>
-    <button class="hero__play" id="playReel" aria-label="Play the reel">
-      <svg viewBox="0 0 120 120" aria-hidden="true">
-        <defs><path id="ringpath" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0" /></defs>
-        <text textLength="295" lengthAdjust="spacingAndGlyphs"><textPath href="#ringpath">PLAY THE REEL — PRASHANT PANDA — PLAY —&#160;</textPath></text>
-      </svg>
-      <span class="hero__play-tri" aria-hidden="true"></span>
-    </button>
-  </div>
-
-  <a class="hero__scroll" href="#reel" aria-label="Scroll to the reel"><i></i></a>
-</section>
-
-<!-- ======== CLIENT MARQUEE (thin logo ticker) ======== -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track" id="ticker"><!-- logos + wordmarks injected --></div>
-</div>
-
-<!-- ======== 01 — THE REEL (NLE timeline) ======== -->
-<section class="reel" id="reel">
-  <div class="sec-head reveal">
+<!-- ======== 01 — SELECTED STORIES (the page opens straight onto the timeline) ======== -->
+<section class="reel reel--first" id="reel">
+  <div class="sec-head reveal" id="top">
     <span class="kicker"><i>[●]</i> 01 — THE REEL</span>
-    <h2 class="sec-title sec-title--drop"><b>P</b><i>ortfolio</i></h2>
+    <h1 class="sec-title sec-title--bigS">
+      <b>S</b><span><i>elected</i><i>tories</i></span>
+    </h1>
     <span class="sec-meta">SCROLL&nbsp;DOWN<br/>FOR&nbsp;MORE&nbsp;WORK</span>
   </div>
 
@@ -157,6 +137,11 @@
     <a href="/work" class="reel__more-link"><span>ALL WORK</span><i>→</i></a>
   </div>
 </section>
+
+<!-- ======== CLIENT MARQUEE (thin logo ticker) ======== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track" id="ticker"><!-- logos + wordmarks injected --></div>
+</div>
 
 <!-- ======== MINI FOOT ======== -->
 <footer class="foot foot--mini">
@@ -187,10 +172,10 @@
     <button class="player__nav" id="playerPrev">←&nbsp;PREV</button>
     <span class="player__count" id="playerCount">01&nbsp;/&nbsp;10</span>
     <button class="player__nav" id="playerNext">NEXT&nbsp;→</button>
-    <a class="player__ext" id="playerVimeo" href="https://vimeo.com/showcase/8346821" target="_blank" rel="noopener">OPEN&nbsp;ON&nbsp;VIMEO&nbsp;↗</a>
+    <a class="player__ext" id="playerVimeo" href="https://vimeo.com/prashantpanda" target="_blank" rel="noopener">OPEN&nbsp;ON&nbsp;VIMEO&nbsp;↗</a>
   </div>
 </div>
 
-<script src="script.js?v=9"></script>
+<script src="script.js?v=13"></script>
 </body>
 </html>
