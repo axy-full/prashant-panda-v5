@@ -329,11 +329,11 @@
      leaves bare cells
      ============================================================ */
   (function renderIndex() {
-    const endStrip = (grid, text) => {
-      const end = document.createElement('div');
-      end.className = 'tile tile--end';
-      end.innerHTML = `<span>[<i>●</i>]&nbsp;&nbsp;${text}</span>`;
-      grid.appendChild(end);
+    /* caption = film name + brand, and the brand only when the title
+       doesn't already carry it. No durations, no repeated brand. */
+    const capOf = p => {
+      const t = p.title.toUpperCase(), c = (p.client || '').toUpperCase();
+      return (c && !t.includes(c)) ? c : '';
     };
     const slate = (grid, no, N, tag, title, meta, rating, wide, art, yt) => {
       const el = document.createElement(yt ? 'button' : 'div');
@@ -372,10 +372,9 @@
       el.dataset.play = p.id;
       el.dataset.tag = p.tag;
       el.setAttribute('aria-label', `Play — ${p.title}`);
-      const capMeta = [p.client.toUpperCase(), mmss(p.dur)].filter(Boolean).join(' — ');
       el.innerHTML = `
         <img loading="lazy" src="${img(p)}" alt="${p.title} — film still" />
-        <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${capMeta}</span></span>`;
+        <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${capOf(p)}</span></span>`;
       return el;
     };
     const genres = $('#adGenres');
@@ -394,30 +393,24 @@
         grid.className = 'index__grid';
         genres.appendChild(grid);
         films.forEach(p => grid.appendChild(adTile(p)));
-        endStrip(grid, `END OF ${tag}`);
       });
     }
 
     const gSeries = $('#gridSeries');
     if (gSeries) {
-      SERIES.forEach((s, i) => {
-        const meta = [s.years, `${pad2(s.eps)} EP`, s.platform.toUpperCase()].filter(Boolean).join(' · ');
-        slate(gSeries, i + 1, SERIES.length, 'SERIES', s.title, meta, s.rating >= 7 ? s.rating : 0, false, s.art, s.yt);
-      });
-      endStrip(gSeries, `END OF SERIES — ${pad2(SERIES.length)} SHOWS`);
+      /* just the name — no episode counts, years, ratings or platform */
+      SERIES.forEach(s => slate(gSeries, 0, 0, 'SERIES', s.title, '', 0, false, s.art, s.yt));
     }
 
     const gFilms = $('#gridFilms');
     if (gFilms) {
       /* the upcoming feature leads the shelf as its hero */
-      const hero = slate(gFilms, 0, 0, 'UPCOMING — FEATURE FILM', UPCOMING.title,
-        UPCOMING.note.toUpperCase() + ' · IN THE WORKS', 0, false, UPCOMING.art, '');
+      const hero = slate(gFilms, 0, 0, 'UPCOMING', UPCOMING.title,
+        'SAGAR MOTION PICTURES', 0, false, UPCOMING.art, '');
       hero.classList.add('tile--filmhero', 'tile--upcoming');
       FILMS.forEach((f, i) => {
-        const meta = [f.year, f.role.toUpperCase(), f.note.toUpperCase()].filter(Boolean).join(' · ');
-        slate(gFilms, i + 1, FILMS.length, 'FILM', f.title, meta, 0, i === 0, f.art, f.yt);
+        slate(gFilms, 0, 0, 'FILM', f.title, f.role.toUpperCase(), 0, i === 0, f.art, f.yt);
       });
-      endStrip(gFilms, 'END OF REEL — CUT TO BLACK');
     }
 
     /* music videos & film songs — playable, same tile as the ads */
@@ -431,11 +424,9 @@
         el.setAttribute('aria-label', `Play — ${p.title}`);
         el.innerHTML = `
           <img loading="lazy" src="${img(p)}" alt="${p.title} — film still" />
-          <span class="tile__no">${pad2(i + 1)} / ${pad2(MUSIC.length)}</span>
-          <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${[p.client.toUpperCase(), mmss(p.dur)].filter(Boolean).join(' — ')}</span></span>`;
+          <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${capOf(p)}</span></span>`;
         gMusic.appendChild(el);
       });
-      endStrip(gMusic, 'MORE MUSIC VIDEOS — IN ASSEMBLY');
     }
 
     /* typeset credit blocks — work with no key art of its own, so
@@ -507,9 +498,9 @@
     { name: 'ZIGZAG FILM',        logo: 'zigzag.png' },
     { name: 'KARMMAN LINE',       logo: 'karmanline.png' }, /* official double-M styling */
     /* added per Prashant, 2026-08-25 — Dharma is the house behind the
-       associate-editor features; Entourage is type until a mark lands */
+       associate-editor features; Entourage Films' own mark, entourage-films.com */
     { name: 'DHARMA PRODUCTIONS', logo: 'dharma.svg' },
-    { name: 'ENTOURAGE',          logo: null },
+    { name: 'ENTOURAGE FILMS',    logo: 'entourage-films.png' },
   ];
   const PLATFORMS_ROW = [
     { name: 'TVF',              logo: 'tvf.png' },
@@ -588,13 +579,13 @@
   (function renderDirectors() {
     const wrap = $('#dirRows');
     if (!wrap) return;
+    /* names run right-aligned in a single column; no cut counts and no
+       right-hand data — the row shows a couple of titles, not a tally */
     DIRECTORS.forEach((d, i) => {
       const cuts = d.works.map(byId);
-      const metaTop = cuts.length ? cuts.map(w => w.title.toUpperCase()).join(' · ') : 'CUTS — LIST IN ASSEMBLY';
-      const metaBot = [cuts.length ? `${pad2(cuts.length)} ${cuts.length === 1 ? 'CUT' : 'CUTS'}` : '', d.house].filter(Boolean).join(' — ') || '&nbsp;';
       const chips = cuts.length
         ? cuts.map(w => `<button type="button" class="dirchip" data-play="${w.id}">${w.title.toUpperCase()}&nbsp;▸</button>`).join('')
-        : '<span class="dirchip dirchip--tbc">FULL LIST IN ASSEMBLY — SOON</span>';
+        : '<span class="dirchip dirchip--tbc">MORE SOON</span>';
       const el = document.createElement('div');
       el.className = 'dir reveal';
       el.dataset.still = d.still;
@@ -604,7 +595,6 @@
       el.innerHTML = `
         <span class="dir__no">D.${pad2(i + 1)}</span>
         <span class="dir__name">${d.name}</span>
-        <span class="dir__meta">${metaTop}<br/>${metaBot}</span>
         <div class="dir__works">${chips}</div>`;
       wrap.appendChild(el);
     });
@@ -665,9 +655,9 @@
          into the nav's logo slot, and the page is revealed behind it.
        CSS owns the motion; this drops `opening`, lifts the veil, then
        measures the nav slot and hands the mark over. */
-    const ASSEMBLE = reduced ? 0 : 3100;   /* scrubber + both words, per the CSS delays */
-    const SETTLE   = reduced ? 0 : 1750;   /* roles + categories, then fly */
-    const FLY      = reduced ? 0 : 1100;   /* matches .titleseq__mark transition */
+    const ASSEMBLE = reduced ? 0 : 4400;   /* scrubber + both words, per the CSS delays */
+    const SETTLE   = reduced ? 0 : 3400;   /* roles, categories, tagline — held long enough to read */
+    const FLY      = reduced ? 0 : 1400;   /* matches .titleseq__mark transition */
     const fill = $('#loaderFill'), num = $('#loaderNum');
 
     /* fly the assembled mark from centre screen onto the nav logo.
@@ -686,6 +676,24 @@
       mark.style.transform = `translate(${dx}px, ${dy}px) scale(${s})`;
     }
 
+    /* the sequence runs ~9s so the subtext can actually be read — but
+       nobody should be trapped in it. Any click or key jumps to the end. */
+    let done = false;
+    const timers = [];
+    /* Cut straight to the open site. No flight here — the mark would have
+       to be measured mid-assembly and would land wrong; a clean dissolve
+       reads better than a bad landing. */
+    function finish() {
+      if (done) return;
+      done = true;
+      timers.forEach(clearTimeout);
+      loader.classList.add('done');
+      body.classList.remove('opening');
+      body.classList.add('loaded', 'settling', 'opened');
+    }
+    document.addEventListener('pointerdown', finish, { once: true });
+    document.addEventListener('keydown', finish, { once: true });
+
     function play() {
       requestAnimationFrame(() => body.classList.remove('opening'));
 
@@ -699,15 +707,20 @@
       };
       requestAnimationFrame(tick);
 
-      setTimeout(() => {
+      timers.push(setTimeout(() => {
+        if (done) return;
         loader.classList.add('done');
         body.classList.add('loaded');           /* veil lifts, roles land */
-        setTimeout(() => {
+        timers.push(setTimeout(() => {
+          if (done) return;
           body.classList.add('settling');       /* meta fades, mark flies */
           settleIntoNav();
-          setTimeout(() => body.classList.add('opened'), FLY);
-        }, SETTLE);
-      }, ASSEMBLE + (reduced ? 0 : 140));
+          timers.push(setTimeout(() => {
+            done = true;
+            body.classList.add('opened');
+          }, FLY));
+        }, SETTLE));
+      }, ASSEMBLE + (reduced ? 0 : 140)));
     }
 
     /* Don't start the sequence in a background tab: rAF is parked and
@@ -723,6 +736,12 @@
         document.removeEventListener('visibilitychange', onShow);
         play();
       });
+      /* Failsafe: the page is hidden behind the veil until the sequence
+         finishes, so if visibilitychange never arrives (embedded webview,
+         prerender, an automation context that reports hidden forever) the
+         site would sit there blank. Open it anyway — losing the animation
+         is far cheaper than serving an empty page. */
+      setTimeout(finish, 12000);
     }
   })();
 

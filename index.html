@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=7" />
+<link rel="stylesheet" href="styles.css?v=9" />
 </head>
 <body class="opening" data-page="home" data-tc="625">
 
@@ -60,6 +60,7 @@
       <i></i>
     </span>
     <span class="hero__cats">FILMS&nbsp;·&nbsp;SERIES&nbsp;·&nbsp;ADVERTISING&nbsp;·&nbsp;MUSIC&nbsp;VIDEOS</span>
+    <span class="hero__tag">From first cut to final delivery.</span>
   </div>
 </div>
 
@@ -87,11 +88,10 @@
     <img data-menubg="contact"   src="assets/img/work/1106435260.jpg" alt="" />
   </div>
   <nav class="menu__links" aria-label="Primary">
-    <a class="now" href="/" data-bg="reel"><b>01</b><span>REEL</span><small>10 CUTS</small></a>
-    <a href="/work" data-bg="index"><b>02</b><span>WORK</span><small>76 TITLES + 24 BANNERS</small></a>
-    <a href="/directors" data-bg="directors"><b>03</b><span>DIRECTORS</span><small>14 NAMES</small></a>
-    <a href="/about" data-bg="editor"><b>04</b><span>ABOUT</span><small>P. PANDA</small></a>
-    <a href="/contact" data-bg="contact"><b>05</b><span>CONTACT</span><small>MUMBAI</small></a>
+    <a class="now" href="/" data-bg="reel"><b>01</b><span>WHY PRASHANT</span></a>
+    <a href="/work" data-bg="index"><b>02</b><span>WORK</span></a>
+    <a href="/directors" data-bg="directors"><b>03</b><span>DIRECTORS</span></a>
+    <a href="/contact" data-bg="contact"><b>04</b><span>LET’S TALK</span></a>
   </nav>
   <div class="menu__foot">
     <a href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">@PPCUT_EDIT</a>
@@ -105,14 +105,62 @@
 
 <main>
 
-<!-- ======== 01 — SELECTED STORIES (the page opens straight onto the timeline) ======== -->
-<section class="reel reel--first" id="reel">
+<!-- ======== 01 — WHY PRASHANT ========
+     The concept: the brand mark is already two tracks — PRASHANT on
+     V2, PANDA on V1, one playhead through both. So the pitch is drawn
+     as a sequence: EDITOR on the top track, CREATIVE PRODUCER on the
+     bottom, one playhead running first cut to final delivery.
+     The lede is the slot for Prashant's write-up when it lands. -->
+<section class="why why--first" id="why">
   <div class="sec-head reveal" id="top">
-    <span class="kicker"><i>[●]</i> 01 — THE REEL</span>
-    <h1 class="sec-title sec-title--bigS">
-      <b>S</b><span><i>elected</i><i>tories</i></span>
-    </h1>
-    <span class="sec-meta">SCROLL&nbsp;DOWN<br/>FOR&nbsp;MORE&nbsp;WORK</span>
+    <span class="kicker"><i>[●]</i> 01 — WHY PRASHANT</span>
+    <h1 class="sec-title sec-title--sm">TWO&nbsp;TRACKS<br/>ONE&nbsp;TIMELINE</h1>
+  </div>
+
+  <p class="why__lede reveal">Most editors hand back a cut. I hand back a finished film &mdash; and I know what to leave out of it.</p>
+
+  <div class="why__tracks reveal">
+    <div class="why__track">
+      <span class="why__tag">V2</span>
+      <span class="why__role">EDITOR</span>
+      <ul class="why__beats">
+        <li>Story</li>
+        <li>Performance</li>
+        <li>Pace</li>
+        <li>Structure</li>
+      </ul>
+    </div>
+    <div class="why__track">
+      <span class="why__tag">V1</span>
+      <span class="why__role">CREATIVE&nbsp;PRODUCER</span>
+      <ul class="why__beats why__beats--chain">
+        <li>Offline</li>
+        <li>Lock</li>
+        <li>Online</li>
+        <li>Sound</li>
+        <li>Grade</li>
+        <li>Final&nbsp;Delivery</li>
+      </ul>
+    </div>
+    <span class="why__playhead" aria-hidden="true"></span>
+  </div>
+
+  <div class="why__foot reveal">
+    <p class="why__note"><i>[●]</i>&nbsp;UPCOMING&nbsp;FILM&nbsp;—&nbsp;ROTTEN&nbsp;APPLE&nbsp;·&nbsp;SAGAR&nbsp;MOTION&nbsp;PICTURES</p>
+    <p class="why__vp">
+      <span class="why__vp-k">VICE&nbsp;PRESIDENT</span>
+      <img class="why__vp-logo" id="vpLogo" src="assets/img/brand/pp-vp-company.png" alt="" />
+    </p>
+  </div>
+</section>
+
+<!-- ======== 02 — SELECTED STORIES ======== -->
+<section class="reel" id="reel">
+  <div class="sec-head reveal">
+    <span class="kicker"><i>[●]</i> 02 — SELECTED WORK</span>
+    <h2 class="sec-title sec-title--bigS">
+      <b>S</b><span class="bigS__rule" aria-hidden="true"></span><span><i>elected</i><i>tories</i></span>
+    </h2>
   </div>
 
   <div class="tl reveal" id="tl">
@@ -137,11 +185,6 @@
     <a href="/work" class="reel__more-link"><span>ALL WORK</span><i>→</i></a>
   </div>
 </section>
-
-<!-- ======== CLIENT MARQUEE (thin logo ticker) ======== -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track" id="ticker"><!-- logos + wordmarks injected --></div>
-</div>
 
 <!-- ======== MINI FOOT ======== -->
 <footer class="foot foot--mini">
@@ -176,6 +219,6 @@
   </div>
 </div>
 
-<script src="script.js?v=13"></script>
+<script src="script.js?v=16"></script>
 </body>
 </html>
