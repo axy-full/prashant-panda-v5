@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PRASHANT PANDA — Editor · Storyteller · Filmmaker, Mumbai</title>
-<meta name="description" content="Prashant Panda — editor, storyteller, filmmaker. Mumbai. Sixty titles. Twenty-two banners. Twenty years in the cut. Press play." />
+<title>PRASHANT PANDA — Film Editor &amp; Creative Producer, Mumbai</title>
+<meta name="description" content="Prashant Panda — film editor and creative producer, Mumbai. Films, series, advertising and music videos. From offline edit to final delivery. Press play." />
 <meta name="theme-color" content="#0a0809" />
 
-<meta property="og:title" content="PRASHANT PANDA — Editor · Storyteller · Filmmaker, Mumbai" />
-<meta property="og:description" content="Sixty titles. Twenty-two banners. Twenty years in the cut. Press play." />
+<meta property="og:title" content="PRASHANT PANDA — Film Editor &amp; Creative Producer, Mumbai" />
+<meta property="og:description" content="Films · Series · Advertising · Music Videos. From offline edit to final delivery." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="assets/img/brand/pp-endslate-dark.png?v=3" />
 
@@ -16,9 +16,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=5" />
+<link rel="stylesheet" href="styles.css?v=6" />
 </head>
-<body class="opening" data-page="home" data-tc="445">
+<body class="opening" data-page="home" data-tc="625">
 
 <!-- ======== FILM GRAIN + VIGNETTE ======== -->
 <div class="grain" aria-hidden="true"></div>
@@ -64,9 +64,9 @@
     <img data-menubg="contact"   src="assets/img/work/1106435260.jpg" alt="" />
   </div>
   <nav class="menu__links" aria-label="Primary">
-    <a class="now" href="/" data-bg="reel"><b>01</b><span>REEL</span><small>07 CUTS</small></a>
-    <a href="/work" data-bg="index"><b>02</b><span>WORK</span><small>60 TITLES + 22 BANNERS</small></a>
-    <a href="/directors" data-bg="directors"><b>03</b><span>DIRECTORS</span><small>10 NAMES</small></a>
+    <a class="now" href="/" data-bg="reel"><b>01</b><span>REEL</span><small>10 CUTS</small></a>
+    <a href="/work" data-bg="index"><b>02</b><span>WORK</span><small>76 TITLES + 24 BANNERS</small></a>
+    <a href="/directors" data-bg="directors"><b>03</b><span>DIRECTORS</span><small>14 NAMES</small></a>
     <a href="/about" data-bg="editor"><b>04</b><span>ABOUT</span><small>P. PANDA</small></a>
     <a href="/contact" data-bg="contact"><b>05</b><span>CONTACT</span><small>MUMBAI</small></a>
   </nav>
@@ -90,10 +90,10 @@
   </div>
   <div class="hero__scrim" aria-hidden="true"></div>
 
-  <span class="frametick frametick--tl">FILMS&nbsp;·&nbsp;SERIES&nbsp;·&nbsp;AD&nbsp;FILMS&nbsp;·&nbsp;MUSIC&nbsp;VIDEOS</span>
+  <span class="frametick frametick--tl">OFFLINE&nbsp;—&nbsp;LOCK&nbsp;—&nbsp;ONLINE&nbsp;—&nbsp;GRADE&nbsp;—&nbsp;DELIVERY</span>
   <span class="frametick frametick--tr">SINCE&nbsp;MMV</span>
   <span class="frametick frametick--bl">19.0760°N&nbsp;/&nbsp;72.8777°E</span>
-  <span class="frametick frametick--br">CUTS&nbsp;01—60</span>
+  <span class="frametick frametick--br">CUTS&nbsp;01—76</span>
 
   <div class="hero__center">
     <h1 class="hero__mark">
@@ -105,9 +105,10 @@
       </span>
       <span class="hero__films">
         <i></i>
-        <span class="hero__films-words"><b>EDITOR</b><em>&nbsp;·&nbsp;</em><b>STORYTELLER</b><em>&nbsp;·&nbsp;</em><b>FILMMAKER</b></span>
+        <span class="hero__films-words"><b>FILM&nbsp;EDITOR</b><em>&nbsp;&amp;&nbsp;</em><b>CREATIVE&nbsp;PRODUCER</b></span>
         <i></i>
       </span>
+      <span class="hero__cats">FILMS&nbsp;·&nbsp;SERIES&nbsp;·&nbsp;ADVERTISING&nbsp;·&nbsp;MUSIC&nbsp;VIDEOS</span>
     </h1>
     <button class="hero__play" id="playReel" aria-label="Play the reel">
       <svg viewBox="0 0 120 120" aria-hidden="true">
@@ -130,12 +131,12 @@
 <section class="reel" id="reel">
   <div class="sec-head reveal">
     <span class="kicker"><i>[●]</i> 01 — THE REEL</span>
-    <h2 class="sec-title sec-title--drop"><b>S</b><i>elected</i><br/><b>S</b><i>tories</i></h2>
+    <h2 class="sec-title sec-title--drop"><b>P</b><i>ortfolio</i></h2>
     <span class="sec-meta">SCROLL&nbsp;DOWN<br/>FOR&nbsp;MORE&nbsp;WORK</span>
   </div>
 
   <div class="tl reveal" id="tl">
-    <div class="tl__scroll" id="tlScroll" role="region" aria-label="Selected stories timeline" tabindex="0">
+    <div class="tl__scroll" id="tlScroll" role="region" aria-label="Portfolio timeline" tabindex="0">
       <div class="tl__inner" id="tlInner">
         <div class="tl__ruler" id="tlRuler"></div>
         <div class="tl__lane" id="laneV2"></div>
@@ -147,6 +148,10 @@
     <span class="tl__tag tl__tag--v1" aria-hidden="true">V1</span>
     <span class="tl__tc" id="tlTc" aria-hidden="true">00:00:00</span>
   </div>
+
+  <p class="tl__note reveal" aria-live="polite">
+    <b id="tlNoteTitle"></b><span id="tlNoteText"></span>
+  </p>
 
   <div class="reel__more reveal">
     <a href="/work" class="reel__more-link"><span>ALL WORK</span><i>→</i></a>
@@ -186,6 +191,6 @@
   </div>
 </div>
 
-<script src="script.js?v=8"></script>
+<script src="script.js?v=9"></script>
 </body>
 </html>
