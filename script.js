@@ -179,7 +179,7 @@
      works get an "in assembly" panel until he sends the titles.
      ============================================================ */
   const DIRECTORS = [
-    { name: 'NIKHIL RAO',         house: 'JAMIC FILMS / LINTAS',       works: [2, 7, 11, 30], still: '867458294' },
+    { name: 'NIKHIL RAO',         house: 'JAMIC FILMS',                works: [2, 7, 11, 30], still: '867458294' },
     { name: 'SHIRISH DAIYA',      house: 'JAMIC FILMS',                works: [1, 9, 8, 16], still: '1088993725' },
     { name: 'RAJESH SAATHI',      house: 'KEROSCENE FILMS',            works: [37],      still: '1179531910' },
     { name: 'ABHIJIT SUDAKAR',    house: 'ZIGZAG FILM',                works: [],        still: '' },
@@ -497,7 +497,9 @@
     { name: 'BBDO INDIA',         logo: 'bbdo.svg' },
     { name: 'JAMIC FILMS',        logo: 'jamic-films.png' },
     { name: 'DUCKTAPE',           logo: 'ducktape.png' },
-    { name: 'LINTAS',             logo: null },
+    /* the agency — a separate entity from Jamic Films, Nikhil Rao's
+       production house. Official wordmark, MullenLowe Group CDN. */
+    { name: 'LOWE LINTAS',        logo: 'lowe-lintas.png' },
     { name: 'KEROSCENE FILMS',    logo: 'keroscene.png' },
     { name: 'ZIGZAG FILM',        logo: 'zigzag.png' },
     { name: 'KARMMAN LINE',       logo: 'karmanline.png' }, /* official double-M styling */
