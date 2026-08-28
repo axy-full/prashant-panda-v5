@@ -226,6 +226,8 @@ body[data-page="home"]:not(.opened) .nav__brand img{ opacity:0; }
   font-size:clamp(44px,7.5vw,120px); margin-top:16px;
 }
 .sec-title--sm{ font-size:clamp(32px,5vw,76px); }
+/* the title crosses to the right edge; the kicker stays left */
+.sec-head--right .sec-title{ grid-column:1/-1; text-align:right; }
 .sec-meta{ font-family:var(--mono); font-size:10px; letter-spacing:.18em;
   color:var(--mut-2); text-align:right; line-height:1.9; }
 
@@ -991,9 +993,9 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
 .why--first{ padding-top:clamp(120px,17vh,190px); }
 .why{ padding-bottom:clamp(50px,8vh,110px); }
 .why__lede{
-  margin:0 var(--pad) clamp(26px,4vh,48px); max-width:30ch;
-  font-stretch:110%; font-weight:800; letter-spacing:-.01em; line-height:1.15;
-  font-size:clamp(20px,2.4vw,38px); color:var(--bone);
+  margin:0 var(--pad) clamp(26px,4vh,48px); max-width:44ch;
+  font-stretch:110%; font-weight:700; letter-spacing:-.005em; line-height:1.35;
+  font-size:clamp(14px,1.3vw,20px); color:var(--bone-dim);
 }
 /* ---------- the board ----------
    storyboard frames pinned up as a production board: hairline gaps
