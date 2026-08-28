@@ -991,39 +991,89 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
 .why--first{ padding-top:clamp(120px,17vh,190px); }
 .why{ padding-bottom:clamp(50px,8vh,110px); }
 .why__lede{
-  margin:0 var(--pad) clamp(30px,5vh,60px); max-width:22ch;
-  font-stretch:110%; font-weight:800; letter-spacing:-.01em; line-height:1.12;
-  font-size:clamp(26px,3.6vw,58px); color:var(--bone);
+  margin:0 var(--pad) clamp(26px,4vh,48px); max-width:30ch;
+  font-stretch:110%; font-weight:800; letter-spacing:-.01em; line-height:1.15;
+  font-size:clamp(20px,2.4vw,38px); color:var(--bone);
 }
-.why__tracks{
-  position:relative; margin:0 var(--pad);
-  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+/* ---------- the board ----------
+   storyboard frames pinned up as a production board: hairline gaps
+   read as the board showing through between panels, frame 01 runs
+   wide as the establishing shot. */
+.board{
+  margin:0 var(--pad);
+  display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+  background:var(--line); border:1px solid var(--line);
 }
-.why__track{
-  display:grid; grid-template-columns:42px minmax(0,1fr);
-  align-items:center; gap:clamp(14px,2.4vw,34px);
-  padding:clamp(20px,3.2vh,36px) 0;
+.board__panel{
+  background:var(--ink);
+  display:flex; flex-direction:column;
+  padding:clamp(14px,1.5vw,20px);
 }
-.why__track + .why__track{ border-top:1px solid var(--line); }
-.why__tag{ font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--mut-2); }
-.why__role{
-  grid-column:2; font-stretch:125%; font-weight:900; text-transform:uppercase;
-  letter-spacing:-.01em; line-height:1; font-size:clamp(19px,3vw,44px);
+.board__panel--wide{ grid-column:span 2; }
+
+/* the frame — corner marks and a slate number, like a boarded shot */
+.board__frame{
+  position:relative; display:block; overflow:hidden;
+  aspect-ratio:16/9; background:var(--bg);
 }
-.why__beats{
-  grid-column:2; list-style:none; display:flex; flex-wrap:wrap;
-  gap:6px clamp(10px,1.4vw,18px); margin-top:clamp(10px,1.6vh,16px);
+.board__panel--wide .board__frame{ aspect-ratio:32/9; }
+.board__frame img{
+  width:100%; height:100%; object-fit:cover;
+  /* boarded frames read monochrome; colour comes back under the cursor */
+  filter:grayscale(1) contrast(1.04) brightness(.88);
+  transition:filter .6s var(--ease), transform .9s var(--ease);
 }
-.why__beats li{
-  font-family:var(--mono); font-size:11px; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--mut);
+.board__panel:hover .board__frame img{
+  filter:grayscale(0) contrast(1.02) brightness(1); transform:scale(1.03);
 }
-.why__beats li + li::before{ content:'· '; color:var(--red); }
-.why__beats--chain li + li::before{ content:'→ '; color:var(--red); }
-/* the playhead runs through both tracks, parked where the mark's does */
-.why__playhead{
-  position:absolute; top:0; bottom:0; left:clamp(76px,12%,190px); width:2px;
-  background:var(--red); box-shadow:0 0 14px rgba(232,41,28,.45); pointer-events:none;
+/* frame corner ticks */
+.board__frame::before,
+.board__frame::after{
+  content:''; position:absolute; width:14px; height:14px; pointer-events:none;
+  border-color:rgba(242,239,230,.5); border-style:solid; border-width:0;
+}
+.board__frame::before{ top:8px; left:8px; border-top-width:1px; border-left-width:1px; }
+.board__frame::after{ bottom:8px; right:8px; border-bottom-width:1px; border-right-width:1px; }
+.board__no{
+  position:absolute; top:8px; right:10px; z-index:2;
+  font-family:var(--mono); font-size:10px; letter-spacing:.16em;
+  color:var(--bone); text-shadow:0 1px 8px rgba(0,0,0,.7);
+}
+.board__no::after{ content:' / 05'; color:var(--mut-2); }
+
+.board__cap{
+  padding:clamp(14px,1.6vw,22px) 2px clamp(6px,1vw,10px);
+  border-top:1px solid var(--line); margin-top:clamp(12px,1.4vw,18px);
+  display:flex; flex-direction:column; gap:clamp(8px,1vw,12px);
+  flex:1;
+}
+.board__title{
+  font-stretch:125%; font-weight:900; text-transform:uppercase;
+  letter-spacing:-.01em; line-height:.98;
+  font-size:clamp(17px,1.75vw,27px); color:var(--bone);
+}
+.board__panel--wide .board__title{ font-size:clamp(20px,2.3vw,36px); }
+.board__text{
+  font-size:clamp(13px,.95vw,15px); line-height:1.5; color:var(--mut);
+  max-width:46ch;
+}
+/* the red tick that marks a boarded frame as approved */
+.board__panel::before{
+  content:''; display:block; width:16px; height:2px; background:var(--red);
+  margin-bottom:clamp(10px,1.2vw,14px); opacity:.75;
+  transition:width .5s var(--ease);
+}
+.board__panel:hover::before{ width:38px; opacity:1; }
+
+@media (max-width:1000px){
+  .board{ grid-template-columns:repeat(2,1fr); }
+  .board__panel--wide{ grid-column:span 2; }
+  .board__panel--wide .board__frame{ aspect-ratio:21/9; }
+}
+@media (max-width:640px){
+  .board{ grid-template-columns:1fr; }
+  .board__panel--wide{ grid-column:span 1; }
+  .board__panel--wide .board__frame{ aspect-ratio:16/9; }
 }
 .why__foot{
   display:flex; flex-wrap:wrap; align-items:center; gap:clamp(14px,2.6vw,34px);
@@ -1175,7 +1225,7 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
    ============================================================ */
 .sec-title, .subhead__title, .dir__name, .frow__word,
 .menu__links a span, .tile__cap b, .slate__title, .tclip__name,
-.doing__title{
+.doing__title, .board__title{
   text-transform:lowercase;
 }
 .sec-title:hover, .subhead__title:hover,
@@ -1184,7 +1234,8 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
 .tile:hover .tile__cap b, .tile:focus-visible .tile__cap b,
 .tile:hover .slate__title, .tile:focus-visible .slate__title,
 .tclip:hover .tclip__name, .tclip:focus-visible .tclip__name,
-.doing__col:hover .doing__title{
+.doing__col:hover .doing__title,
+.board__panel:hover .board__title{
   text-transform:uppercase;
 }
 /* the drop-cap titles are cased by hand — only their tails flip */
