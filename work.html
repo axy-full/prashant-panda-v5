@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>WORK — PRASHANT PANDA</title>
-<meta name="description" content="The full index — fifty ad films, thirteen series, eight features and the music videos. Plus the brands they were cut for and the banners they aired on." />
+<title>WORK - PRASHANT PANDA</title>
+<meta name="description" content="Commercials, series, feature films and music videos, with the brands they were cut for and the banners they aired on." />
 <meta name="theme-color" content="#0a0809" />
 
-<meta property="og:title" content="WORK — PRASHANT PANDA" />
-<meta property="og:description" content="Fifty ad films, thirteen series, eight features, music videos." />
+<meta property="og:title" content="WORK - PRASHANT PANDA" />
+<meta property="og:description" content="Commercials, series, feature films, music videos." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="assets/img/work/1106434425.jpg" />
 
@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=12" />
+<link rel="stylesheet" href="styles.css?v=16" />
 </head>
 <body class="loaded" data-page="work" data-tc="4585">
 
@@ -26,13 +26,13 @@
 
 <!-- ======== HUD (scroll timecode) ======== -->
 <div class="hud" aria-hidden="true">
-  <span class="hud__l">P/P — EDIT · FILM · STORY</span>
+  <span class="hud__l">P/P - EDIT · FILM · STORY</span>
   <span class="hud__r">TC <b id="tc">00:00:00:00</b> / 25FPS</span>
 </div>
 
 <!-- ======== NAV ======== -->
 <header class="nav" id="nav">
-  <a class="nav__brand" href="/" aria-label="Prashant Panda — home"><img id="navBrandImg" src="assets/img/brand/pp-lockup-primary-white.png?v=3" alt="PRASHANT PANDA" /></a>
+  <a class="nav__brand" href="/" aria-label="Prashant Panda - home"><img id="navBrandImg" src="assets/img/brand/pp-lockup-primary-white.png?v=3" alt="PRASHANT PANDA" /></a>
   <div class="nav__right">
     <a class="nav__link" href="https://vimeo.com/prashantpanda" target="_blank" rel="noopener">VIMEO</a>
     <a class="nav__link" href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">INSTAGRAM</a>
@@ -57,7 +57,8 @@
     <a href="/" data-bg="reel"><b>01</b><span>WHY PRASHANT</span></a>
     <a class="now" href="/work" data-bg="index"><b>02</b><span>WORK</span></a>
     <a href="/directors" data-bg="directors"><b>03</b><span>DIRECTORS</span></a>
-    <a href="/contact" data-bg="contact"><b>04</b><span>LET’S TALK</span></a>
+    <a href="/process" data-bg="editor"><b>04</b><span>PROCESS</span></a>
+    <a href="/contact" data-bg="contact"><b>05</b><span>LET’S COLLABORATE</span></a>
   </nav>
   <div class="menu__foot">
     <a href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">@PPCUT_EDIT</a>
@@ -71,67 +72,60 @@
 
 <main id="top">
 
-<!-- ======== 02 — INDEX (three shelves: ads / series / films) ======== -->
+<!-- ======== 02 - INDEX (three shelves: ads / series / films) ======== -->
 <section class="index" id="index">
-  <div class="sec-head sec-head--line reveal">
-    <span class="kicker"><i>[●]</i> 02 — THE WORK</span>
-    <h2 class="sec-title sec-title--sm">ALL&nbsp;WORK</h2>
-  </div>
-
-  <div class="subhead reveal" id="adfilms">
-    <span class="kicker"><i>[●]</i> 02·A</span>
-    <h3 class="subhead__title">AD&nbsp;FILMS</h3>
-  </div>
-  <div class="bmqcap reveal">
-    <span class="kicker"><i>[●]</i> CUT&nbsp;FOR</span>
+  <div class="subhead subhead--right reveal" id="adfilms">
+    <h3 class="subhead__title">COMMERCIALS</h3>
   </div>
   <div class="bmq" aria-label="Brands and agencies Prashant has cut ad films for">
     <div class="bmq__track" id="bmqBrands"><!-- logos + wordmarks injected --></div>
   </div>
   <div id="adGenres"><!-- one shelf per genre, injected --></div>
 
-  <div class="subhead reveal" id="series">
-    <span class="kicker"><i>[●]</i> 02·B</span>
+  <div class="subhead subhead--right reveal" id="series">
     <h3 class="subhead__title">SERIES</h3>
-  </div>
-  <div class="bmqcap reveal">
-    <span class="kicker"><i>[●]</i> AIRED&nbsp;ON</span>
   </div>
   <div class="bmq bmq--rev" aria-label="Platforms and banners the series and films aired on">
     <div class="bmq__track" id="bmqPlatforms"><!-- logos + wordmarks injected --></div>
   </div>
   <div class="index__grid" id="gridSeries"><!-- slates injected --></div>
 
-  <div class="subhead reveal" id="films">
-    <span class="kicker"><i>[●]</i> 02·C</span>
+  <div class="subhead subhead--right reveal" id="films">
     <h3 class="subhead__title">FEATURE&nbsp;FILMS</h3>
   </div>
   <div class="index__grid" id="gridFilms"><!-- slates injected --></div>
   <div class="credits reveal" id="creditsAssoc"><!-- credits injected --></div>
 
-  <div class="subhead reveal" id="musicvideos">
-    <span class="kicker"><i>[●]</i> 02·D</span>
+  <div class="subhead subhead--right reveal" id="musicvideos">
     <h3 class="subhead__title">MUSIC&nbsp;VIDEOS&nbsp;&amp;&nbsp;FILM&nbsp;SONGS</h3>
   </div>
   <div class="index__grid" id="gridMusic"><!-- tiles injected --></div>
   <div class="credits reveal" id="creditsSongs"><!-- credits injected --></div>
 
-  <div class="subhead reveal" id="recognitions">
-    <span class="kicker"><i>[●]</i> 02·E</span>
-    <h3 class="subhead__title">RECOGNITIONS</h3>
+  <div class="subhead subhead--right reveal" id="recognitions">
+    <h3 class="subhead__title">HUMBLE&nbsp;RECOGNITIONS</h3>
+  </div>
+  <div class="recog__case reveal">
+    <div class="recog__poster">
+      <img src="assets/img/work/1106434425.jpg" alt="Chupa Chups - Carrom" loading="lazy" />
+    </div>
+    <div class="recog__study">
+      <h4>CHUPA&nbsp;CHUPS&nbsp;-&nbsp;CARROM</h4>
+      <p class="pending">CASE STUDY - COPY TO COME</p>
+    </div>
   </div>
   <ul class="recog__list recog__list--dark reveal">
     <li>
       <span class="recog__text">
-        <b>CHUPA CHUPS — CARROM</b>
-        <span>GOOD ADS MATTER AWARDS 2026 — 1 GOLD · 2 SILVER · 1 BRONZE</span>
+        <b>CHUPA CHUPS - CARROM</b>
+        <span>GOOD ADS MATTER AWARDS 2026 - 1 GOLD · 2 SILVER · 1 BRONZE</span>
       </span>
       <img class="recog__logo" src="assets/img/brands/good-ads-matter.png" alt="Good Ads Matter" loading="lazy" />
     </li>
     <li>
       <span class="recog__text">
-        <b>CHUPA CHUPS — CARROM</b>
-        <span>KYOORIUS CREATIVE AWARDS — WINNER</span>
+        <b>CHUPA CHUPS - CARROM</b>
+        <span>KYOORIUS CREATIVE AWARDS - WINNER</span>
       </span>
       <img class="recog__logo" src="assets/img/brands/kyoorius.png" alt="Kyoorius" loading="lazy" />
     </li>
@@ -151,7 +145,7 @@
 <footer class="foot foot--mini">
   <div class="foot__bar">
     <span class="foot__brand"><img src="assets/img/brand/pp-lockup-inline-white.png?v=3" alt="PRASHANT PANDA" /></span>
-    <span class="foot__legal">©&nbsp;MMXXVI&nbsp;—&nbsp;MUMBAI,&nbsp;INDIA</span>
+    <span class="foot__legal">©&nbsp;MMXXVI&nbsp;-&nbsp;MUMBAI,&nbsp;INDIA</span>
     <span class="foot__social">
       <a href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">@PPCUT_EDIT&nbsp;↗</a>
       <a href="https://www.imdb.com/name/nm8079333/" target="_blank" rel="noopener">IMDB&nbsp;↗</a>
@@ -180,6 +174,6 @@
   </div>
 </div>
 
-<script src="script.js?v=16"></script>
+<script src="script.js?v=19"></script>
 </body>
 </html>

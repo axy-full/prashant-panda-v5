@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 568" width="1300" height="568" role="img" aria-label="">
+  <!-- The lockup's playhead, redrawn as geometry so it stays sharp at any
+       size. Traced from pp-hero-scrub.png: triangle spans x476-516 at the
+       top, tapers to the 8px line (x492-500) by y22, line runs to y568.
+       Fill is the brand record red. -->
+  <path fill="#e8291c" d="M476 0 L516 0 L500 22 L500 568 L492 568 L492 22 Z"/>
+</svg>

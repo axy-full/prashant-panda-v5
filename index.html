@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PRASHANT PANDA — Film Editor &amp; Creative Producer, Mumbai</title>
-<meta name="description" content="Prashant Panda — film editor and creative producer, Mumbai. Films, series, advertising and music videos. From offline edit to final delivery. Press play." />
+<title>PRASHANT PANDA - Film Editor &amp; Creative Producer, Mumbai</title>
+<meta name="description" content="Prashant Panda - film editor and creative producer, Mumbai. Films, series, advertising and music videos. From offline edit to final delivery. Press play." />
 <meta name="theme-color" content="#0a0809" />
 
-<meta property="og:title" content="PRASHANT PANDA — Film Editor &amp; Creative Producer, Mumbai" />
+<meta property="og:title" content="PRASHANT PANDA - Film Editor &amp; Creative Producer, Mumbai" />
 <meta property="og:description" content="Films · Series · Advertising · Music Videos. From offline edit to final delivery." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="assets/img/brand/pp-endslate-dark.png?v=3" />
@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=12" />
+<link rel="stylesheet" href="styles.css?v=16" />
 </head>
 <body class="opening" data-page="home" data-tc="625">
 
@@ -26,11 +26,11 @@
 
 <!-- ======== HUD (scroll timecode) ======== -->
 <div class="hud" aria-hidden="true">
-  <span class="hud__l">P/P — EDIT · FILM · STORY</span>
+  <span class="hud__l">P/P - EDIT · FILM · STORY</span>
   <span class="hud__r">TC <b id="tc">00:00:00:00</b> / 25FPS</span>
 </div>
 
-<!-- ======== OPENING VEIL (home only) — the mark assembles above it ======== -->
+<!-- ======== OPENING VEIL (home only) - the mark assembles above it ======== -->
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader__row"><span>PRASHANT PANDA</span><span>MUMBAI</span></div>
   <div class="loader__row loader__row--bottom">
@@ -42,13 +42,13 @@
 
 <!-- ======== TITLE SEQUENCE (home only) ========
      the playhead draws, PRASHANT pulls left, PANDA pulls right,
-     the roles land — then the finished mark flies up and settles
+     the roles land - then the finished mark flies up and settles
      into the nav as the top-left logo button. Same artwork in both
      places, so the handoff is seamless. -->
 <div class="titleseq" id="titleseq" aria-hidden="true">
   <div class="titleseq__mark" id="tsMark">
     <span class="lockup" role="img" aria-label="PRASHANT PANDA">
-      <img class="lockup__lay lockup__scrub" src="assets/img/brand/pp-hero-scrub.png?v=1" alt="" />
+      <img class="lockup__lay lockup__scrub" src="assets/img/brand/pp-hero-scrub.svg?v=1" alt="" />
       <img class="lockup__lay lockup__p1" src="assets/img/brand/pp-hero-prashant.png?v=1" alt="" />
       <img class="lockup__lay lockup__p2" src="assets/img/brand/pp-hero-panda.png?v=1" alt="" />
     </span>
@@ -66,7 +66,7 @@
 
 <!-- ======== NAV ======== -->
 <header class="nav" id="nav">
-  <a class="nav__brand" href="/" aria-label="Prashant Panda — home"><img id="navBrandImg" src="assets/img/brand/pp-lockup-primary-white.png?v=3" alt="PRASHANT PANDA" /></a>
+  <a class="nav__brand" href="/" aria-label="Prashant Panda - home"><img id="navBrandImg" src="assets/img/brand/pp-lockup-primary-white.png?v=3" alt="PRASHANT PANDA" /></a>
   <div class="nav__right">
     <a class="nav__link" href="https://vimeo.com/prashantpanda" target="_blank" rel="noopener">VIMEO</a>
     <a class="nav__link" href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">INSTAGRAM</a>
@@ -91,7 +91,8 @@
     <a class="now" href="/" data-bg="reel"><b>01</b><span>WHY PRASHANT</span></a>
     <a href="/work" data-bg="index"><b>02</b><span>WORK</span></a>
     <a href="/directors" data-bg="directors"><b>03</b><span>DIRECTORS</span></a>
-    <a href="/contact" data-bg="contact"><b>04</b><span>LET’S TALK</span></a>
+    <a href="/process" data-bg="editor"><b>04</b><span>PROCESS</span></a>
+    <a href="/contact" data-bg="contact"><b>05</b><span>LET’S COLLABORATE</span></a>
   </nav>
   <div class="menu__foot">
     <a href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">@PPCUT_EDIT</a>
@@ -105,96 +106,16 @@
 
 <main>
 
-<!-- ======== 01 — WHY PRASHANT ========
-     A storyboard pinned to a production board: five frames, each one
-     point and a still from the work it comes out of. Frame 01 runs
-     wide as the establishing panel, so the grid reads 2+1 / 1+1+1
-     rather than as a plain card row. -->
-<section class="why why--first" id="why">
+<!-- ======== 01 - SELECTED STORIES (the page opens on the work) ======== -->
+<section class="reel reel--first" id="reel">
   <div class="sec-head sec-head--right reveal" id="top">
-    <span class="kicker"><i>[●]</i> 01 — THE BOARD</span>
-    <h1 class="sec-title sec-title--sm">WHY&nbsp;PRASHANT</h1>
-  </div>
-
-  <p class="why__lede reveal">Good editing isn&rsquo;t about making a film look busy. It&rsquo;s about knowing what to leave out.</p>
-
-  <div class="board reveal">
-    <article class="board__panel board__panel--wide">
-      <span class="board__frame">
-        <img src="assets/img/work/1088993725.jpg" alt="" />
-        <span class="board__no">01</span>
-      </span>
-      <div class="board__cap">
-        <h2 class="board__title">STORY&nbsp;FIRST</h2>
-        <p class="board__text">I look beyond individual shots to find the strongest story, emotional arc and rhythm within the footage.</p>
-      </div>
-    </article>
-
-    <article class="board__panel">
-      <span class="board__frame">
-        <img src="assets/img/work/867458294.jpg" alt="" loading="lazy" />
-        <span class="board__no">02</span>
-      </span>
-      <div class="board__cap">
-        <h2 class="board__title">YOUR&nbsp;VISION.<br/>THE&nbsp;RIGHT&nbsp;CUT.</h2>
-        <p class="board__text">I work closely with directors to preserve the intent of the film while finding opportunities to make the story stronger.</p>
-      </div>
-    </article>
-
-    <article class="board__panel">
-      <span class="board__frame">
-        <img src="assets/img/work/1011935988.jpg" alt="" loading="lazy" />
-        <span class="board__no">03</span>
-      </span>
-      <div class="board__cap">
-        <h2 class="board__title">PERFORMANCE&nbsp;MATTERS</h2>
-        <p class="board__text">The best take isn&rsquo;t always the longest or technically perfect. I look for the moment that feels right.</p>
-      </div>
-    </article>
-
-    <article class="board__panel">
-      <span class="board__frame">
-        <img src="assets/img/work/1106434425.jpg" alt="" loading="lazy" />
-        <span class="board__no">04</span>
-      </span>
-      <div class="board__cap">
-        <h2 class="board__title">FINDING&nbsp;THE&nbsp;FILM<br/>IN&nbsp;THE&nbsp;FOOTAGE</h2>
-        <p class="board__text">Structure, pace, silence, performance and rhythm &mdash; every cut has a reason.</p>
-      </div>
-    </article>
-
-    <article class="board__panel">
-      <span class="board__frame">
-        <img src="assets/img/work/571746432.jpg" alt="" loading="lazy" />
-        <span class="board__no">05</span>
-      </span>
-      <div class="board__cap">
-        <h2 class="board__title">BUILT&nbsp;FOR&nbsp;THE&nbsp;LONG&nbsp;CUT</h2>
-        <p class="board__text">From the first assembly to picture lock, I stay focused when the edit gets complicated, deadlines get tight and the story needs another look.</p>
-      </div>
-    </article>
-  </div>
-
-  <div class="why__foot reveal">
-    <p class="why__note"><i>[●]</i>&nbsp;UPCOMING&nbsp;FILM&nbsp;—&nbsp;ROTTEN&nbsp;APPLE&nbsp;·&nbsp;SAGAR&nbsp;MOTION&nbsp;PICTURES</p>
-    <p class="why__vp">
-      <span class="why__vp-k">VICE&nbsp;PRESIDENT</span>
-      <img class="why__vp-logo" id="vpLogo" src="assets/img/brand/pp-vp-company.png" alt="" />
-    </p>
-  </div>
-</section>
-
-<!-- ======== 02 — SELECTED STORIES ======== -->
-<section class="reel" id="reel">
-  <div class="sec-head reveal">
-    <span class="kicker"><i>[●]</i> 02 — SELECTED WORK</span>
-    <h2 class="sec-title sec-title--bigS">
+    <h1 class="sec-title sec-title--bigS">
       <b>S</b><span class="bigS__rule" aria-hidden="true"></span><span><i>elected</i><i>tories</i></span>
-    </h2>
+    </h1>
   </div>
 
   <div class="tl reveal" id="tl">
-    <div class="tl__scroll" id="tlScroll" role="region" aria-label="Portfolio timeline" tabindex="0">
+    <div class="tl__scroll" id="tlScroll" role="region" aria-label="Selected stories" tabindex="0">
       <div class="tl__inner" id="tlInner">
         <div class="tl__ruler" id="tlRuler"></div>
         <div class="tl__lane" id="laneV2"></div>
@@ -212,15 +133,129 @@
   </p>
 
   <div class="reel__more reveal">
-    <a href="/work" class="reel__more-link"><span>ALL WORK</span><i>→</i></a>
+    <a href="/work" class="reel__more-link"><span>ALL WORK</span><i>&#8594;</i></a>
   </div>
+</section>
+
+<!-- ======== 02 - WHY PRASHANT ========
+     A storyboard pinned to a production board: each frame is one
+     reason and a still from the work it comes out of. Frame 01 runs
+     wide as the establishing panel. -->
+<section class="why" id="why">
+  <div class="sec-head sec-head--right reveal">
+    <h2 class="sec-title sec-title--sm sec-title--red">WHY&nbsp;PRASHANT</h2>
+  </div>
+
+  <p class="why__lede reveal">I help directors find the story, rhythm and emotion in the footage.<span>&ldquo;Every frame has a purpose. Every cut has a reason.&rdquo;</span></p>
+
+  <div class="board reveal">
+    <article class="board__panel board__panel--wide">
+      <span class="board__frame">
+        <img src="assets/img/work/1088993725.jpg" alt="" />
+        <span class="board__no">01</span>
+      </span>
+      <div class="board__cap">
+        <h3 class="board__title">STORY&nbsp;FIRST</h3>
+        <p class="board__text">I look beyond individual shots to find the strongest story, emotional arc and rhythm within the footage.</p>
+      </div>
+    </article>
+
+    <article class="board__panel">
+      <span class="board__frame">
+        <img src="assets/img/work/867458294.jpg" alt="" loading="lazy" />
+        <span class="board__no">02</span>
+      </span>
+      <div class="board__cap">
+        <h3 class="board__title">YOUR&nbsp;VISION.<br/>THE&nbsp;RIGHT&nbsp;CUT.</h3>
+        <p class="board__text">I work closely with directors to preserve the intent of the film while finding opportunities to make the story stronger.</p>
+      </div>
+    </article>
+
+    <article class="board__panel">
+      <span class="board__frame">
+        <img src="assets/img/work/1011935988.jpg" alt="" loading="lazy" />
+        <span class="board__no">03</span>
+      </span>
+      <div class="board__cap">
+        <h3 class="board__title">PERFORMANCE&nbsp;MATTERS</h3>
+        <p class="board__text">The best take isn&rsquo;t always the longest or technically perfect. I look for the moment that feels right.</p>
+      </div>
+    </article>
+
+    <article class="board__panel">
+      <span class="board__frame">
+        <img src="assets/img/work/1106434425.jpg" alt="" loading="lazy" />
+        <span class="board__no">04</span>
+      </span>
+      <div class="board__cap">
+        <h3 class="board__title">FINDING&nbsp;THE&nbsp;FILM<br/>IN&nbsp;THE&nbsp;FOOTAGE</h3>
+        <p class="board__text">Structure, pace, silence, performance and rhythm. Every cut has a reason.</p>
+      </div>
+    </article>
+
+    <article class="board__panel">
+      <span class="board__frame">
+        <img src="assets/img/work/571746432.jpg" alt="" loading="lazy" />
+        <span class="board__no">05</span>
+      </span>
+      <div class="board__cap">
+        <h3 class="board__title">BUILT&nbsp;FOR&nbsp;THE&nbsp;LONG&nbsp;CUT</h3>
+        <p class="board__text">From the first assembly to picture lock, I stay focused when the edit gets complicated, deadlines get tight and the story needs another look.</p>
+      </div>
+    </article>
+
+    <!-- 06 and 07 are DRAFTS written from Prashant's own earlier notes,
+         holding the slots until the new write-up arrives -->
+    <article class="board__panel">
+      <span class="board__frame">
+        <img src="assets/img/work/1179531910.jpg" alt="" loading="lazy" />
+        <span class="board__no">06</span>
+      </span>
+      <div class="board__cap">
+        <h3 class="board__title">FROM&nbsp;FIRST&nbsp;CUT<br/>TO&nbsp;FINAL&nbsp;DELIVERY</h3>
+        <p class="board__text">Offline, lock, online, sound, grade, delivery. The film stays with me through post, not just through the edit.</p>
+      </div>
+    </article>
+
+    <article class="board__panel board__panel--wide">
+      <span class="board__frame">
+        <img src="assets/img/work/1106435260.jpg" alt="" loading="lazy" />
+        <span class="board__no">07</span>
+      </span>
+      <div class="board__cap">
+        <h3 class="board__title">EVERY&nbsp;GENRE&nbsp;IS&nbsp;A&nbsp;RHYTHM&nbsp;PROBLEM</h3>
+        <p class="board__text">Comedy timing and emotional timing are the same craft applied differently. Humour, storytelling, stylised work, all of it comes down to when you cut.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ======== 03 - UPCOMING FILM ======== -->
+<section class="upnext" id="upcoming">
+  <div class="sec-head sec-head--right reveal">
+    <h2 class="sec-title sec-title--sm">UPCOMING&nbsp;FILM</h2>
+  </div>
+  <div class="upnext__frame reveal">
+    <img src="assets/img/films/rotten-apple.jpg" alt="Rotten Apple - edit timeline" loading="lazy" />
+    <span class="upnext__badge">IN&nbsp;THE&nbsp;WORKS</span>
+  </div>
+  <div class="upnext__cap reveal">
+    <h3 class="upnext__title">ROTTEN&nbsp;APPLE</h3>
+    <p class="upnext__meta">FEATURE&nbsp;FILM&nbsp;&nbsp;·&nbsp;&nbsp;SAGAR&nbsp;MOTION&nbsp;PICTURES&nbsp;&nbsp;·&nbsp;&nbsp;EDITOR</p>
+  </div>
+</section>
+
+<!-- ======== 04 - VICE PRESIDENT ======== -->
+<section class="vp reveal" id="vp">
+  <span class="vp__k">VICE&nbsp;PRESIDENT</span>
+  <img class="vp__logo" id="vpLogo" src="assets/img/brand/pp-vp-company.png" alt="" />
 </section>
 
 <!-- ======== MINI FOOT ======== -->
 <footer class="foot foot--mini">
   <div class="foot__bar">
     <span class="foot__brand"><img src="assets/img/brand/pp-lockup-inline-white.png?v=3" alt="PRASHANT PANDA" /></span>
-    <span class="foot__legal">©&nbsp;MMXXVI&nbsp;—&nbsp;MUMBAI,&nbsp;INDIA</span>
+    <span class="foot__legal">©&nbsp;MMXXVI&nbsp;-&nbsp;MUMBAI,&nbsp;INDIA</span>
     <span class="foot__social">
       <a href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">@PPCUT_EDIT&nbsp;↗</a>
       <a href="https://www.imdb.com/name/nm8079333/" target="_blank" rel="noopener">IMDB&nbsp;↗</a>
@@ -230,6 +265,17 @@
 </footer>
 
 </main>
+
+<!-- ======== DIRECTORS PANEL (home) ========
+     Bottom-left handle opens the list as a collapsible drawer. -->
+<button class="dirtab" id="dirTab" aria-expanded="false" aria-controls="dirPanel">
+  <i>[&#9679;]</i>&nbsp;I&rsquo;VE&nbsp;WORKED&nbsp;WITH
+</button>
+<aside class="dirpanel" id="dirPanel" aria-hidden="true" aria-label="Directors">
+  <button class="dirpanel__close" id="dirPanelClose" aria-label="Close">&#10005;</button>
+  <p class="dirpanel__thought">Long-term collaborations matter more than one-off cuts.</p>
+  <ul class="dirpanel__list" id="dirPanelList"><!-- names injected --></ul>
+</aside>
 
 <!-- ======== PLAYER OVERLAY ======== -->
 <div class="player" id="player" role="dialog" aria-modal="true" aria-label="Film player">
@@ -249,6 +295,6 @@
   </div>
 </div>
 
-<script src="script.js?v=16"></script>
+<script src="script.js?v=19"></script>
 </body>
 </html>

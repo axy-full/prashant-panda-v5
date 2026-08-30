@@ -1,18 +1,18 @@
 /* ============================================================
-   PRASHANT PANDA — V4 · THE SCREENING ROOM
-   one shared script for all pages — every module guards on the
+   PRASHANT PANDA - V4 · THE SCREENING ROOM
+   one shared script for all pages - every module guards on the
    presence of its DOM ( / · /work · /directors · /storyteller ·
    /contact ); clean URLs via vercel cleanUrls + serve.py locally
    Sources: vimeo.com/showcase/8346821 (verified embeds + real
    durations) and imdb.com/name/nm8079333 (filmography).
-   Fidelity rules (carried from V1–V3, revised per Prashant's
+   Fidelity rules (carried from V1-V3, revised per Prashant's
    notes of 2026-07-26):
      · IMDB ratings rendered ONLY when >= 7.0
      · My Name Is Khan + Paying Guest listed as ASSOCIATE FILM
        EDITOR (Prashant's own credit correction); the remaining
        editorial-department titles stay excluded
      · ad-film genre tags researched per film (stills + campaign
-       press + upload metadata) — final say stays with Prashant
+       press + upload metadata) - final say stays with Prashant
      · awards list + music-video reel pending from Prashant
      · contact email: ppanda.79@gmail.com (live since 2026-08-01)
    ============================================================ */
@@ -25,76 +25,76 @@
   const mmss = s => `${pad2(Math.floor(s / 60))}:${pad2(s % 60)}`;
 
   /* ============================================================
-     AD FILMS (playable — vimeo showcase, unlisted hashes)
+     AD FILMS (playable - vimeo showcase, unlisted hashes)
      ============================================================ */
-  /* the full COMMERCIAL showcase — 44 from the Vimeo showcase plus
+  /* the full COMMERCIAL showcase - 44 from the Vimeo showcase plus
      the six Prashant named in his 2026-08-25 notes (45-50, pulled
      from vimeo.com/prashantpanda). ids 1-10 are the original
      curated set (reel/directors/viz reference them).
      GENRE TAGS: Prashant's own classification, 2026-08-25 */
   const ADS = [
-    { id: 2, vid: '1106434425', hash: 'd768255096', title: 'Chupa Chups — Carrom', client: 'Perfetti Van Melle', credits: 'Ogilvy · Dir. Nikhil Rao', dur: 60, tag: 'HUMOR' },
-    { id: 1, vid: '1088993725', hash: 'cd85ed120d', title: 'GIC — Mary', client: 'GIC Insurance', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 93, tag: 'STORYTELLING' },
-    { id: 3, vid: '1031822870', hash: '34305ab15d', title: 'EVA — Yes', client: 'EVA', credits: 'Dir. Varun Gupta', dur: 64, tag: 'STYLISH' },
+    { id: 2, vid: '1106434425', hash: 'd768255096', title: 'Chupa Chups - Carrom', client: 'Perfetti Van Melle', credits: 'Ogilvy · Dir. Nikhil Rao', dur: 60, tag: 'HUMOR' },
+    { id: 1, vid: '1088993725', hash: 'cd85ed120d', title: 'GIC - Mary', client: 'GIC Insurance', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 93, tag: 'STORYTELLING' },
+    { id: 3, vid: '1031822870', hash: '34305ab15d', title: 'EVA - Yes', client: 'EVA', credits: 'Dir. Varun Gupta', dur: 64, tag: 'STYLISED' },
     { id: 4, vid: '1073818885', hash: 'd659e0694c', title: 'Snickers', client: 'Snickers', credits: 'Dir. Rishabh Dubey', dur: 35, tag: 'HUMOR' },
     { id: 5, vid: '1166613867', hash: '406b559643', title: 'ICICI Bank', client: 'ICICI Bank', credits: 'ft. Anil Kapoor', dur: 40, tag: 'HUMOR' },
     { id: 6, vid: '1015277896', hash: '25f1c9636d', title: 'Candid Dusting Powder', client: 'Candid', credits: 'BBDO India · Ducktape · Dir. Rishabh Dubey', dur: 53, tag: 'HUMOR' },
-    { id: 7, vid: '867458294', hash: '74dda2c808', title: 'Har Ghar Ka Hero — Greenply E-Zero', client: 'Greenply', credits: 'Jamic Films · Dir. Nikhil Rao · ft. NTR Jr', dur: 35, tag: 'STYLISH' },
-    { id: 8, vid: '1149446709', hash: '45c47a44bc', title: 'Hint — Pyaar ka Take-off', client: 'Hint', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 50, tag: 'STYLISH' },
-    { id: 9, vid: '1088994415', hash: '270d911f7c', title: 'GIC — Integrated', client: 'GIC Insurance', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 30, tag: 'STORYTELLING' },
-    { id: 10, vid: '1106435260', hash: 'ec61b93f55', title: 'ENVY', client: 'ENVY', credits: 'Dir. Vivek Daschaudhary', dur: 40, tag: 'STYLISH' },
-    { id: 11, vid: '949624577', hash: '0aecd8d238', title: 'ICC T20 World Cup — Biggest Love', client: 'Star Sports', credits: 'Star Sports · Jamic Films · Dir. Nikhil Rao', dur: 70, tag: 'STORYTELLING' },
+    { id: 7, vid: '867458294', hash: '74dda2c808', title: 'Har Ghar Ka Hero - Greenply E-Zero', client: 'Greenply', credits: 'Jamic Films · Dir. Nikhil Rao · ft. NTR Jr', dur: 35, tag: 'STYLISED' },
+    { id: 8, vid: '1149446709', hash: '45c47a44bc', title: 'Hint - Pyaar ka Take-off', client: 'Hint', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 50, tag: 'STYLISED' },
+    { id: 9, vid: '1088994415', hash: '270d911f7c', title: 'GIC - Integrated', client: 'GIC Insurance', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 30, tag: 'STORYTELLING' },
+    { id: 10, vid: '1106435260', hash: 'ec61b93f55', title: 'ENVY', client: 'ENVY', credits: 'Dir. Vivek Daschaudhary', dur: 40, tag: 'STYLISED' },
+    { id: 11, vid: '949624577', hash: '0aecd8d238', title: 'ICC T20 World Cup - Biggest Love', client: 'Star Sports', credits: 'Star Sports · Jamic Films · Dir. Nikhil Rao', dur: 70, tag: 'STORYTELLING' },
     { id: 12, vid: '1167725115', hash: '2ad055a2ad', title: 'Kotak Neo', client: 'Kotak Neo', credits: '', dur: 45, tag: 'STORYTELLING' },
-    { id: 13, vid: '571746432', hash: '3ca0813643', title: 'Society Tea — Brand New Day', client: 'Society Tea', credits: '', dur: 257, tag: 'STORYTELLING' },
+    { id: 13, vid: '571746432', hash: '3ca0813643', title: 'Society Tea - Brand New Day', client: 'Society Tea', credits: '', dur: 257, tag: 'STORYTELLING' },
     { id: 14, vid: '1162055404', hash: '542ab9265a', title: 'MG Hector', client: 'MG Motor', credits: '', dur: 60, tag: 'STORYTELLING' },
-    { id: 15, vid: '1135694596', hash: '4e54adecb1', title: 'It\'s Your Moment — Festive \'25', client: 'amanté', credits: '', dur: 60, tag: 'STORYTELLING' },
-    { id: 16, vid: '958465600', hash: '9b8803648b', title: 'Dare Kiya Toh Darna Kya', client: 'Hint', credits: 'Jamic Films · Dir. Shirish Daiya · ft. Tiger Shroff', dur: 40, tag: 'ACTION' },
-    { id: 17, vid: '1020985979', hash: '2c2597bb82', title: 'Birla Opus — Ghost', client: 'Birla Opus', credits: 'Colonial Films · Dir. Rishabh Dubey', dur: 140, tag: 'HUMOR' },
-    { id: 18, vid: '1011935988', hash: '16db53c95f', title: 'Birla Opus — Kidnapper', client: 'Birla Opus', credits: '', dur: 168, tag: 'HUMOR' },
-    { id: 19, vid: '709084029', hash: 'e53fc093be', title: 'Swiggy — All The Food You Love', client: 'Swiggy', credits: '', dur: 15, tag: 'HUMOR' },
+    { id: 15, vid: '1135694596', hash: '4e54adecb1', title: 'It\'s Your Moment - Festive \'25', client: 'amanté', credits: '', dur: 60, tag: 'STORYTELLING' },
+    { id: 16, vid: '958465600', hash: '9b8803648b', title: 'Dare Kiya Toh Darna Kya', client: 'Hint', credits: 'Jamic Films · Dir. Shirish Daiya · ft. Tiger Shroff', dur: 40, tag: 'STYLISED' },
+    { id: 17, vid: '1020985979', hash: '2c2597bb82', title: 'Birla Opus - Ghost', client: 'Birla Opus', credits: 'Colonial Films · Dir. Rishabh Dubey', dur: 140, tag: 'HUMOR' },
+    { id: 18, vid: '1011935988', hash: '16db53c95f', title: 'Birla Opus - Kidnapper', client: 'Birla Opus', credits: '', dur: 168, tag: 'HUMOR' },
+    { id: 19, vid: '709084029', hash: 'e53fc093be', title: 'Swiggy - All The Food You Love', client: 'Swiggy', credits: '', dur: 15, tag: 'HUMOR' },
     { id: 20, vid: '642944186', hash: '193722126e', title: 'Jab Haath aur Bingo! Tedhe Medhe', client: 'Bingo!', credits: 'ft. Ranveer Singh', dur: 15, tag: 'HUMOR' },
     { id: 21, vid: '634280547', hash: 'bf91cde5d0', title: 'Bingo! Mad Angles ft. Ranveer Singh', client: 'Bingo!', credits: '', dur: 30, tag: 'HUMOR' },
-    { id: 22, vid: '747936616', hash: '39ddb035cb', title: 'Meesho — Electronics MegaBlockbuster', client: 'Meesho', credits: '', dur: 20, tag: 'HUMOR' },
-    { id: 23, vid: '539977032', hash: 'dd66e499b8', title: 'PGIM India — Gain From Experience', client: 'PGIM India', credits: '', dur: 55, tag: 'HUMOR' },
+    { id: 22, vid: '747936616', hash: '39ddb035cb', title: 'Meesho - Electronics MegaBlockbuster', client: 'Meesho', credits: '', dur: 20, tag: 'HUMOR' },
+    { id: 23, vid: '539977032', hash: 'dd66e499b8', title: 'PGIM India - Gain From Experience', client: 'PGIM India', credits: '', dur: 55, tag: 'HUMOR' },
     { id: 24, vid: '904713196', hash: 'b63d40fc61', title: 'Sunfeast', client: 'ITC Sunfeast', credits: '', dur: 43, tag: 'HUMOR' },
-    { id: 25, vid: '1174664059', hash: '2c95939b18', title: 'Britannia — Dugout', client: 'Britannia', credits: '', dur: 31, tag: 'HUMOR' },
-    { id: 26, vid: '763773061', hash: 'abe977a192', title: 'MPL — Pool Champs', client: 'MPL', credits: '', dur: 29, tag: 'HUMOR' },
-    { id: 27, vid: '535421247', hash: '6eecab7289', title: '#DeliverTheLove — Bhai Dooj', client: 'Amazon India', credits: '', dur: 112, tag: 'STORYTELLING' },
+    { id: 25, vid: '1174664059', hash: '2c95939b18', title: 'Britannia - Dugout', client: 'Britannia', credits: '', dur: 31, tag: 'HUMOR' },
+    { id: 26, vid: '763773061', hash: 'abe977a192', title: 'MPL - Pool Champs', client: 'MPL', credits: '', dur: 29, tag: 'HUMOR' },
+    { id: 27, vid: '535421247', hash: '6eecab7289', title: '#DeliverTheLove - Bhai Dooj', client: 'Amazon India', credits: '', dur: 112, tag: 'STORYTELLING' },
     { id: 28, vid: '995053082', hash: '0f47f2dbab', title: 'Omnigel', client: 'Omnigel', credits: '', dur: 42, tag: 'STORYTELLING' },
-    { id: 29, vid: '948625099', hash: '8bc2c8aa54', title: 'Birla Opus — Gorilla', client: 'Birla Opus', credits: 'Colonial Films · Dir. Rishabh Dubey', dur: 146, tag: 'HUMOR' },
+    { id: 29, vid: '948625099', hash: '8bc2c8aa54', title: 'Birla Opus - Gorilla', client: 'Birla Opus', credits: 'Colonial Films · Dir. Rishabh Dubey', dur: 146, tag: 'HUMOR' },
     { id: 30, vid: '1176230484', hash: '31f3be9440', title: 'Tata IPL', client: 'Tata IPL', credits: 'Dir. Nikhil Rao', dur: 90, tag: 'HUMOR' },
     { id: 31, vid: '1174664439', hash: 'e17b297944', title: 'Hershey\'s', client: 'Hershey\'s', credits: '', dur: 61, tag: 'HUMOR' },
-    { id: 32, vid: '535424849', hash: 'a1ece44b88', title: 'Hero — Halwa', client: 'Hero', credits: '', dur: 42, tag: 'STORYTELLING' },
-    { id: 33, vid: '535422129', hash: '146793b802', title: 'Bajaj — Umbrella', client: 'Bajaj', credits: '', dur: 41, tag: 'STORYTELLING' },
-    { id: 34, vid: '535421448', hash: 'bcd4f2c473', title: 'Bajaj — Paperboat', client: 'Bajaj', credits: '', dur: 46, tag: 'STORYTELLING' },
-    { id: 35, vid: '854322510', hash: '4e43202996', title: 'MPL — Ludo', client: 'MPL', credits: '', dur: 30, tag: 'HUMOR' },
-    { id: 36, vid: '747936708', hash: 'cfb4e9b082', title: 'Meesho — MegaBlockbuster Sale', client: 'Meesho', credits: '', dur: 29, tag: 'HUMOR' },
-    { id: 37, vid: '1179531910', hash: 'be8e6f7f01', title: 'Gillette Guard 3-in-1', client: 'Gillette', credits: 'Keroscene Films · Dir. Rajesh Saathi', dur: 30, tag: 'STYLISH' },
-    { id: 38, vid: '1179533196', hash: 'b39fd32b44', title: 'IPL — Migrant', client: 'Astral Pipes', credits: '', dur: 60, tag: 'STORYTELLING' },
-    { id: 39, vid: '948622574', hash: 'cdfcad98cb', title: 'Bajaj Allianz Life — Happy Bonus', client: 'Bajaj Allianz Life', credits: '', dur: 55, tag: 'STORYTELLING' },
+    { id: 32, vid: '535424849', hash: 'a1ece44b88', title: 'Hero - Halwa', client: 'Hero', credits: '', dur: 42, tag: 'STORYTELLING' },
+    { id: 33, vid: '535422129', hash: '146793b802', title: 'Bajaj - Umbrella', client: 'Bajaj', credits: '', dur: 41, tag: 'STORYTELLING' },
+    { id: 34, vid: '535421448', hash: 'bcd4f2c473', title: 'Bajaj - Paperboat', client: 'Bajaj', credits: '', dur: 46, tag: 'STORYTELLING' },
+    { id: 35, vid: '854322510', hash: '4e43202996', title: 'MPL - Ludo', client: 'MPL', credits: '', dur: 30, tag: 'HUMOR' },
+    { id: 36, vid: '747936708', hash: 'cfb4e9b082', title: 'Meesho - MegaBlockbuster Sale', client: 'Meesho', credits: '', dur: 29, tag: 'HUMOR' },
+    { id: 37, vid: '1179531910', hash: 'be8e6f7f01', title: 'Gillette Guard 3-in-1', client: 'Gillette', credits: 'Keroscene Films · Dir. Rajesh Saathi', dur: 30, tag: 'STYLISED' },
+    { id: 38, vid: '1179533196', hash: 'b39fd32b44', title: 'IPL - Migrant', client: 'Astral Pipes', credits: '', dur: 60, tag: 'STORYTELLING' },
+    { id: 39, vid: '948622574', hash: 'cdfcad98cb', title: 'Bajaj Allianz Life - Happy Bonus', client: 'Bajaj Allianz Life', credits: '', dur: 55, tag: 'STORYTELLING' },
     { id: 40, vid: '1006193461', hash: 'b2f117028b', title: 'JK Wipeazy', client: 'JK Wipeazy', credits: '', dur: 36, tag: 'HUMOR' },
-    { id: 41, vid: '1194290610', hash: '0abd367ed4', title: 'Chunky Ice Cream — Soulmate', client: 'Call Me Chunky', credits: '', dur: 15, tag: 'HUMOR' },
+    { id: 41, vid: '1194290610', hash: '0abd367ed4', title: 'Chunky Ice Cream - Soulmate', client: 'Call Me Chunky', credits: '', dur: 15, tag: 'HUMOR' },
     { id: 42, vid: '1194256626', hash: '3fdcc1ecb0', title: 'Popeyes', client: 'Popeyes', credits: '', dur: 40, tag: 'HUMOR' },
     { id: 43, vid: '1176234899', hash: '4b3fdf00d8', title: 'Equus Asinus', client: '', credits: '', dur: 50, tag: 'HUMOR' },
-    { id: 44, vid: '1202512344', hash: '2f299c22f5', title: 'Agami Realty', client: 'Agami Realty', credits: '', dur: 78, tag: 'STYLISH' },
-    /* 45-50 — named in Prashant's 2026-08-25 notes, pulled from
+    { id: 44, vid: '1202512344', hash: '2f299c22f5', title: 'Agami Realty', client: 'Agami Realty', credits: '', dur: 78, tag: 'STYLISED' },
+    /* 45-50 - named in Prashant's 2026-08-25 notes, pulled from
        vimeo.com/prashantpanda (not in the curated showcase) */
-    { id: 45, vid: '815585818',  hash: '3fdeb7b3e4', title: 'Asian Paints — Ace Sparc Emulsion', client: 'Asian Paints', credits: '', dur: 32, tag: 'HUMOR' },
-    { id: 46, vid: '815585849',  hash: 'd0318ea5c2', title: 'Asian Paints — Tractor Sparc', client: 'Asian Paints', credits: '', dur: 47, tag: 'STORYTELLING' },
-    { id: 47, vid: '886353055',  hash: 'a556f5beab', title: 'MPL — Par Nahin Katega', client: 'MPL', credits: '', dur: 20, tag: 'HUMOR' },
-    { id: 48, vid: '763773007',  hash: '3b8630e258', title: 'MPL — Jignesh Bhai', client: 'MPL', credits: '', dur: 29, tag: 'HUMOR' },
+    { id: 45, vid: '815585818',  hash: '3fdeb7b3e4', title: 'Asian Paints - Ace Sparc Emulsion', client: 'Asian Paints', credits: '', dur: 32, tag: 'HUMOR' },
+    { id: 46, vid: '815585849',  hash: 'd0318ea5c2', title: 'Asian Paints - Tractor Sparc', client: 'Asian Paints', credits: '', dur: 47, tag: 'STORYTELLING' },
+    { id: 47, vid: '886353055',  hash: 'a556f5beab', title: 'MPL - Par Nahin Katega', client: 'MPL', credits: '', dur: 20, tag: 'HUMOR' },
+    { id: 48, vid: '763773007',  hash: '3b8630e258', title: 'MPL - Jignesh Bhai', client: 'MPL', credits: '', dur: 29, tag: 'HUMOR' },
     { id: 49, vid: '1149451696', hash: '94bfc6f18b', title: 'Oppo F31 Series 5G', client: 'Oppo', credits: '', dur: 30, tag: 'HUMOR' },
-    { id: 50, vid: '747936664',  hash: '6ccb94a555', title: 'Lightein Parde — MegaBlockbuster', client: 'Meesho', credits: 'ft. Kapil Sharma', dur: 20, tag: 'HUMOR' },
+    { id: 50, vid: '747936664',  hash: '6ccb94a555', title: 'Lightein Parde - MegaBlockbuster', client: 'Meesho', credits: 'ft. Kapil Sharma', dur: 20, tag: 'HUMOR' },
   ];
 
   /* ============================================================
-     MUSIC VIDEOS & FILM SONGS — his 2026-08-25 notes. Same shape
+     MUSIC VIDEOS & FILM SONGS - his 2026-08-25 notes. Same shape
      as ADS so the player and the timeline can carry them too.
      ============================================================ */
   const MUSIC = [
-    { id: 101, vid: '877026031', hash: 'a7348f4814', title: 'Tu Jaana Na Piya', client: 'KING — New Life', credits: '', dur: 246, tag: 'MUSIC' },
+    { id: 101, vid: '877026031', hash: 'a7348f4814', title: 'Tu Jaana Na Piya', client: 'KING - New Life', credits: '', dur: 246, tag: 'MUSIC' },
   ];
-  const TAGS = ['HUMOR', 'STORYTELLING', 'ACTION', 'STYLISH'];
+  const TAGS = ['HUMOR', 'STORYTELLING', 'STYLISED'];
   const img = p => `assets/img/work/${p.vid}.jpg`;
   /* player order = showcase order, music videos tail it so any
      data-play id resolves and prev/next runs the whole body of work */
@@ -102,16 +102,16 @@
   const byId = id => LIST.find(p => p.id === id);
 
   /* ============================================================
-     SERIES + FILMS (no embeddable video — rendered as slates)
+     SERIES + FILMS (no embeddable video - rendered as slates)
      · sorted: series by IMDB desc, films by year desc
      · rating shown only when >= 7.0
      ============================================================ */
-  /* art = assets/img/series/<art>.jpg — official key art; a slate
+  /* art = assets/img/series/<art>.jpg - official key art; a slate
      falls back to type automatically if the file is missing */
   const SERIES = [
-    { title: 'Permanent Roommates',        years: '2014–2016', eps: 5,  rating: 8.6, platform: 'TVF',                art: 'series/permanent-roommates', yt: 'tKNQMYmQjnA' },
-    { title: 'Hostel Daze',                years: '2019–2022', eps: 3,  rating: 8.5, platform: 'TVF · Prime Video',  art: 'series/hostel-daze', yt: '6Xdj-Jn9_iI' },
-    { title: 'Operation MBBS',             years: '2020–2021', eps: 2,  rating: 8.3, platform: '',                   art: 'series/operation-mbbs', yt: 'WL_BdNa4tEU' },
+    { title: 'Permanent Roommates',        years: '2014-2016', eps: 5,  rating: 8.6, platform: 'TVF',                art: 'series/permanent-roommates', yt: 'tKNQMYmQjnA' },
+    { title: 'Hostel Daze',                years: '2019-2022', eps: 3,  rating: 8.5, platform: 'TVF · Prime Video',  art: 'series/hostel-daze', yt: '6Xdj-Jn9_iI' },
+    { title: 'Operation MBBS',             years: '2020-2021', eps: 2,  rating: 8.3, platform: '',                   art: 'series/operation-mbbs', yt: 'WL_BdNa4tEU' },
     { title: 'Cheesecake',                 years: '2019',      eps: 5,  rating: 8.2, platform: '',                   art: 'series/cheesecake', yt: '' },
     { title: 'Cartel',                     years: '2021',      eps: 14, rating: 8.0, platform: 'ALTBalaji',          art: 'series/cartel', yt: 'EQ9zXtlMRpM' },
     { title: 'Bachelors vs the World',     years: '2022',      eps: 5,  rating: 7.8, platform: '',                   art: 'series/bachelors-vs-the-world', yt: 'bdh9UmsuEGw' },
@@ -120,14 +120,14 @@
     { title: 'CLASS of 2017',              years: '2017',      eps: 20, rating: 7.3, platform: 'ALTBalaji',          art: 'series/class-of-2017', yt: '' },
     { title: "TSP's Zeroes",               years: '2018',      eps: 3,  rating: 7.2, platform: 'The Screen Patti',   art: 'series/tsps-zeroes', yt: 'LwIaKhvI3r0' },
     { title: 'PA-Gals',                    years: '2017',      eps: 3,  rating: 6.6, platform: '',                   art: 'series/pa-gals', yt: 'lzI9ilVNzno' },
-    { title: 'Puncch Beat',                years: '2018–2019', eps: 13, rating: 6.2, platform: 'ALTBalaji',          art: 'series/puncch-beat', yt: 'j8Sdmrb1l2Q' },
-    { title: 'Ragini MMS Returns',         years: '2017–2018', eps: 11, rating: 4.1, platform: 'ALTBalaji',          art: 'series/ragini-mms-returns', yt: 'G8Xud9tnS-M' },
+    { title: 'Puncch Beat',                years: '2018-2019', eps: 13, rating: 6.2, platform: 'ALTBalaji',          art: 'series/puncch-beat', yt: 'j8Sdmrb1l2Q' },
+    { title: 'Ragini MMS Returns',         years: '2017-2018', eps: 11, rating: 4.1, platform: 'ALTBalaji',          art: 'series/ragini-mms-returns', yt: 'G8Xud9tnS-M' },
   ];
   const FILMS = [
     { title: 'Rabia and Olivia', year: '2023', role: 'Editor',                note: 'Feature film',    art: 'films/rabia-and-olivia', yt: 'dYTUwZAVCrk' },
     { title: 'My Name Is Khan',  year: '2010', role: 'Associate Film Editor', note: 'Dir. Karan Johar', art: 'films/my-name-is-khan',  yt: 'nqxgYT3TYzY' },
   ];
-  /* ASSOCIATE FILM EDITOR — Prashant's list of 2026-08-25, in his
+  /* ASSOCIATE FILM EDITOR - Prashant's list of 2026-08-25, in his
      order. No key art for these, so they print as typeset credits
      under the films shelf rather than as dead tiles. */
   const ASSOC = {
@@ -135,23 +135,23 @@
     titles: ['My Name Is Khan', 'We Are Family', 'Pyaar Ke Side Effects',
              'Ek Khiladi Ek Haseena', 'Raasta Roko', 'Anjaan', 'Just Married'],
   };
-  /* FILM SONGS — the songs he cut inside features, and the
+  /* FILM SONGS - the songs he cut inside features, and the
      directors he cut songs and music videos for */
   const SONGS = {
     lede: 'Film songs and music videos for Remo D’Souza, Arvind Thakur, Jayesh Pradhan and Jeet Singh.',
     titles: ['Do Knot Disturb', 'Paying Guest', 'Kal Kisne Dekha'],
   };
-  /* the upcoming feature — hero of the films shelf; drops in
+  /* the upcoming feature - hero of the films shelf; drops in
      assets/img/films/rotten-apple.jpg automatically when supplied */
   const UPCOMING = { title: 'Rotten Apple', note: 'Feature film', art: 'films/rotten-apple' };
 
-  /* SELECTED STORIES — Prashant's own running order, 2026-08-25.
+  /* SELECTED STORIES - Prashant's own running order, 2026-08-25.
      note = the thought behind the story (craft copy, not fact). */
   const REEL = [
-    { id: 2,   t: 'CHUPA CHUPS — CARROM',     ar: '34',
-      note: 'A quiet joke built frame by frame. Comedy timing is edit timing — hold, hold, pay off.' },
+    { id: 2,   t: 'CHUPA CHUPS - CARROM',     ar: '34',
+      note: 'A quiet joke built frame by frame. Comedy timing is edit timing - hold, hold, pay off.' },
     { id: 1,   t: 'MARY AUNTY',               ar: '169',
-      note: 'Insurance sold as belonging — a stray who stays. The cut sits still and lets the bond do the talking.' },
+      note: 'Insurance sold as belonging - a stray who stays. The cut sits still and lets the bond do the talking.' },
     { id: 20,  t: 'JAB HAATH AUR BINGO',      ar: '11', tick: 'FT. RANVEER SINGH',
       note: 'Fifteen seconds, one running gag, no room to breathe. The shortest cuts leave the least to hide behind.' },
     { id: 42,  t: 'POPEYES',                  ar: '43',
@@ -160,16 +160,18 @@
       note: 'Three blades, one clean line. Product films live or die on where you choose to stop looking.' },
     { id: 31,  t: "HERSHEY'S",                ar: '169',
       note: 'Sweetness without sentiment. Let the pauses carry it and the product never has to shout.' },
-    { id: 8,   t: 'HINT — PYAAR KA TAKE-OFF', ar: '45',
-      note: 'A love story boarding in fifty seconds. Looks traded like dialogue — the edit does the flirting.' },
+    { id: 8,   t: 'HINT - PYAAR KA TAKE-OFF', ar: '45',
+      note: 'A love story boarding in fifty seconds. Looks traded like dialogue - the edit does the flirting.' },
     { id: 4,   t: 'SNICKERS',                 ar: '11',
-      note: 'Hunger changes people — the gag only lands if the switch is invisible. Blink, and the cut already happened.' },
+      note: 'Hunger changes people - the gag only lands if the switch is invisible. Blink, and the cut already happened.' },
     { id: 10,  t: 'ENVY',                     ar: '43',
-      note: 'Fragrance is pure mood — no plot, only tempo. The edit wears the perfume.' },
+      note: 'Fragrance is pure mood, no plot, only tempo. The edit wears the perfume.' },
+    { id: 101, t: 'TU JAANA NA PIYA',         ar: '169', tick: 'KING / NEW LIFE',
+      note: 'A song cut to the voice, not the beat. Music video editing is listening with your hands.' },
   ];
 
   /* ============================================================
-     DIRECTORS — Prashant's list of 2026-08-25, his order and his
+     DIRECTORS - Prashant's list of 2026-08-25, his order and his
      twelve names, with Rishabh Dubey and Varun Gupta retained at
      the tail (their cuts are already playable in-site).
      works[] = ad ids playable in-site today; directors without
@@ -193,12 +195,12 @@
   ];
 
   /* ============================================================
-     01 — THE PORTFOLIO as an NLE TIMELINE (aimighty treatment)
+     01 - THE PORTFOLIO as an NLE TIMELINE (aimighty treatment)
      · clips keep their relative length, compressed on a √-ish
        curve so a four-minute brand film and a fifteen-second
        cutdown can share one strip (same optical-area logic the
        logo walls use). The caption still prints TRUE runtime.
-     · checkerboarded across V2/V1 like an A/B roll — echoing
+     · checkerboarded across V2/V1 like an A/B roll - echoing
        the brand lockup's two tracks
      · fixed playhead reads the scroll; 25fps timecode; the
        active clip's story-thought prints under the strip
@@ -211,15 +213,11 @@
     const noteT = $('#tlNoteTitle'), noteX = $('#tlNoteText');
 
     const CLIPS = REEL.map(r => ({ ...r, p: byId(r.id) }));
-    /* display length — true seconds raised to SHAPE, then scaled so
-       the whole strip runs TARGET long. Ordering and relative weight
-       survive; the 17:1 spread between a 4-minute film and a 15s
-       cutdown does not. */
-    const SHAPE = 0.62, TARGET = 480;
-    const raw = CLIPS.map(c => Math.pow(c.p.dur, SHAPE));
-    const k = TARGET / raw.reduce((a, b) => a + b, 0);
+    /* every clip the same width - the strip reads as an even run of
+       frames rather than a duration chart */
+    const SLOT = 60;
     let acc = 0;
-    CLIPS.forEach((c, i) => { c.d = raw[i] * k; c.start = acc; acc += c.d; });
+    CLIPS.forEach(c => { c.d = SLOT; c.start = acc; acc += SLOT; });
     const TOTALS = acc;
     const PADL = 56, PADR = 72;
     let pps = 7;
@@ -229,14 +227,12 @@
       el.type = 'button';
       el.className = 'tclip';
       el.dataset.play = c.id;
-      el.setAttribute('aria-label', `Play — ${c.p.title}`);
+      el.setAttribute('aria-label', `Play ${c.p.title}`);
       el.innerHTML = `
         <img src="${img(c.p)}" alt="" ${i === 0 ? '' : 'loading="lazy"'} draggable="false" />
         <span class="tclip__grade" aria-hidden="true"></span>
         <span class="tclip__face">
-          <span class="tclip__no">${pad2(i + 1)}</span>
           <span class="tclip__name">${c.t}</span>
-          <span class="tclip__meta">${c.p.client.toUpperCase()} — ${mmss(c.p.dur)}</span>
         </span>`;
       lanes[i % 2].appendChild(el);
       c.el = el;
@@ -272,7 +268,8 @@
       if (i >= 0 && i !== cur) {
         cur = i;
         CLIPS.forEach((c, j) => c.el.classList.toggle('active', j === i));
-        if (noteT) noteT.textContent = CLIPS[i].t + ' — ';
+        /* the descriptor is mono and small - hyphens read as noise there */
+        if (noteT) noteT.textContent = CLIPS[i].t.replace(/\s*-\s*/g, ' ');
         if (noteX) noteX.textContent = CLIPS[i].note;
       }
     }
@@ -294,7 +291,7 @@
       scroller.scrollLeft += e.deltaY;
     }, { passive: false });
 
-    /* drag to scrub (mouse) — suppress the click that would open the player */
+    /* drag to scrub (mouse) - suppress the click that would open the player */
     let down = false, dragged = false, sx = 0, sl = 0;
     scroller.addEventListener('pointerdown', e => {
       if (e.pointerType !== 'mouse') return;
@@ -323,7 +320,7 @@
   })();
 
   /* ============================================================
-     RENDER — INDEX (three shelves: ads / series / films)
+     RENDER - INDEX (three shelves: ads / series / films)
      each shelf numbers its own titles; an end strip stretches
      to the last grid column (grid-column:auto/-1) so no shelf
      leaves bare cells
@@ -341,12 +338,12 @@
         el.type = 'button';
         el.dataset.yt = yt;
         el.dataset.ytTitle = title.toUpperCase();
-        el.setAttribute('aria-label', `Play trailer — ${title}`);
+        el.setAttribute('aria-label', `Play trailer - ${title}`);
       }
       el.className = 'tile tile--slate' + (wide ? ' tile--wide' : '') + (art ? ' has-cover' : '');
       el.innerHTML = `
-        ${art ? `<img class="slate__art" loading="lazy" src="assets/img/${art}.jpg" alt="${title} — key art" /><span class="slate__scrim" aria-hidden="true"></span>` : ''}
-        <span class="slate__top"><b>${no ? `${pad2(no)} / ${pad2(N)} — ` : ''}${tag}</b>${rating ? `<span>IMDB ${rating.toFixed(1)}</span>` : ''}</span>
+        ${art ? `<img class="slate__art" loading="lazy" src="assets/img/${art}.jpg" alt="${title} - key art" /><span class="slate__scrim" aria-hidden="true"></span>` : ''}
+        <span class="slate__top"><b>${no ? `${pad2(no)} / ${pad2(N)} - ` : ''}${tag}</b>${rating ? `<span>IMDB ${rating.toFixed(1)}</span>` : ''}</span>
         <span class="slate__title">${title.toUpperCase()}</span>
         <span class="slate__meta">${meta}</span>
         ${yt ? '<span class="slate__chip"><i>▸</i>&nbsp;TRAILER</span>' : ''}`;
@@ -363,34 +360,40 @@
       return el;
     };
 
-    /* the ad shelf is grouped into Prashant's four genres — one
+    /* the ad shelf is grouped into Prashant's four genres - one
        titled shelf each, no filter pills and no running total */
+    /* work uses the same boarded-frame treatment as Why Prashant:
+       a framed still with the title set beneath it, not over it */
     const adTile = p => {
       const el = document.createElement('button');
       el.type = 'button';
-      el.className = 'tile';
+      el.className = 'board__panel board__panel--play';
       el.dataset.play = p.id;
       el.dataset.tag = p.tag;
-      el.setAttribute('aria-label', `Play — ${p.title}`);
+      el.setAttribute('aria-label', `Play ${p.title}`);
+      const brand = capOf(p);
       el.innerHTML = `
-        <img loading="lazy" src="${img(p)}" alt="${p.title} — film still" />
-        <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${capOf(p)}</span></span>`;
+        <span class="board__frame">
+          <img loading="lazy" src="${img(p)}" alt="${p.title} - film still" />
+        </span>
+        <span class="board__cap">
+          <b class="board__title">${p.title.toUpperCase()}</b>
+          ${brand ? `<span class="board__text">${brand}</span>` : ''}
+        </span>`;
       return el;
     };
     const genres = $('#adGenres');
     if (genres) {
-      TAGS.forEach((tag, gi) => {
+      TAGS.forEach(tag => {
         const films = ADS.filter(p => p.tag === tag);
         if (!films.length) return;
         const head = document.createElement('div');
-        head.className = 'subhead subhead--genre reveal';
+        head.className = 'subhead subhead--genre subhead--right reveal';
         head.id = 'genre-' + tag.toLowerCase();
-        head.innerHTML =
-          `<span class="kicker"><i>[●]</i> 02·A${gi + 1}</span>` +
-          `<h3 class="subhead__title">${tag}</h3>`;
+        head.innerHTML = `<h3 class="subhead__title">${tag}</h3>`;
         genres.appendChild(head);
         const grid = document.createElement('div');
-        grid.className = 'index__grid';
+        grid.className = 'board board--work';
         genres.appendChild(grid);
         films.forEach(p => grid.appendChild(adTile(p)));
       });
@@ -398,7 +401,7 @@
 
     const gSeries = $('#gridSeries');
     if (gSeries) {
-      /* just the name — no episode counts, years, ratings or platform */
+      /* just the name - no episode counts, years, ratings or platform */
       SERIES.forEach(s => slate(gSeries, 0, 0, 'SERIES', s.title, '', 0, false, s.art, s.yt));
     }
 
@@ -413,7 +416,7 @@
       });
     }
 
-    /* music videos & film songs — playable, same tile as the ads */
+    /* music videos & film songs - playable, same tile as the ads */
     const gMusic = $('#gridMusic');
     if (gMusic) {
       MUSIC.forEach((p, i) => {
@@ -421,15 +424,15 @@
         el.type = 'button';
         el.className = 'tile';
         el.dataset.play = p.id;
-        el.setAttribute('aria-label', `Play — ${p.title}`);
+        el.setAttribute('aria-label', `Play - ${p.title}`);
         el.innerHTML = `
-          <img loading="lazy" src="${img(p)}" alt="${p.title} — film still" />
+          <img loading="lazy" src="${img(p)}" alt="${p.title} - film still" />
           <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${capOf(p)}</span></span>`;
         gMusic.appendChild(el);
       });
     }
 
-    /* typeset credit blocks — work with no key art of its own, so
+    /* typeset credit blocks - work with no key art of its own, so
        it prints as names rather than as tiles that cannot be played */
     const credits = (id, data, kicker) => {
       const wrap = $(id);
@@ -444,11 +447,11 @@
   })();
 
   /* ============================================================
-     CONTACT EMAIL — paste Prashant's address here to activate
+     CONTACT EMAIL - paste Prashant's address here to activate
      the EMAIL button on /contact (stays a muted "in assembly"
-     row while empty — the no-invented-email rule holds)
+     row while empty - the no-invented-email rule holds)
      ============================================================ */
-  /* the VP company mark is pending from Prashant — hide the slot
+  /* the VP company mark is pending from Prashant - hide the slot
      until the file exists so the row never shows a broken image */
   (function vpLogo() {
     const el = $('#vpLogo');
@@ -467,12 +470,12 @@
       row.classList.add('frow--pending');
       row.removeAttribute('href');
       const k = $('#emailRowK');
-      if (k) k.innerHTML = 'ADDRESS&nbsp;—&nbsp;IN&nbsp;ASSEMBLY';
+      if (k) k.innerHTML = 'ADDRESS&nbsp;-&nbsp;IN&nbsp;ASSEMBLY';
     }
   })();
 
   /* ============================================================
-     BANNERS — ad-film brands + agencies (under 02·A) and the
+     BANNERS - ad-film brands + agencies (under 02·A) and the
      platforms/banners the series & films aired on (under 02·C)
      logo: filename in assets/img/brands/ (official marks,
      recolored bone via CSS) · logo:null → typographic fallback
@@ -491,13 +494,13 @@
     { name: 'BBDO INDIA',         logo: 'bbdo.svg' },
     { name: 'JAMIC FILMS',        logo: 'jamic-films.png' },
     { name: 'DUCKTAPE',           logo: 'ducktape.png' },
-    /* the agency — a separate entity from Jamic Films, Nikhil Rao's
+    /* the agency - a separate entity from Jamic Films, Nikhil Rao's
        production house. Official wordmark, MullenLowe Group CDN. */
     { name: 'LOWE LINTAS',        logo: 'lowe-lintas.png' },
     { name: 'KEROSCENE FILMS',    logo: 'keroscene.png' },
     { name: 'ZIGZAG FILM',        logo: 'zigzag.png' },
     { name: 'KARMMAN LINE',       logo: 'karmanline.png' }, /* official double-M styling */
-    /* added per Prashant, 2026-08-25 — Dharma is the house behind the
+    /* added per Prashant, 2026-08-25 - Dharma is the house behind the
        associate-editor features; Entourage Films' own mark, entourage-films.com */
     { name: 'DHARMA PRODUCTIONS', logo: 'dharma.svg' },
     { name: 'ENTOURAGE FILMS',    logo: 'entourage-films.png' },
@@ -525,7 +528,7 @@
     fill('#bmqBrands', BRANDS_ROW);
     fill('#bmqPlatforms', PLATFORMS_ROW);
 
-    /* thin hero ticker — every banner, logo-first, at ticker scale */
+    /* thin hero ticker - every banner, logo-first, at ticker scale */
     const ticker = $('#ticker');
     if (ticker) {
       const ROW = [...BRANDS_ROW, ...PLATFORMS_ROW];
@@ -552,7 +555,7 @@
       else el.addEventListener('load', () => size(el), { once: true });
     });
 
-    /* type fallbacks get the same optical-area treatment — a long
+    /* type fallbacks get the same optical-area treatment - a long
        wordmark set in 125%-stretch black otherwise outweighs every
        compact mark beside it. A text box's aspect doesn't change with
        font-size, so one measurement is enough. Floor is lower than the
@@ -565,7 +568,7 @@
       el.style.fontSize = `calc(${getComputedStyle(el).fontSize} * ${k.toFixed(3)})`;
       el.dataset.sized = '1';
     };
-    /* fonts.ready, not rAF — the measurement needs the web font's real
+    /* fonts.ready, not rAF - the measurement needs the web font's real
        metrics, and rAF is parked in a background tab so the strip would
        be left unequalised for anyone who opens the site in a new tab */
     const applyType = () => $$('.marquee__track span, .bmq__track span').forEach(sizeType);
@@ -574,13 +577,34 @@
   })();
 
   /* ============================================================
-     RENDER — DIRECTORS (rows + cursor-follow still)
+     DIRECTORS DRAWER (home) - a handle bottom-left opens the list
+     ============================================================ */
+  (function dirDrawer() {
+    const tab = $('#dirTab'), panel = $('#dirPanel'), list = $('#dirPanelList');
+    if (!tab || !panel || !list) return;
+    list.innerHTML = DIRECTORS.map(d =>
+      `<li>${d.name}${d.house ? `<span>${d.house}</span>` : ''}</li>`).join('');
+    const set = open => {
+      panel.classList.toggle('open', open);
+      panel.setAttribute('aria-hidden', String(!open));
+      tab.setAttribute('aria-expanded', String(open));
+      tab.classList.toggle('hidden', open);
+    };
+    tab.addEventListener('click', () => set(true));
+    $('#dirPanelClose').addEventListener('click', () => set(false));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && panel.classList.contains('open')) set(false);
+    });
+  })();
+
+  /* ============================================================
+     RENDER - DIRECTORS (rows + cursor-follow still)
      ============================================================ */
   (function renderDirectors() {
     const wrap = $('#dirRows');
     if (!wrap) return;
     /* names run right-aligned in a single column; no cut counts and no
-       right-hand data — the row shows a couple of titles, not a tally */
+       right-hand data - the row shows a couple of titles, not a tally */
     DIRECTORS.forEach((d, i) => {
       const cuts = d.works.map(byId);
       const chips = cuts.length
@@ -656,7 +680,7 @@
        CSS owns the motion; this drops `opening`, lifts the veil, then
        measures the nav slot and hands the mark over. */
     const ASSEMBLE = reduced ? 0 : 4400;   /* scrubber + both words, per the CSS delays */
-    const SETTLE   = reduced ? 0 : 3400;   /* roles, categories, tagline — held long enough to read */
+    const SETTLE   = reduced ? 0 : 3400;   /* roles, categories, tagline - held long enough to read */
     const FLY      = reduced ? 0 : 1400;   /* matches .titleseq__mark transition */
     const fill = $('#loaderFill'), num = $('#loaderNum');
 
@@ -676,11 +700,11 @@
       mark.style.transform = `translate(${dx}px, ${dy}px) scale(${s})`;
     }
 
-    /* the sequence runs ~9s so the subtext can actually be read — but
+    /* the sequence runs ~9s so the subtext can actually be read - but
        nobody should be trapped in it. Any click or key jumps to the end. */
     let done = false;
     const timers = [];
-    /* Cut straight to the open site. No flight here — the mark would have
+    /* Cut straight to the open site. No flight here - the mark would have
        to be measured mid-assembly and would land wrong; a clean dissolve
        reads better than a bad landing. */
     function finish() {
@@ -725,7 +749,7 @@
 
     /* Don't start the sequence in a background tab: rAF is parked and
        transitions don't advance there, so the timers would run out
-       while nothing moved — the visitor would return to a logo that
+       while nothing moved - the visitor would return to a logo that
        snaps together, or to a mark measured against a stale layout.
        Wait until the page is actually on screen, then play it. */
     if (document.visibilityState === 'visible') {
@@ -739,7 +763,7 @@
       /* Failsafe: the page is hidden behind the veil until the sequence
          finishes, so if visibilitychange never arrives (embedded webview,
          prerender, an automation context that reports hidden forever) the
-         site would sit there blank. Open it anyway — losing the animation
+         site would sit there blank. Open it anyway - losing the animation
          is far cheaper than serving an empty page. */
       setTimeout(finish, 12000);
     }
@@ -780,7 +804,7 @@
   })();
 
   /* ============================================================
-     HERO — crossfading stills (no hero video asset; the slides
+     HERO - crossfading stills (no hero video asset; the slides
      stand in for it and read identically under the scrim)
      ============================================================ */
   (function heroSlides() {
@@ -798,12 +822,12 @@
   })();
 
   /* ============================================================
-     HUD TIMECODE — scroll as 25fps timecode
+     HUD TIMECODE - scroll as 25fps timecode
      ============================================================ */
   (function timecode() {
     const el = $('#tc');
     if (!el) return;
-    /* per-page runtimes via <body data-tc> — full scroll = full reel */
+    /* per-page runtimes via <body data-tc> - full scroll = full reel */
     const TOTAL = +document.body.dataset.tc || 1465; // default 24:25
     const fmt = s => {
       const f = Math.floor((s % 1) * 25);
@@ -835,7 +859,7 @@
      STATS COUNT-UP
      ============================================================ */
   (function stats() {
-    /* '&' in the "and counting" tail carries no count — skip it */
+    /* '&' in the "and counting" tail carries no count - skip it */
     const els = $$('.stat b').filter(e => e.dataset.count);
     if (!els.length) return;
     const done = e => e.textContent = e.dataset.count + (e.dataset.suffix || '');
@@ -860,7 +884,7 @@
   })();
 
   /* ============================================================
-     EDITOR VIZ — crossfading stills
+     EDITOR VIZ - crossfading stills
      ============================================================ */
   (function viz() {
     const a = $('#vizA'), b = $('#vizB'), cap = $('#vizCap'), bar = $('#vizBar');
@@ -870,7 +894,7 @@
     const HOLD = 3400;
     let i = 0, front = a, back = b;
     front.src = img(STILLS[0]);
-    const caption = p => `STILL ${pad2(STILLS.indexOf(p) + 1)} — ${p.title.toUpperCase()} / ${p.client.toUpperCase()}`;
+    const caption = p => `STILL ${pad2(STILLS.indexOf(p) + 1)} - ${p.title.toUpperCase()} / ${p.client.toUpperCase()}`;
     if (cap) cap.textContent = caption(STILLS[0]);
     if (reduced) return;
     if (bar) {
@@ -896,7 +920,7 @@
   })();
 
   /* ============================================================
-     PLAYER — in-site Vimeo screening (unlisted → h= hash)
+     PLAYER - in-site Vimeo screening (unlisted → h= hash)
      ============================================================ */
   const player = $('#player');
   const frame = $('#playerFrame');
@@ -906,8 +930,8 @@
     cur = (idx + LIST.length) % LIST.length;
     const p = LIST[cur];
     frame.src = `https://player.vimeo.com/video/${p.vid}?h=${p.hash}&autoplay=1&title=0&byline=0&portrait=0&dnt=1`;
-    frame.title = `${p.title} — Prashant Panda`;
-    $('#playerTitle').textContent = `${p.title.toUpperCase()} — ${p.client.toUpperCase()}${p.credits ? ' / ' + p.credits.toUpperCase() : ''}`;
+    frame.title = `${p.title} - Prashant Panda`;
+    $('#playerTitle').textContent = `${p.title.toUpperCase()} - ${p.client.toUpperCase()}${p.credits ? ' / ' + p.credits.toUpperCase() : ''}`;
     $('#playerCount').textContent = `${pad2(cur + 1)} / ${pad2(LIST.length)}`;
     const ext = $('#playerVimeo');
     ext.href = `https://vimeo.com/${p.vid}/${p.hash}`;
@@ -927,8 +951,8 @@
     if (!player || !frame) return;
     lastFocus = document.activeElement;
     frame.src = `https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&rel=0`;
-    frame.title = `${title} — trailer`;
-    $('#playerTitle').textContent = `${title} — OFFICIAL TRAILER`;
+    frame.title = `${title} - trailer`;
+    $('#playerTitle').textContent = `${title} - OFFICIAL TRAILER`;
     $('#playerCount').textContent = 'TRAILER';
     const ext = $('#playerVimeo');
     ext.href = `https://www.youtube.com/watch?v=${ytId}`;
@@ -969,11 +993,11 @@
   })();
 
   /* ============================================================
-     dev screenshot helper — inert unless localStorage flag set
+     dev screenshot helper - inert unless localStorage flag set
      usage: v4-jump = 'SHOT' | 'MENU' | 'PLAYER' | 'TOP:#sel' (combinable 'TOP:#sel|SHOT')
      ============================================================ */
   try {
-    /* preview harness reloads the tab once — stash flag in sessionStorage so it survives */
+    /* preview harness reloads the tab once - stash flag in sessionStorage so it survives */
     const jump = localStorage.getItem('v4-jump') || sessionStorage.getItem('v4-jump');
     if (jump) {
       localStorage.removeItem('v4-jump');
@@ -989,7 +1013,7 @@
           if (part === 'SHOT') document.documentElement.classList.add('shot');
           else if (part === 'MENU') toggleMenu(true);
           else if (part === 'PLAYER') openPlayer(LIST[0].id);
-          else if (part.indexOf('TOP:') === 0) { // headless captures only work unscrolled — hoist section
+          else if (part.indexOf('TOP:') === 0) { // headless captures only work unscrolled - hoist section
             const el = document.querySelector(part.slice(4));
             const m = document.querySelector('main');
             if (el && m) {

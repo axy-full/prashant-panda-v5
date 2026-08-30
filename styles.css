@@ -1,8 +1,8 @@
 /* ============================================================
-   PRASHANT PANDA — V4 · THE SCREENING ROOM
+   PRASHANT PANDA - V4 · THE SCREENING ROOM
    film-first · near-black / bone / record red
-   Archivo Expanded (all caps, 900) + Space Mono — no serifs
-   wordmark: PAND▲ — the play-triangle stands in for the last A
+   Archivo Expanded (all caps, 900) + Space Mono - no serifs
+   wordmark: PAND▲ - the play-triangle stands in for the last A
    ============================================================ */
 
 :root{
@@ -24,7 +24,7 @@
   --pad: clamp(20px, 4.5vw, 84px);
   --ease: cubic-bezier(.19,1,.22,1);
 
-  /* NLE arrow — condensed ink pointer, hairline bone edge */
+  /* NLE arrow - condensed ink pointer, hairline bone edge */
   --cur: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M5 1.5L5 17.2 8.1 14 10.1 18.8 12.6 17.7 10.5 13 13.6 13Z' fill='%230f0d0d' stroke='%23f2efe6' stroke-width='1.1' stroke-linejoin='round'/%3E%3C/svg%3E") 5 1, default;
 }
 
@@ -50,11 +50,11 @@ button{ font-family:inherit; color:inherit; }
 img{ display:block; }
 ::selection{ background:var(--red); color:var(--bone); }
 
-/* display voice — expanded grotesque, caps */
+/* display voice - expanded grotesque, caps */
 .disp{ font-family:var(--sans); font-stretch:125%; font-weight:900;
   text-transform:uppercase; letter-spacing:-.015em; line-height:.86; }
 
-/* the play triangle — brand mark (▲ stands in for the A) */
+/* the play triangle - brand mark (▲ stands in for the A) */
 .tri-i{
   display:inline-block; width:.66em; height:.6em;
   background:var(--red); vertical-align:0;
@@ -127,7 +127,7 @@ body.menu-open .nav{ background:transparent; backdrop-filter:none; border-color:
   font-stretch:125%; font-weight:900; font-size:15px; letter-spacing:.04em;
   text-transform:uppercase; line-height:1; display:block;
 }
-/* the stacked lockup — same artwork the title sequence assembles,
+/* the stacked lockup - same artwork the title sequence assembles,
    so the mark can fly straight into this box and hand over */
 .nav__brand img{ display:block; height:clamp(44px,5.4vw,68px); width:auto; }
 @media (max-width:640px){ .nav__brand img{ height:36px; } }
@@ -228,10 +228,11 @@ body[data-page="home"]:not(.opened) .nav__brand img{ opacity:0; }
 .sec-title--sm{ font-size:clamp(32px,5vw,76px); }
 /* the title crosses to the right edge; the kicker stays left */
 .sec-head--right .sec-title{ grid-column:1/-1; text-align:right; }
+.subhead--right .subhead__title{ grid-column:1/-1; text-align:right; }
 .sec-meta{ font-family:var(--mono); font-size:10px; letter-spacing:.18em;
   color:var(--mut-2); text-align:right; line-height:1.9; }
 
-/* drop-cap title — the initial stays at full display size, the rest
+/* drop-cap title - the initial stays at full display size, the rest
    drops to roughly half and sits on the same baseline */
 .sec-title--drop{ text-transform:none; }
 .sec-title--drop b{ font:inherit; }
@@ -245,7 +246,7 @@ body[data-page="home"]:not(.opened) .nav__brand img{ opacity:0; }
    HERO
    ============================================================ */
 /* ============================================================
-   TITLE SEQUENCE — the home opening. Rides above the veil so the
+   TITLE SEQUENCE - the home opening. Rides above the veil so the
    mark builds on black, then flies into the nav's logo slot.
    ============================================================ */
 .titleseq{
@@ -263,7 +264,7 @@ body[data-page="home"]:not(.opened) .nav__brand img{ opacity:0; }
   transition:opacity .5s var(--ease);
 }
 body.settling .titleseq__meta{ opacity:0; }
-/* once the mark has landed the overlay is done — the nav owns the logo.
+/* once the mark has landed the overlay is done - the nav owns the logo.
    The fade also covers the skip, where there is no flight to watch. */
 .titleseq{ transition:opacity .35s var(--ease), visibility .35s; }
 body.opened .titleseq{ opacity:0; visibility:hidden; }
@@ -282,7 +283,7 @@ body.opened .titleseq{ opacity:0; visibility:hidden; }
 .lockup__scrub{ transform-origin:50% 0; transition:transform 1s var(--ease) .35s; }
 .lockup__p1{ transition:transform 1.6s var(--ease) 1.3s, opacity .8s linear 1.3s; }
 .lockup__p2{ transition:transform 1.6s var(--ease) 2.8s, opacity .8s linear 2.8s; }
-/* 26% parks each word's near edge on the playhead — measured off the artwork */
+/* 26% parks each word's near edge on the playhead - measured off the artwork */
 body.opening .lockup__scrub{ transform:scaleY(0); }
 body.opening .lockup__p1{ transform:translateX(26%); opacity:0; }
 body.opening .lockup__p2{ transform:translateX(-26%); opacity:0; }
@@ -327,7 +328,7 @@ body.loaded .hero__cats{ opacity:1; transform:none; transition-delay:1.5s; }
 }
 body.loaded .hero__tag{ opacity:1; transform:none; transition-delay:2.1s; }
 
-/* the reel is now the first thing on the page — clear the fixed nav.
+/* the reel is now the first thing on the page - clear the fixed nav.
    It stays hidden until the title sequence has handed off. */
 body[data-page="home"]:not(.opened) main{ opacity:0; }
 body[data-page="home"] main{ transition:opacity .7s var(--ease); }
@@ -357,10 +358,10 @@ body[data-page="home"] main{ transition:opacity .7s var(--ease); }
 @keyframes marq{ from{ transform:translateX(0) } to{ transform:translateX(-50%) } }
 
 /* ============================================================
-   01 — THE REEL (horizontal filmstrip)
+   01 - THE REEL (horizontal filmstrip)
    ============================================================ */
 /* ============================================================
-   01 — THE REEL as an NLE TIMELINE
+   01 - THE REEL as an NLE TIMELINE
    V2/V1 checkerboard, ruler, fixed playhead, live 25fps TC
    ============================================================ */
 .tl{
@@ -370,9 +371,19 @@ body[data-page="home"] main{ transition:opacity .7s var(--ease); }
 }
 .tl__scroll{
   overflow-x:auto; overflow-y:hidden; cursor:grab; outline:none;
-  scrollbar-width:none; -ms-overflow-style:none;
+  /* a real, always-visible scrollbar. NOTE: do not set scrollbar-width
+     here - the standard property wins over ::-webkit- in Chrome 121+ and
+     hands the strip back to macOS overlay bars, which vanish at rest. */
+  padding-bottom:14px;
 }
-.tl__scroll::-webkit-scrollbar{ display:none; }
+.tl__scroll::-webkit-scrollbar{ height:8px; }
+.tl__scroll::-webkit-scrollbar-track{
+  background:rgba(242,239,230,.08); border-radius:99px;
+}
+.tl__scroll::-webkit-scrollbar-thumb{
+  background:var(--red); border-radius:99px;
+}
+.tl__scroll::-webkit-scrollbar-thumb:hover{ background:#ff3a2c; }
 .tl__scroll.dragging{ cursor:grabbing; }
 .tl__inner{ position:relative; }
 
@@ -406,7 +417,7 @@ body[data-page="home"] main{ transition:opacity .7s var(--ease); }
 }
 .tclip.active img{ filter:grayscale(0) saturate(1) brightness(.85); }
 .tclip:hover img, .tclip:focus-visible img{ filter:grayscale(0) saturate(1.05) brightness(.95); }
-/* sprocket edges — a clip reads as a clip */
+/* sprocket edges - a clip reads as a clip */
 .tclip__grade{
   position:absolute; inset:0; pointer-events:none;
   background:
@@ -469,7 +480,7 @@ body[data-page="home"] main{ transition:opacity .7s var(--ease); }
 .reel__more-link:hover i{ transform:translateY(8px); }
 
 /* ============================================================
-   02 — INDEX (symmetric grid: ad tiles + slates)
+   02 - INDEX (symmetric grid: ad tiles + slates)
    ============================================================ */
 .index{ padding-bottom:clamp(90px,14vh,180px); }
 .subhead{
@@ -515,7 +526,7 @@ body[data-page="home"] main{ transition:opacity .7s var(--ease); }
   color:rgba(242,239,230,.6); text-shadow:0 1px 8px rgba(0,0,0,.6);
 }
 
-/* the ad shelf is grouped by genre — a lighter head per group so
+/* the ad shelf is grouped by genre - a lighter head per group so
    the four lenses read as sub-shelves, not as four new sections */
 .subhead--genre{ padding-bottom:clamp(10px,1.6vh,16px); }
 .subhead--genre .subhead__title{ font-size:clamp(22px,4vw,52px); }
@@ -537,7 +548,7 @@ body[data-page="home"] main{ transition:opacity .7s var(--ease); }
 .tile__cap span{ font-family:var(--mono); font-size:9px; letter-spacing:.1em;
   color:rgba(15,13,13,.6); margin-left:auto; white-space:nowrap; }
 
-/* slate tiles — series & films without embeddable video */
+/* slate tiles - series & films without embeddable video */
 .tile--slate{
   display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-end;
   padding:14px 16px; background:var(--bg-2); cursor:var(--cur);
@@ -582,7 +593,7 @@ body[data-page="home"] main{ transition:opacity .7s var(--ease); }
 }
 
 
-/* films-shelf hero — the upcoming feature leads the shelf */
+/* films-shelf hero - the upcoming feature leads the shelf */
 .tile--filmhero{
   grid-column:1/-1; aspect-ratio:auto;
   min-height:clamp(220px,28vw,390px);
@@ -607,25 +618,25 @@ button.tile--slate:hover .slate__chip i{ color:var(--bone); }
 /* player single-item mode (trailers) */
 .player.single .player__nav, .player.single .player__count{ display:none; }
 
-/* end strip — a full-width leader row closing each shelf */
+/* end strip - a full-width leader row closing each shelf */
 .tile--end{ grid-column:1/-1; aspect-ratio:auto; min-height:84px;
   display:grid; place-items:center; background:var(--bg); cursor:var(--cur); }
 .tile--end span{ font-family:var(--mono); font-size:10px; letter-spacing:.26em;
   color:var(--mut-2); text-align:center; padding:0 14px; }
 .tile--end i{ color:var(--red); font-style:normal; }
 
-/* wide feature slate — the lead FILMS entry */
+/* wide feature slate - the lead FILMS entry */
 .tile--wide{ grid-column:span 2; }
 .tile--wide .slate__title{ font-size:clamp(22px,2.4vw,38px); }
 
-/* upcoming film — announced, not yet numbered */
+/* upcoming film - announced, not yet numbered */
 .tile--upcoming .slate__top b{ color:var(--bone); }
 .tile--upcoming{ background:var(--bg);
   outline:1px dashed rgba(232,41,28,.5); outline-offset:-1px; }
 .tile--upcoming:hover{ background:var(--bg-2); }
 
 /* ============================================================
-   BANNER MARQUEES — brands/agencies under 02·A, platforms
+   BANNER MARQUEES - brands/agencies under 02·A, platforms
    under 02·C (big banner scroll rows inside the index)
    ============================================================ */
 .bmq{ margin-top:clamp(14px,2.2vh,26px); }
@@ -665,10 +676,10 @@ button.tile--slate:hover .slate__chip i{ color:var(--bone); }
 .bmq--rev .bmq__logo{ opacity:.55; }
 
 /* ============================================================
-   04 — DIRECTORS
+   04 - DIRECTORS
    ============================================================ */
 .dirs{ padding-bottom:clamp(90px,14vh,180px); }
-/* names run to the right edge — the column reads as an end-credit
+/* names run to the right edge - the column reads as an end-credit
    roll rather than a list, and nothing sits beside them */
 .dir{
   display:grid; grid-template-columns:56px 1fr; align-items:baseline; gap:18px;
@@ -714,7 +725,7 @@ button.tile--slate:hover .slate__chip i{ color:var(--bone); }
 @media (max-width:900px){ .dirfloat{ display:none; } }
 
 /* ============================================================
-   05 — EDITOR (bone split)
+   05 - EDITOR (bone split)
    ============================================================ */
 .producer{ display:grid; grid-template-columns:1.12fr .88fr; min-height:92svh; }
 .producer__panel{
@@ -750,7 +761,7 @@ button.tile--slate:hover .slate__chip i{ color:var(--bone); }
 .producer__note i{ color:var(--red-deep); font-style:normal; }
 .producer__note--dim{ color:rgba(15,13,13,.45); margin-top:8px; }
 
-/* recognitions — a humble column, hairlines not trophies */
+/* recognitions - a humble column, hairlines not trophies */
 .recog{ margin-top:clamp(18px,3vh,28px); width:100%; max-width:52ch; }
 .recog__kicker{ font-family:var(--mono); font-size:10px; letter-spacing:.2em;
   color:rgba(15,13,13,.7); }
@@ -771,13 +782,14 @@ button.tile--slate:hover .slate__chip i{ color:var(--bone); }
 .recog__list span{ font-family:var(--mono); font-size:9.5px; letter-spacing:.12em;
   color:rgba(15,13,13,.55); }
 
-/* dark variant — recognitions on the work page */
+/* dark variant - recognitions on the work page */
 .recog__list--dark{ list-style:none; margin:0 var(--pad) clamp(30px,5vh,60px); max-width:640px; }
 .recog__list--dark li{ border-color:var(--line); }
 .recog__list--dark li:last-child{ border-bottom-color:var(--line); }
 .recog__list--dark b{ color:var(--bone); }
 .recog__list--dark .recog__text span{ color:var(--mut); }
-.recog__list--dark .recog__logo{ filter:brightness(0) invert(1); opacity:.85; }
+/* the marks are already colour (gold / white) - clear the ink filter */
+.recog__list--dark .recog__logo{ filter:none; opacity:1; }
 .producer__stats{ display:flex; flex-wrap:wrap; gap:clamp(22px,3.4vw,52px);
   margin-top:auto; padding-top:clamp(44px,7vh,80px); }
 .stat b{
@@ -786,7 +798,7 @@ button.tile--slate:hover .slate__chip i{ color:var(--bone); }
 }
 .stat span{ font-family:var(--mono); font-size:10px; letter-spacing:.2em;
   color:rgba(15,13,13,.5); }
-/* the open-ended tail — reads as a fourth column, weighted back */
+/* the open-ended tail - reads as a fourth column, weighted back */
 .stat--and b{ color:var(--red-deep); font-weight:400; }
 .stat--and span{ color:rgba(15,13,13,.38); }
 .producer__mail{
@@ -813,17 +825,20 @@ button.tile--slate:hover .slate__chip i{ color:var(--bone); }
 .producer__bar i{ display:block; height:100%; width:0; background:var(--red); }
 
 /* ============================================================
-   06 — CONTACT / FOOT
+   06 - CONTACT / FOOT
    ============================================================ */
 .foot{ padding-top:clamp(90px,14vh,180px); }
 .foot--mini{ padding-top:clamp(50px,9vh,110px); }
 .foot__kicker{ display:flex; margin:0 var(--pad) 30px; }
 .foot__title{ padding:0 var(--pad) clamp(30px,5vh,60px); }
 
-/* next-page rail — each page hands off to the next reel */
+/* next-page rail - each page hands off to the next reel */
 .nextwrap{ padding-top:clamp(70px,12vh,150px); }
 .nextwrap--tight{ padding-top:clamp(20px,3vh,44px); }
 .frow--half .frow__word{ font-size:clamp(30px,6.5vw,86px); }
+/* the contact options run at half the display scale */
+.foot .frow .frow__word{ font-size:clamp(26px,4.4vw,62px); }
+.foot .frow{ padding-top:clamp(14px,2vh,24px); padding-bottom:clamp(14px,2vh,24px); }
 .frow--half{ padding-top:clamp(16px,2.4vh,30px); padding-bottom:clamp(16px,2.4vh,30px); }
 .frow{
   display:grid; grid-template-columns:minmax(130px,230px) 1fr auto;
@@ -925,7 +940,7 @@ a:focus-visible, button:focus-visible{
   .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
   .grain, .marquee__track, .bmq__track,
   .loader__mark i, .player__now i{ animation:none !important; }
-  /* no title sequence — the page is simply already open */
+  /* no title sequence - the page is simply already open */
   .titleseq{ display:none !important; }
   body[data-page="home"] main{ opacity:1 !important; transition:none !important; }
   body[data-page="home"] .nav__brand img{ opacity:1 !important; }
@@ -974,7 +989,7 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
   .menu__links a{ grid-template-columns:34px 1fr auto; }
 }
 
-/* directors — the word big, the qualifier small beside it */
+/* directors - the word big, the qualifier small beside it */
 .dirs__title{ display:flex; align-items:baseline; flex-wrap:wrap; gap:.5em; }
 .dirs__title b{ font-weight:900; }
 .dirs__title i{
@@ -984,10 +999,10 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
 }
 
 /* ============================================================
-   01 — WHY PRASHANT
+   01 - WHY PRASHANT
    The brand mark is already two tracks: PRASHANT on V2, PANDA on
    V1, one playhead through both. So the pitch is drawn the same
-   way — EDITOR on the top track, CREATIVE PRODUCER on the bottom,
+   way - EDITOR on the top track, CREATIVE PRODUCER on the bottom,
    one playhead running first cut to final delivery.
    ============================================================ */
 .why--first{ padding-top:clamp(120px,17vh,190px); }
@@ -997,6 +1012,147 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
   font-stretch:110%; font-weight:700; letter-spacing:-.005em; line-height:1.35;
   font-size:clamp(14px,1.3vw,20px); color:var(--bone-dim);
 }
+.sec-title--red{ color:var(--red); }
+
+/* the lede carries the positioning line, then his own quote beneath */
+.why__lede > span{
+  display:block; margin-top:.6em;
+  font-family:var(--mono); font-weight:400; font-size:.72em;
+  letter-spacing:.04em; color:var(--mut);
+}
+
+/* ---------- 03 - upcoming film ---------- */
+.upnext{ padding-bottom:clamp(50px,8vh,110px); }
+.upnext__frame{
+  position:relative; margin:0 var(--pad); overflow:hidden;
+  border:1px solid var(--line); background:var(--ink);
+}
+.upnext__frame img{ width:100%; height:auto; display:block; }
+.upnext__badge{
+  /* right, not left - the sequence name is baked into the timeline image */
+  position:absolute; top:14px; right:16px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--red);
+  border:1px solid var(--red); border-radius:999px; padding:5px 12px;
+  background:rgba(10,8,9,.6);
+}
+.upnext__cap{
+  margin:clamp(16px,2.4vh,26px) var(--pad) 0;
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:10px clamp(14px,2.4vw,30px);
+}
+.upnext__title{
+  font-stretch:125%; font-weight:900; letter-spacing:-.015em; line-height:.9;
+  font-size:clamp(30px,5.4vw,84px); color:var(--bone);
+}
+.upnext__meta{ font-family:var(--mono); font-size:10px; letter-spacing:.18em; color:var(--mut); }
+
+/* ---------- 04 - vice president ---------- */
+.vp{
+  display:flex; align-items:center; gap:16px;
+  margin:0 var(--pad); padding:clamp(22px,3.4vh,40px) 0;
+  border-top:1px solid var(--line);
+}
+.vp__k{
+  font-family:var(--mono); font-size:10px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--mut);
+  border:1px solid var(--line); border-radius:999px; padding:6px 14px;
+}
+.vp__logo{ height:26px; width:auto; opacity:.9; filter:brightness(0) invert(1); }
+.vp__logo.missing{ display:none; }
+
+/* ---------- directors drawer (home) ---------- */
+.dirtab{
+  position:fixed; left:var(--pad); bottom:26px; z-index:9300;
+  background:rgba(10,8,9,.82); backdrop-filter:blur(10px);
+  border:1px solid var(--line); border-radius:999px;
+  padding:11px 18px; cursor:var(--cur);
+  font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--bone);
+  transition:opacity .35s var(--ease), transform .35s var(--ease), border-color .3s;
+}
+.dirtab i{ color:var(--red); font-style:normal; }
+.dirtab:hover{ border-color:var(--bone-dim); }
+.dirtab.hidden{ opacity:0; transform:translateY(10px); pointer-events:none; }
+@media (max-width:900px){ .dirtab{ cursor:pointer; } }
+
+.dirpanel{
+  position:fixed; left:var(--pad); bottom:26px; z-index:9310;
+  width:min(88vw,420px); max-height:min(70vh,560px); overflow:auto;
+  background:rgba(10,8,9,.94); backdrop-filter:blur(14px);
+  border:1px solid var(--line); padding:clamp(20px,2.6vw,30px);
+  opacity:0; visibility:hidden; transform:translateY(14px);
+  transition:opacity .4s var(--ease), transform .4s var(--ease), visibility .4s;
+}
+.dirpanel.open{ opacity:1; visibility:visible; transform:none; }
+.dirpanel__close{
+  position:absolute; top:12px; right:14px; background:none; border:0;
+  color:var(--mut); font-size:15px; line-height:1; cursor:var(--cur); padding:6px;
+  transition:color .3s;
+}
+.dirpanel__close:hover{ color:var(--red); }
+@media (max-width:900px){ .dirpanel__close{ cursor:pointer; } }
+.dirpanel__thought{
+  max-width:30ch; margin-bottom:clamp(14px,2vh,20px); padding-right:24px;
+  font-size:14px; line-height:1.45; color:var(--bone);
+}
+.dirpanel__list{ list-style:none; border-top:1px solid var(--line); }
+.dirpanel__list li{
+  padding:10px 0; border-bottom:1px solid var(--line);
+  font-stretch:110%; font-weight:800; text-transform:uppercase;
+  font-size:14px; letter-spacing:.01em; color:var(--bone);
+}
+.dirpanel__list li span{
+  display:block; font-family:var(--mono); font-weight:400; font-size:9.5px;
+  letter-spacing:.16em; color:var(--mut-2); margin-top:3px;
+}
+
+/* ---------- process ---------- */
+.proc{ padding-bottom:clamp(50px,8vh,110px); }
+.proc__lede{
+  margin:0 var(--pad) clamp(30px,5vh,56px); max-width:36ch;
+  font-stretch:110%; font-weight:700; line-height:1.3;
+  font-size:clamp(16px,1.7vw,26px); color:var(--bone-dim);
+}
+.proc__list{ list-style:none; margin:0 var(--pad); border-top:1px solid var(--line); }
+.proc__step{
+  display:grid; grid-template-columns:64px minmax(0,1fr);
+  gap:clamp(14px,2.4vw,34px); align-items:baseline;
+  padding:clamp(20px,3.2vh,36px) 0; border-bottom:1px solid var(--line);
+}
+.proc__no{ font-family:var(--mono); font-size:11px; letter-spacing:.2em; color:var(--red); }
+.proc__title{
+  font-stretch:125%; font-weight:900; text-transform:uppercase;
+  letter-spacing:-.01em; line-height:1; font-size:clamp(19px,2.6vw,40px); color:var(--bone);
+}
+.proc__text{ margin-top:10px; max-width:52ch; font-size:clamp(13px,1vw,16px);
+  line-height:1.5; color:var(--mut); }
+@media (max-width:640px){ .proc__step{ grid-template-columns:40px minmax(0,1fr); } }
+
+/* ---------- recognitions: the case-study frame ---------- */
+.recog__case{
+  margin:0 var(--pad) clamp(24px,4vh,44px);
+  display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  gap:1px; background:var(--line); border:1px solid var(--line);
+}
+.recog__case > *{ background:var(--ink); }
+.recog__poster{ position:relative; overflow:hidden; aspect-ratio:16/9; }
+.recog__poster img{ width:100%; height:100%; object-fit:cover; }
+.recog__study{ padding:clamp(20px,2.6vw,34px); display:flex; flex-direction:column; gap:12px; }
+.recog__study h4{
+  font-stretch:125%; font-weight:900; text-transform:uppercase; line-height:1;
+  font-size:clamp(17px,1.9vw,30px); color:var(--bone);
+}
+.recog__study p{ font-size:clamp(13px,1vw,15px); line-height:1.5; color:var(--mut); max-width:46ch; }
+.recog__study .pending{
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--mut-2);
+}
+@media (max-width:760px){ .recog__case{ grid-template-columns:1fr; } }
+
+/* ---------- directors page ---------- */
+.dirs__thought{
+  margin:0 var(--pad) clamp(24px,4vh,44px); max-width:36ch;
+  font-size:clamp(14px,1.3vw,20px); line-height:1.4; color:var(--mut);
+}
+
 /* ---------- the board ----------
    storyboard frames pinned up as a production board: hairline gaps
    read as the board showing through between panels, frame 01 runs
@@ -1013,7 +1169,7 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
 }
 .board__panel--wide{ grid-column:span 2; }
 
-/* the frame — corner marks and a slate number, like a boarded shot */
+/* the frame - corner marks and a slate number, like a boarded shot */
 .board__frame{
   position:relative; display:block; overflow:hidden;
   aspect-ratio:16/9; background:var(--bg);
@@ -1067,6 +1223,24 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
 }
 .board__panel:hover::before{ width:38px; opacity:1; }
 
+/* the work shelves reuse the board, minus the establishing panel */
+.board--work .board__panel{ text-align:left; }
+.board--work .board__panel::before{ display:none; }
+.board--work .board__cap{
+  border-top:1px solid var(--line); margin-top:clamp(10px,1.2vw,14px);
+  padding:clamp(11px,1.3vw,16px) 2px clamp(4px,.8vw,8px); gap:4px;
+}
+.board--work .board__title{ font-size:clamp(14px,1.3vw,20px); }
+.board--work .board__text{
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--mut-2);
+}
+.board__panel--play{
+  background:var(--ink); border:0; text-align:left;
+  cursor:var(--cur); font-family:inherit;
+}
+@media (max-width:900px){ .board__panel--play{ cursor:pointer; } }
+
 @media (max-width:1000px){
   .board{ grid-template-columns:repeat(2,1fr); }
   .board__panel--wide{ grid-column:span 2; }
@@ -1076,6 +1250,8 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
   .board{ grid-template-columns:1fr; }
   .board__panel--wide{ grid-column:span 1; }
   .board__panel--wide .board__frame{ aspect-ratio:16/9; }
+  .dirtab, .dirpanel{ left:14px; right:14px; bottom:14px; }
+  .dirpanel{ width:auto; }
 }
 .why__foot{
   display:flex; flex-wrap:wrap; align-items:center; gap:clamp(14px,2.6vw,34px);
@@ -1098,7 +1274,7 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
 }
 
 /* ============================================================
-   SELECTED STORIES — one giant S, two lines tall, with "elected"
+   SELECTED STORIES - one giant S, two lines tall, with "elected"
    on the first line and "tories" on the second
    ============================================================ */
 .sec-title--bigS{
@@ -1112,7 +1288,7 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
   /* optical: the S sits a touch low against the two-line block */
   transform:translateY(.015em);
 }
-/* the playhead — same rule that runs through the brand lockup */
+/* the playhead - same rule that runs through the brand lockup */
 .bigS__rule{
   align-self:stretch; width:2px; flex:0 0 2px;
   margin:0 .28em 0 .2em;
@@ -1123,7 +1299,7 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
 .sec-title--bigS i{ font-style:normal; display:block; }
 
 /* ============================================================
-   TIMELINE STORY NOTE — the thought behind the clip under the
+   TIMELINE STORY NOTE - the thought behind the clip under the
    playhead, printed below the strip
    ============================================================ */
 .tl__note{
@@ -1134,11 +1310,11 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
 .tl__note b{
   font-family:var(--mono); font-weight:700; font-size:10px;
   letter-spacing:.2em; color:var(--red); text-transform:uppercase;
-  margin-right:.2em; white-space:nowrap;
+  margin-right:1.1em; white-space:nowrap;
 }
 
 /* ============================================================
-   CREDITS — work with no key art of its own: it prints as
+   CREDITS - work with no key art of its own: it prints as
    typeset names under the shelf rather than as dead tiles
    ============================================================ */
 .credits{
@@ -1154,7 +1330,7 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
   margin-top:10px; max-width:56ch;
   font-size:clamp(13px,1.15vw,16px); line-height:1.5; color:var(--bone);
 }
-/* a proper column of credits — one title per row, ruled like a
+/* a proper column of credits - one title per row, ruled like a
    call sheet rather than run together as a sentence */
 .credits__list{
   list-style:none; margin-top:clamp(14px,2vh,22px);
@@ -1174,7 +1350,7 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
 .credits__list li:hover{ color:var(--bone); padding-left:32px; }
 
 /* ============================================================
-   04·B — WHAT I DO (two crafts, one profile)
+   04·B - WHAT I DO (two crafts, one profile)
    ============================================================ */
 .doing{ padding-bottom:clamp(40px,7vh,90px); }
 .doing__cols{
@@ -1206,7 +1382,7 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
 }
 
 /* ============================================================
-   CONTACT — lede + availability note
+   CONTACT - lede + availability note
    ============================================================ */
 .foot__lede{
   margin:6px var(--pad) clamp(26px,4vh,46px);
@@ -1240,7 +1416,7 @@ html.shot .hero__films-words > *, html.shot .hero__cats{
 .board__panel:hover .board__title{
   text-transform:uppercase;
 }
-/* the drop-cap titles are cased by hand — only their tails flip */
+/* the drop-cap titles are cased by hand - only their tails flip */
 .sec-title--drop, .sec-title--drop:hover,
 .sec-title--bigS, .sec-title--bigS:hover{ text-transform:none; }
 .sec-title--drop i, .sec-title--bigS i{ text-transform:lowercase; }
