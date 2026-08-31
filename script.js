@@ -130,16 +130,34 @@
   /* ASSOCIATE FILM EDITOR - Prashant's list of 2026-08-25, in his
      order. No key art for these, so they print as typeset credits
      under the films shelf rather than as dead tiles. */
+  /* ASSOCIATE FILM EDITOR - Prashant's list of 2026-08-25, in his
+     order. Posters are the Wikipedia infobox artwork; trailers are
+     channel-verified official uploads (Dharma / Pritish Nandy, the
+     films' own producers). Raasta Roko has no Wikipedia article and
+     "Anjaan" matches no Hindi film of the right period - both are
+     listed without artwork rather than given the wrong film's. */
   const ASSOC = {
     lede: 'Associate Film Editor alongside Deepa Bhatia and Hemal Kothari.',
-    titles: ['My Name Is Khan', 'We Are Family', 'Pyaar Ke Side Effects',
-             'Ek Khiladi Ek Haseena', 'Raasta Roko', 'Anjaan', 'Just Married'],
+    films: [
+      { title: 'My Name Is Khan',      year: '2010', art: 'films/my-name-is-khan-poster', yt: 'nqxgYT3TYzY' },
+      { title: 'We Are Family',        year: '2010', art: 'films/we-are-family',          yt: 'OmlnWf6lm8o' },
+      { title: 'Pyaar Ke Side Effects',year: '2006', art: 'films/pyaar-ke-side-effects',  yt: 'f4uv-recvRQ' },
+      { title: 'Ek Khiladi Ek Haseena',year: '2005', art: 'films/ek-khiladi-ek-haseena',  yt: 'b-nwxjHTfRk' },
+      { title: 'Just Married',         year: '2007', art: 'films/just-married',           yt: '1PJ1Y-tMDEA' },
+      { title: 'Raasta Roko',          year: '',     art: '',                             yt: '' },
+      { title: 'Anjaan',               year: '',     art: '',                             yt: '' },
+    ],
   };
-  /* FILM SONGS - the songs he cut inside features, and the
-     directors he cut songs and music videos for */
+  /* FILM SONGS - the songs he cut inside features. The linked video is
+     the official label upload of a song his own Vimeo confirms he cut;
+     Paying Guests has a poster only, since no song is confirmed. */
   const SONGS = {
-    lede: 'Film songs and music videos for Remo D’Souza, Arvind Thakur, Jayesh Pradhan and Jeet Singh.',
-    titles: ['Do Knot Disturb', 'Paying Guest', 'Kal Kisne Dekha'],
+    lede: 'Film songs and music videos for Remo D\u2019Souza, Arvind Thakur, Jayesh Pradhan and Jeet Singh.',
+    films: [
+      { title: 'Do Knot Disturb', year: '2009', art: 'films/do-knot-disturb',  yt: 'p2GuQW8A93k', song: 'Mere Naal' },
+      { title: 'Kal Kissne Dekha',year: '2009', art: 'films/kal-kissne-dekha', yt: 'Up9XrXVnxe0', song: 'Soniye Billori' },
+      { title: 'Paying Guests',   year: '2009', art: 'films/paying-guest',     yt: '',            song: '' },
+    ],
   };
   /* the upcoming feature - hero of the films shelf; drops in
      assets/img/films/rotten-apple.jpg automatically when supplied */
@@ -432,18 +450,37 @@
       });
     }
 
-    /* typeset credit blocks - work with no key art of its own, so
-       it prints as names rather than as tiles that cannot be played */
-    const credits = (id, data, kicker) => {
+    /* poster wall - a card per film, with a trailer chip where an
+       official upload exists. Films with no verified artwork print as
+       a plain card rather than borrowing another film's poster. */
+    const credits = (id, data) => {
       const wrap = $(id);
       if (!wrap) return;
+      const card = f => {
+        const tag = f.yt ? 'button' : 'div';
+        const attrs = f.yt
+          ? ` type="button" data-yt="${f.yt}" data-yt-title="${f.title.toUpperCase()}"` +
+            ` aria-label="Play ${f.song ? f.song + ' from ' : 'the trailer for '}${f.title}"`
+          : '';
+        const chip = f.yt
+          ? `<span class="poster__chip"><i>&#9656;</i>&nbsp;${f.song ? f.song.toUpperCase() : 'TRAILER'}</span>`
+          : '';
+        return `<${tag} class="poster${f.art ? '' : ' poster--noart'}"${attrs}>
+          <span class="poster__frame">
+            ${f.art ? `<img loading="lazy" src="assets/img/${f.art}.jpg" alt="${f.title} poster" />` : ''}
+            ${chip}
+          </span>
+          <span class="poster__cap">
+            <b>${f.title.toUpperCase()}</b>${f.year ? `<span>${f.year}</span>` : ''}
+          </span>
+        </${tag}>`;
+      };
       wrap.innerHTML =
-        `<span class="credits__k"><i>[●]</i>&nbsp;${kicker}</span>` +
         `<p class="credits__lede">${data.lede}</p>` +
-        `<ul class="credits__list">${data.titles.map(t => `<li>${t}</li>`).join('')}</ul>`;
+        `<div class="posters">${data.films.map(card).join('')}</div>`;
     };
-    credits('#creditsAssoc', ASSOC, 'ASSOCIATE&nbsp;FILM&nbsp;EDITOR');
-    credits('#creditsSongs', SONGS, 'FILM&nbsp;SONGS&nbsp;CUT&nbsp;FOR');
+    credits('#creditsAssoc', ASSOC);
+    credits('#creditsSongs', SONGS);
   })();
 
   /* ============================================================
