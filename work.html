@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>WORK - PRASHANT PANDA</title>
-<meta name="description" content="Commercials, series, feature films and music videos, with the brands they were cut for and the banners they aired on." />
+<meta name="description" content="Commercials, series, feature films and music videos cut by Prashant Panda, with the brands and banners they were made for." />
 <meta name="theme-color" content="#0a0809" />
 
 <meta property="og:title" content="WORK - PRASHANT PANDA" />
@@ -16,19 +16,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=17" />
+<link rel="stylesheet" href="styles.css?v=18" />
 </head>
-<body class="loaded" data-page="work" data-tc="4585">
+<body class="loaded" data-page="work">
 
-<!-- ======== FILM GRAIN + VIGNETTE ======== -->
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
-
-<!-- ======== HUD (scroll timecode) ======== -->
-<div class="hud" aria-hidden="true">
-  <span class="hud__l">P/P - EDIT · FILM · STORY</span>
-  <span class="hud__r">TC <b id="tc">00:00:00:00</b> / 25FPS</span>
-</div>
 
 <!-- ======== NAV ======== -->
 <header class="nav" id="nav">
@@ -47,18 +40,18 @@
 <!-- ======== FULLSCREEN MENU ======== -->
 <div class="menu" id="menu" aria-hidden="true">
   <div class="menu__bg" aria-hidden="true">
-    <img data-menubg="reel"      src="assets/img/work/1088993725.jpg" alt="" />
-    <img data-menubg="index"     src="assets/img/work/1106434425.jpg" alt="" />
-    <img data-menubg="directors" src="assets/img/work/1073818885.jpg" alt="" />
-    <img data-menubg="editor"    src="assets/img/work/1015277896.jpg" alt="" />
-    <img data-menubg="contact"   src="assets/img/work/1106435260.jpg" alt="" />
+    <img data-menubg="reel"      data-src="assets/img/work/1088993725.jpg" alt="" />
+    <img data-menubg="index"     data-src="assets/img/work/1106434425.jpg" alt="" />
+    <img data-menubg="directors" data-src="assets/img/work/1073818885.jpg" alt="" />
+    <img data-menubg="editor"    data-src="assets/img/work/1015277896.jpg" alt="" />
+    <img data-menubg="contact"   data-src="assets/img/work/1106435260.jpg" alt="" />
   </div>
   <nav class="menu__links" aria-label="Primary">
-    <a href="/" data-bg="reel"><b>01</b><span>WHY PRASHANT</span></a>
-    <a class="now" href="/work" data-bg="index"><b>02</b><span>WORK</span></a>
-    <a href="/directors" data-bg="directors"><b>03</b><span>DIRECTORS</span></a>
-    <a href="/process" data-bg="editor"><b>04</b><span>PROCESS</span></a>
-    <a href="/contact" data-bg="contact"><b>05</b><span>LET’S COLLABORATE</span></a>
+    <a href="/" data-bg="reel"><b>01</b><span>why prashant</span></a>
+    <a class="now" href="/work" data-bg="index"><b>02</b><span>work</span></a>
+    <a href="/directors" data-bg="directors"><b>03</b><span>directors</span></a>
+    <a href="/process" data-bg="editor"><b>04</b><span>process</span></a>
+    <a href="/contact" data-bg="contact"><b>05</b><span>let&rsquo;s collaborate</span></a>
   </nav>
   <div class="menu__foot">
     <a href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">@PPCUT_EDIT</a>
@@ -72,93 +65,96 @@
 
 <main id="top">
 
-<!-- ======== 02 - INDEX (three shelves: ads / series / films) ======== -->
-<section class="index" id="index">
-  <div class="subhead subhead--right reveal" id="adfilms">
-    <h3 class="subhead__title">COMMERCIALS</h3>
+<!-- ======== COMMERCIALS - three genre shelves on the board ======== -->
+<section class="index" id="commercials">
+  <div class="sec-head sec-head--first reveal">
+    <h1 class="sec-title sec-title--xl">commercials</h1>
   </div>
-  <div class="bmq" aria-label="Brands and agencies Prashant has cut ad films for">
-    <div class="bmq__track" id="bmqBrands"><!-- logos + wordmarks injected --></div>
+  <div class="bmq" aria-label="Brands and agencies Prashant has cut commercials for">
+    <div class="bmq__track" id="bmqBrands"><!-- logos injected --></div>
   </div>
   <div id="adGenres"><!-- one shelf per genre, injected --></div>
+</section>
 
-  <div class="subhead subhead--right reveal" id="series">
-    <h3 class="subhead__title">SERIES</h3>
+<!-- ======== SERIES ======== -->
+<section id="series">
+  <div class="sec-head reveal">
+    <h2 class="sec-title">series</h2>
   </div>
-  <div class="bmq bmq--rev" aria-label="Platforms and banners the series and films aired on">
-    <div class="bmq__track" id="bmqPlatforms"><!-- logos + wordmarks injected --></div>
+  <div class="bmq bmq--rev" aria-label="Platforms and banners the series aired on">
+    <div class="bmq__track" id="bmqPlatforms"><!-- logos injected --></div>
   </div>
-  <div class="index__grid" id="gridSeries"><!-- slates injected --></div>
+  <div class="board board--work board--after-bmq reveal" id="gridSeries"><!-- cards injected --></div>
+</section>
 
-  <div class="subhead subhead--right reveal" id="films">
-    <h3 class="subhead__title">FEATURE&nbsp;FILMS</h3>
+<!-- ======== FEATURE FILMS ======== -->
+<section id="films">
+  <div class="sec-head reveal">
+    <h2 class="sec-title">feature films</h2>
   </div>
-  <div class="index__grid" id="gridFilms"><!-- slates injected --></div>
-  <div class="credits reveal" id="creditsAssoc"><!-- credits injected --></div>
+  <div class="board board--work reveal" id="gridFilms"><!-- cards injected --></div>
+  <div class="credits reveal" id="creditsAssoc"><!-- poster wall injected --></div>
+</section>
 
-  <div class="subhead subhead--right reveal" id="musicvideos">
-    <h3 class="subhead__title">MUSIC&nbsp;VIDEOS&nbsp;&amp;&nbsp;FILM&nbsp;SONGS</h3>
+<!-- ======== MUSIC VIDEOS & FILM SONGS ======== -->
+<section id="musicvideos">
+  <div class="sec-head reveal">
+    <h2 class="sec-title">music videos &amp; film songs</h2>
   </div>
-  <div class="index__grid" id="gridMusic"><!-- tiles injected --></div>
-  <div class="credits reveal" id="creditsSongs"><!-- credits injected --></div>
+  <div class="board board--work reveal" id="gridMusic"><!-- cards injected --></div>
+  <div class="credits reveal" id="creditsSongs"><!-- poster wall injected --></div>
+</section>
 
-  <div class="subhead subhead--right reveal" id="recognitions">
-    <h3 class="subhead__title">HUMBLE&nbsp;RECOGNITIONS</h3>
+<!-- ======== HUMBLE RECOGNITIONS ======== -->
+<section id="recognitions">
+  <div class="sec-head reveal">
+    <h2 class="sec-title">humble recognitions</h2>
   </div>
-  <!-- CASE STUDY - the body copy below is SAMPLE TEXT, written to show
-       the shape and length. Prashant's own write-up replaces it. -->
+  <!-- CASE STUDY - the body copy is SAMPLE TEXT written to show the shape
+       and length; the badge says DRAFT until Prashant's own write-up replaces it. -->
   <article class="case reveal">
     <div class="case__poster">
-      <img src="assets/img/work/1106434425.jpg" alt="Chupa Chups - Carrom" loading="lazy" />
-      <span class="case__badge">CASE&nbsp;STUDY</span>
+      <img src="assets/img/work/1106434425.jpg" alt="Chupa Chups - Carrom" width="1600" height="900" decoding="async" loading="lazy" />
+      <span class="case__badge">case study · draft</span>
     </div>
     <div class="case__body">
-      <h4 class="case__title">CHUPA&nbsp;CHUPS&nbsp;-&nbsp;CARROM</h4>
-      <p class="case__meta">PERFETTI VAN MELLE&nbsp;&nbsp;·&nbsp;&nbsp;OGILVY&nbsp;&nbsp;·&nbsp;&nbsp;JAMIC FILMS&nbsp;&nbsp;·&nbsp;&nbsp;DIR. NIKHIL RAO</p>
+      <h3 class="case__title">Chupa Chups - Carrom</h3>
+      <p class="case__meta">Perfetti Van Melle · Ogilvy · Jamic Films · Dir. Nikhil Rao</p>
 
       <div class="case__row">
-        <span class="case__k">THE BRIEF</span>
-        <p>A carrom board, a crowded room and one sweet. The film had to land a
+        <span class="case__k">The brief</span>
+        <p class="copy">A carrom board, a crowded room and one sweet. The film had to land a
            joke that reads in a single wide, without a word of dialogue to lean on.</p>
       </div>
       <div class="case__row">
-        <span class="case__k">THE CUT</span>
-        <p>Most of the coverage was close. The film only worked once the wide was
+        <span class="case__k">The cut</span>
+        <p class="copy">Most of the coverage was close. The film only worked once the wide was
            held long enough for the room to react, so the edit resists cutting in
            and lets the beat play out where the audience can see everyone at once.</p>
       </div>
       <div class="case__row">
-        <span class="case__k">THE RESULT</span>
-        <p>One Gold, two Silver and a Bronze at the Good Ads Matter Awards 2026,
+        <span class="case__k">The result</span>
+        <p class="copy">One Gold, two Silver and a Bronze at the Good Ads Matter Awards 2026,
            and a Kyoorius Creative Awards win.</p>
       </div>
-
-      <p class="case__sample">SAMPLE COPY&nbsp;-&nbsp;TO BE REPLACED</p>
     </div>
   </article>
-  <ul class="recog__list recog__list--dark reveal">
-    <li>
-      <span class="recog__text">
-        <b>CHUPA CHUPS - CARROM</b>
-        <span>GOOD ADS MATTER AWARDS 2026 - 1 GOLD · 2 SILVER · 1 BRONZE</span>
-      </span>
-      <img class="recog__logo" src="assets/img/brands/good-ads-matter.png" alt="Good Ads Matter" loading="lazy" />
-    </li>
-    <li>
-      <span class="recog__text">
-        <b>CHUPA CHUPS - CARROM</b>
-        <span>KYOORIUS CREATIVE AWARDS - WINNER</span>
-      </span>
-      <img class="recog__logo" src="assets/img/brands/kyoorius.png" alt="Kyoorius" loading="lazy" />
-    </li>
-  </ul>
-
+  <div class="awards reveal">
+    <div class="award">
+      <img src="assets/img/brands/good-ads-matter.png" alt="Good Ads Matter Awards" loading="lazy" decoding="async" />
+      <span class="award__cap">Good Ads Matter Awards 2026<br/>1 gold · 2 silver · 1 bronze</span>
+    </div>
+    <div class="award">
+      <img src="assets/img/brands/kyoorius.png" alt="Kyoorius Creative Awards" loading="lazy" decoding="async" />
+      <span class="award__cap">Kyoorius Creative Awards<br/>winner</span>
+    </div>
+  </div>
 </section>
 
 <!-- ======== NEXT ======== -->
-<div class="nextwrap nextwrap--tight">
-  <a class="frow frow--next frow--half reveal" href="/directors">
-    <span class="frow__word">DIRECTORS</span>
+<div class="nextwrap">
+  <a class="frow frow--next reveal" href="/directors">
+    <span class="frow__word">directors</span>
     <span class="frow__arrow">→</span>
   </a>
 </div>
@@ -196,6 +192,6 @@
   </div>
 </div>
 
-<script src="script.js?v=20"></script>
+<script src="script.js?v=21"></script>
 </body>
 </html>

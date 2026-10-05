@@ -16,19 +16,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=17" />
+<link rel="stylesheet" href="styles.css?v=18" />
 </head>
-<body class="loaded" data-page="process" data-tc="445">
+<body class="loaded" data-page="process">
 
-<!-- ======== FILM GRAIN + VIGNETTE ======== -->
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
-
-<!-- ======== HUD (scroll timecode) ======== -->
-<div class="hud" aria-hidden="true">
-  <span class="hud__l">P/P - EDIT · FILM · STORY</span>
-  <span class="hud__r">TC <b id="tc">00:00:00:00</b> / 25FPS</span>
-</div>
 
 <!-- ======== NAV ======== -->
 <header class="nav" id="nav">
@@ -47,18 +40,18 @@
 <!-- ======== FULLSCREEN MENU ======== -->
 <div class="menu" id="menu" aria-hidden="true">
   <div class="menu__bg" aria-hidden="true">
-    <img data-menubg="reel"      src="assets/img/work/1088993725.jpg" alt="" />
-    <img data-menubg="index"     src="assets/img/work/1106434425.jpg" alt="" />
-    <img data-menubg="directors" src="assets/img/work/1073818885.jpg" alt="" />
-    <img data-menubg="editor"    src="assets/img/work/1015277896.jpg" alt="" />
-    <img data-menubg="contact"   src="assets/img/work/1106435260.jpg" alt="" />
+    <img data-menubg="reel"      data-src="assets/img/work/1088993725.jpg" alt="" />
+    <img data-menubg="index"     data-src="assets/img/work/1106434425.jpg" alt="" />
+    <img data-menubg="directors" data-src="assets/img/work/1073818885.jpg" alt="" />
+    <img data-menubg="editor"    data-src="assets/img/work/1015277896.jpg" alt="" />
+    <img data-menubg="contact"   data-src="assets/img/work/1106435260.jpg" alt="" />
   </div>
   <nav class="menu__links" aria-label="Primary">
-    <a href="/" data-bg="reel"><b>01</b><span>WHY PRASHANT</span></a>
-    <a href="/work" data-bg="index"><b>02</b><span>WORK</span></a>
-    <a href="/directors" data-bg="directors"><b>03</b><span>DIRECTORS</span></a>
-    <a class="now" href="/process" data-bg="editor"><b>04</b><span>PROCESS</span></a>
-    <a href="/contact" data-bg="contact"><b>05</b><span>LET’S COLLABORATE</span></a>
+    <a href="/" data-bg="reel"><b>01</b><span>why prashant</span></a>
+    <a href="/work" data-bg="index"><b>02</b><span>work</span></a>
+    <a href="/directors" data-bg="directors"><b>03</b><span>directors</span></a>
+    <a class="now" href="/process" data-bg="editor"><b>04</b><span>process</span></a>
+    <a href="/contact" data-bg="contact"><b>05</b><span>let&rsquo;s collaborate</span></a>
   </nav>
   <div class="menu__foot">
     <a href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">@PPCUT_EDIT</a>
@@ -76,61 +69,49 @@
      The pipeline is Prashant's own (offline through final delivery).
      The step copy below is placeholder - his write-up replaces it. -->
 <section class="proc" id="process">
-  <div class="sec-head sec-head--right reveal">
-    <h1 class="sec-title sec-title--sm">PROCESS</h1>
+  <div class="sec-head sec-head--first reveal">
+    <h1 class="sec-title sec-title--xl">process</h1>
   </div>
-  <p class="proc__lede reveal">From first cut to final delivery, one person stays with the film.</p>
+  <p class="lede reveal">From first cut to final delivery, one person stays with the film.</p>
 
   <ol class="proc__list">
     <li class="proc__step reveal">
       <span class="proc__no">01</span>
-      <div class="proc__body">
-        <h3 class="proc__title">OFFLINE</h3>
-        <p class="proc__text">Assembly, structure and the first pass at the story.</p>
-      </div>
+      <h3 class="proc__title">Offline</h3>
+      <p class="proc__text">Assembly, structure and the first pass at the story.</p>
     </li>
     <li class="proc__step reveal">
       <span class="proc__no">02</span>
-      <div class="proc__body">
-        <h3 class="proc__title">PICTURE LOCK</h3>
-        <p class="proc__text">The cut everyone signs off on, and nothing moves after it without a reason.</p>
-      </div>
+      <h3 class="proc__title">Picture lock</h3>
+      <p class="proc__text">The cut everyone signs off on, and nothing moves after it without a reason.</p>
     </li>
     <li class="proc__step reveal">
       <span class="proc__no">03</span>
-      <div class="proc__body">
-        <h3 class="proc__title">ONLINE</h3>
-        <p class="proc__text">Conform, cleanup and the finish at full resolution.</p>
-      </div>
+      <h3 class="proc__title">Online</h3>
+      <p class="proc__text">Conform, cleanup and the finish at full resolution.</p>
     </li>
     <li class="proc__step reveal">
       <span class="proc__no">04</span>
-      <div class="proc__body">
-        <h3 class="proc__title">SOUND</h3>
-        <p class="proc__text">Dialogue, design and mix.</p>
-      </div>
+      <h3 class="proc__title">Sound</h3>
+      <p class="proc__text">Dialogue, design and mix.</p>
     </li>
     <li class="proc__step reveal">
       <span class="proc__no">05</span>
-      <div class="proc__body">
-        <h3 class="proc__title">GRADE</h3>
-        <p class="proc__text">Colour, and the last chance to change how the film feels.</p>
-      </div>
+      <h3 class="proc__title">Grade</h3>
+      <p class="proc__text">Colour, and the last chance to change how the film feels.</p>
     </li>
     <li class="proc__step reveal">
       <span class="proc__no">06</span>
-      <div class="proc__body">
-        <h3 class="proc__title">FINAL DELIVERY</h3>
-        <p class="proc__text">Masters, versions and the specs each platform actually wants.</p>
-      </div>
+      <h3 class="proc__title">Final delivery</h3>
+      <p class="proc__text">Masters, versions and the specs each platform actually wants.</p>
     </li>
   </ol>
 </section>
 
 <!-- ======== NEXT ======== -->
-<div class="nextwrap nextwrap--tight">
-  <a class="frow frow--next frow--half reveal" href="/contact">
-    <span class="frow__word">LET&rsquo;S&nbsp;COLLABORATE</span>
+<div class="nextwrap">
+  <a class="frow frow--next reveal" href="/contact">
+    <span class="frow__word">let&rsquo;s collaborate</span>
     <span class="frow__arrow">&#8594;</span>
   </a>
 </div>
@@ -150,6 +131,6 @@
 
 </main>
 
-<script src="script.js?v=20"></script>
+<script src="script.js?v=21"></script>
 </body>
 </html>

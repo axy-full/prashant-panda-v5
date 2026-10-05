@@ -16,19 +16,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=17" />
+<link rel="stylesheet" href="styles.css?v=18" />
 </head>
-<body class="loaded" data-page="contact" data-tc="85">
+<body class="loaded" data-page="contact">
 
-<!-- ======== FILM GRAIN + VIGNETTE ======== -->
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
-
-<!-- ======== HUD (scroll timecode) ======== -->
-<div class="hud" aria-hidden="true">
-  <span class="hud__l">P/P - EDIT · FILM · STORY</span>
-  <span class="hud__r">TC <b id="tc">00:00:00:00</b> / 25FPS</span>
-</div>
 
 <!-- ======== NAV ======== -->
 <header class="nav" id="nav">
@@ -47,18 +40,18 @@
 <!-- ======== FULLSCREEN MENU ======== -->
 <div class="menu" id="menu" aria-hidden="true">
   <div class="menu__bg" aria-hidden="true">
-    <img data-menubg="reel"      src="assets/img/work/1088993725.jpg" alt="" />
-    <img data-menubg="index"     src="assets/img/work/1106434425.jpg" alt="" />
-    <img data-menubg="directors" src="assets/img/work/1073818885.jpg" alt="" />
-    <img data-menubg="editor"    src="assets/img/work/1015277896.jpg" alt="" />
-    <img data-menubg="contact"   src="assets/img/work/1106435260.jpg" alt="" />
+    <img data-menubg="reel"      data-src="assets/img/work/1088993725.jpg" alt="" />
+    <img data-menubg="index"     data-src="assets/img/work/1106434425.jpg" alt="" />
+    <img data-menubg="directors" data-src="assets/img/work/1073818885.jpg" alt="" />
+    <img data-menubg="editor"    data-src="assets/img/work/1015277896.jpg" alt="" />
+    <img data-menubg="contact"   data-src="assets/img/work/1106435260.jpg" alt="" />
   </div>
   <nav class="menu__links" aria-label="Primary">
-    <a href="/" data-bg="reel"><b>01</b><span>WHY PRASHANT</span></a>
-    <a href="/work" data-bg="index"><b>02</b><span>WORK</span></a>
-    <a href="/directors" data-bg="directors"><b>03</b><span>DIRECTORS</span></a>
-    <a href="/process" data-bg="editor"><b>04</b><span>PROCESS</span></a>
-    <a class="now" href="/contact" data-bg="contact"><b>05</b><span>LET’S COLLABORATE</span></a>
+    <a href="/" data-bg="reel"><b>01</b><span>why prashant</span></a>
+    <a href="/work" data-bg="index"><b>02</b><span>work</span></a>
+    <a href="/directors" data-bg="directors"><b>03</b><span>directors</span></a>
+    <a href="/process" data-bg="editor"><b>04</b><span>process</span></a>
+    <a class="now" href="/contact" data-bg="contact"><b>05</b><span>let&rsquo;s collaborate</span></a>
   </nav>
   <div class="menu__foot">
     <a href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">@PPCUT_EDIT</a>
@@ -72,40 +65,41 @@
 
 <main id="top">
 
-<!-- ======== 04 - LET’S TALK ======== -->
+<!-- ======== LET'S COLLABORATE ======== -->
 <footer class="foot" id="contact">
-  <h2 class="sec-title sec-title--sm foot__title reveal">LET&rsquo;S&nbsp;COLLABORATE</h2>
+  <div class="sec-head sec-head--first reveal">
+    <h1 class="sec-title sec-title--xl">let&rsquo;s collaborate</h1>
+  </div>
+  <p class="avail reveal">
+    Available for feature films, series, commercials and selected independent projects.
+    <span>Based in Mumbai · Available worldwide</span>
+  </p>
 
   <a class="frow reveal" id="emailRow" href="mailto:">
     <span class="frow__k" id="emailRowK">EMAIL&nbsp;PRASHANT</span>
-    <span class="frow__word">EMAIL</span>
+    <span class="frow__word">email</span>
     <span class="frow__arrow">↗</span>
   </a>
   <a class="frow reveal" href="https://wa.me/919892124165" target="_blank" rel="noopener">
     <span class="frow__k">+91&nbsp;98921&nbsp;24165</span>
-    <span class="frow__word">WHATSAPP</span>
+    <span class="frow__word">whatsapp</span>
     <span class="frow__arrow">↗</span>
   </a>
   <a class="frow reveal" href="https://www.instagram.com/ppcut_edit/" target="_blank" rel="noopener">
     <span class="frow__k">THE&nbsp;DMS</span>
-    <span class="frow__word">INSTAGRAM</span>
+    <span class="frow__word">instagram</span>
     <span class="frow__arrow">↗</span>
   </a>
   <a class="frow reveal" href="https://www.imdb.com/name/nm8079333/" target="_blank" rel="noopener">
     <span class="frow__k">THE&nbsp;FILMOGRAPHY</span>
-    <span class="frow__word">IMDB</span>
+    <span class="frow__word">imdb</span>
     <span class="frow__arrow">↗</span>
   </a>
   <a class="frow reveal" href="https://vimeo.com/prashantpanda" target="_blank" rel="noopener">
     <span class="frow__k">THE&nbsp;SHOWREEL</span>
-    <span class="frow__word">VIMEO</span>
+    <span class="frow__word">vimeo</span>
     <span class="frow__arrow">↗</span>
   </a>
-
-  <p class="foot__avail reveal">
-    AVAILABLE FOR FEATURE FILMS, SERIES, COMMERCIALS AND SELECTED INDEPENDENT PROJECTS.
-    <span>BASED IN MUMBAI&nbsp;&nbsp;·&nbsp;&nbsp;AVAILABLE WORLDWIDE</span>
-  </p>
 
   <div class="foot__bar">
     <span class="foot__brand"><img src="assets/img/brand/pp-lockup-inline-white.png?v=3" alt="PRASHANT PANDA" /></span>
@@ -120,6 +114,6 @@
 
 </main>
 
-<script src="script.js?v=20"></script>
+<script src="script.js?v=21"></script>
 </body>
 </html>

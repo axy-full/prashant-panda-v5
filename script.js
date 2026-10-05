@@ -1,19 +1,13 @@
 /* ============================================================
-   PRASHANT PANDA - V4 · THE SCREENING ROOM
+   PRASHANT PANDA - V5 · THE SCREENING ROOM
    one shared script for all pages - every module guards on the
-   presence of its DOM ( / · /work · /directors · /storyteller ·
-   /contact ); clean URLs via vercel cleanUrls + serve.py locally
-   Sources: vimeo.com/showcase/8346821 (verified embeds + real
-   durations) and imdb.com/name/nm8079333 (filmography).
-   Fidelity rules (carried from V1-V3, revised per Prashant's
-   notes of 2026-07-26):
-     · IMDB ratings rendered ONLY when >= 7.0
-     · My Name Is Khan + Paying Guest listed as ASSOCIATE FILM
-       EDITOR (Prashant's own credit correction); the remaining
-       editorial-department titles stay excluded
-     · ad-film genre tags researched per film (stills + campaign
-       press + upload metadata) - final say stays with Prashant
-     · awards list + music-video reel pending from Prashant
+   presence of its DOM ( / · /work · /directors · /process · /contact )
+   Sources: vimeo.com/prashantpanda (verified embeds) and
+   imdb.com/name/nm8079333 (filmography).
+   Fidelity rules (revised per Prashant's notes of 2026-08-25):
+     · My Name Is Khan etc. listed as ASSOCIATE FILM EDITOR (his own
+       credit correction); other editorial-department titles excluded
+     · genre tags are Prashant's own classification
      · contact email: ppanda.79@gmail.com (live since 2026-08-01)
    ============================================================ */
 (() => {
@@ -22,32 +16,36 @@
   const $  = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const pad2 = n => String(n).padStart(2, '0');
-  const mmss = s => `${pad2(Math.floor(s / 60))}:${pad2(s % 60)}`;
 
   /* ============================================================
-     AD FILMS (playable - vimeo showcase, unlisted hashes)
+     COMMERCIALS (playable - vimeo, unlisted hashes)
+     44 from the Vimeo showcase plus the six Prashant named in his
+     2026-08-25 notes (45-50). GENRE TAGS: his own classification.
      ============================================================ */
-  /* the full COMMERCIAL showcase - 44 from the Vimeo showcase plus
-     the six Prashant named in his 2026-08-25 notes (45-50, pulled
-     from vimeo.com/prashantpanda). ids 1-10 are the original
-     curated set (reel/directors/viz reference them).
-     GENRE TAGS: Prashant's own classification, 2026-08-25 */
+  /* the COMMERCIAL showcase in Prashant's own running order
+     (vimeo.com/showcase/8346821, refreshed 2026-10-05 - 49 films incl.
+     ids 51-55, added there 2026-08), then the six he named in his
+     2026-08-25 notes that live only on his profile (45-50).
+     GENRE TAGS: his own classification; 51-55 tagged by us, his to confirm */
   const ADS = [
     { id: 2, vid: '1106434425', hash: 'd768255096', title: 'Chupa Chups - Carrom', client: 'Perfetti Van Melle', credits: 'Ogilvy · Dir. Nikhil Rao', dur: 60, tag: 'HUMOR' },
     { id: 1, vid: '1088993725', hash: 'cd85ed120d', title: 'GIC - Mary', client: 'GIC Insurance', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 93, tag: 'STORYTELLING' },
-    { id: 3, vid: '1031822870', hash: '34305ab15d', title: 'EVA - Yes', client: 'EVA', credits: 'Dir. Varun Gupta', dur: 64, tag: 'STYLISED' },
     { id: 4, vid: '1073818885', hash: 'd659e0694c', title: 'Snickers', client: 'Snickers', credits: 'Dir. Rishabh Dubey', dur: 35, tag: 'HUMOR' },
+    { id: 3, vid: '1031822870', hash: '34305ab15d', title: 'EVA - Yes', client: 'EVA', credits: 'Dir. Varun Gupta', dur: 64, tag: 'STYLISED' },
+    { id: 37, vid: '1179531910', hash: 'be8e6f7f01', title: 'Gillette Guard 3-in-1', client: 'Gillette', credits: 'Keroscene Films · Dir. Rajesh Saathi', dur: 30, tag: 'STYLISED' },
+    { id: 10, vid: '1106435260', hash: 'ec61b93f55', title: 'ENVY', client: 'ENVY', credits: 'Dir. Vivek Daschaudhary', dur: 40, tag: 'STYLISED' },
+    { id: 51, vid: '1220727717', hash: 'ca6ef28682', title: 'Healthians', client: 'Healthians', credits: 'ft. Janhvi Kapoor', dur: 30, tag: 'HUMOR' },
+    { id: 52, vid: '1222621598', hash: '4655d539cd', title: 'Hershey\'s - Life Is Hard', client: 'Hershey\'s', credits: 'TBWA\\Lintas · Jamic Films · Dir. Shirish Daiya', dur: 62, tag: 'HUMOR' },
     { id: 5, vid: '1166613867', hash: '406b559643', title: 'ICICI Bank', client: 'ICICI Bank', credits: 'ft. Anil Kapoor', dur: 40, tag: 'HUMOR' },
     { id: 6, vid: '1015277896', hash: '25f1c9636d', title: 'Candid Dusting Powder', client: 'Candid', credits: 'BBDO India · Ducktape · Dir. Rishabh Dubey', dur: 53, tag: 'HUMOR' },
     { id: 7, vid: '867458294', hash: '74dda2c808', title: 'Har Ghar Ka Hero - Greenply E-Zero', client: 'Greenply', credits: 'Jamic Films · Dir. Nikhil Rao · ft. NTR Jr', dur: 35, tag: 'STYLISED' },
     { id: 8, vid: '1149446709', hash: '45c47a44bc', title: 'Hint - Pyaar ka Take-off', client: 'Hint', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 50, tag: 'STYLISED' },
     { id: 9, vid: '1088994415', hash: '270d911f7c', title: 'GIC - Integrated', client: 'GIC Insurance', credits: 'Jamic Films · Dir. Shirish Daiya', dur: 30, tag: 'STORYTELLING' },
-    { id: 10, vid: '1106435260', hash: 'ec61b93f55', title: 'ENVY', client: 'ENVY', credits: 'Dir. Vivek Daschaudhary', dur: 40, tag: 'STYLISED' },
     { id: 11, vid: '949624577', hash: '0aecd8d238', title: 'ICC T20 World Cup - Biggest Love', client: 'Star Sports', credits: 'Star Sports · Jamic Films · Dir. Nikhil Rao', dur: 70, tag: 'STORYTELLING' },
     { id: 12, vid: '1167725115', hash: '2ad055a2ad', title: 'Kotak Neo', client: 'Kotak Neo', credits: '', dur: 45, tag: 'STORYTELLING' },
     { id: 13, vid: '571746432', hash: '3ca0813643', title: 'Society Tea - Brand New Day', client: 'Society Tea', credits: '', dur: 257, tag: 'STORYTELLING' },
     { id: 14, vid: '1162055404', hash: '542ab9265a', title: 'MG Hector', client: 'MG Motor', credits: '', dur: 60, tag: 'STORYTELLING' },
-    { id: 15, vid: '1135694596', hash: '4e54adecb1', title: 'It\'s Your Moment - Festive \'25', client: 'amanté', credits: '', dur: 60, tag: 'STORYTELLING' },
+    { id: 15, vid: '1135694596', hash: '4e54adecb1', title: 'It\'s Your Moment - Festive \'25', client: 'amanté', credits: 'Dir. Raghavi Agarwal', dur: 60, tag: 'STORYTELLING' },
     { id: 16, vid: '958465600', hash: '9b8803648b', title: 'Dare Kiya Toh Darna Kya', client: 'Hint', credits: 'Jamic Films · Dir. Shirish Daiya · ft. Tiger Shroff', dur: 40, tag: 'STYLISED' },
     { id: 17, vid: '1020985979', hash: '2c2597bb82', title: 'Birla Opus - Ghost', client: 'Birla Opus', credits: 'Colonial Films · Dir. Rishabh Dubey', dur: 140, tag: 'HUMOR' },
     { id: 18, vid: '1011935988', hash: '16db53c95f', title: 'Birla Opus - Kidnapper', client: 'Birla Opus', credits: '', dur: 168, tag: 'HUMOR' },
@@ -56,41 +54,41 @@
     { id: 21, vid: '634280547', hash: 'bf91cde5d0', title: 'Bingo! Mad Angles ft. Ranveer Singh', client: 'Bingo!', credits: '', dur: 30, tag: 'HUMOR' },
     { id: 22, vid: '747936616', hash: '39ddb035cb', title: 'Meesho - Electronics MegaBlockbuster', client: 'Meesho', credits: '', dur: 20, tag: 'HUMOR' },
     { id: 23, vid: '539977032', hash: 'dd66e499b8', title: 'PGIM India - Gain From Experience', client: 'PGIM India', credits: '', dur: 55, tag: 'HUMOR' },
-    { id: 24, vid: '904713196', hash: 'b63d40fc61', title: 'Sunfeast', client: 'ITC Sunfeast', credits: '', dur: 43, tag: 'HUMOR' },
-    { id: 25, vid: '1174664059', hash: '2c95939b18', title: 'Britannia - Dugout', client: 'Britannia', credits: '', dur: 31, tag: 'HUMOR' },
+    { id: 24, vid: '904713196', hash: 'b63d40fc61', title: 'Sunfeast', client: 'ITC Sunfeast', credits: 'FCB Ulka · Dir. Subodh Menon', dur: 43, tag: 'HUMOR' },
+    { id: 25, vid: '1174664059', hash: '2c95939b18', title: 'Britannia - Dugout', client: 'Britannia', credits: 'Dir. Shirish Daiya', dur: 31, tag: 'HUMOR' },
     { id: 26, vid: '763773061', hash: 'abe977a192', title: 'MPL - Pool Champs', client: 'MPL', credits: '', dur: 29, tag: 'HUMOR' },
     { id: 27, vid: '535421247', hash: '6eecab7289', title: '#DeliverTheLove - Bhai Dooj', client: 'Amazon India', credits: '', dur: 112, tag: 'STORYTELLING' },
-    { id: 28, vid: '995053082', hash: '0f47f2dbab', title: 'Omnigel', client: 'Omnigel', credits: '', dur: 42, tag: 'STORYTELLING' },
+    { id: 28, vid: '995053082', hash: '0f47f2dbab', title: 'Omnigel', client: 'Omnigel', credits: 'Dir. Nikhil Rao', dur: 42, tag: 'STORYTELLING' },
     { id: 29, vid: '948625099', hash: '8bc2c8aa54', title: 'Birla Opus - Gorilla', client: 'Birla Opus', credits: 'Colonial Films · Dir. Rishabh Dubey', dur: 146, tag: 'HUMOR' },
     { id: 30, vid: '1176230484', hash: '31f3be9440', title: 'Tata IPL', client: 'Tata IPL', credits: 'Dir. Nikhil Rao', dur: 90, tag: 'HUMOR' },
-    { id: 31, vid: '1174664439', hash: 'e17b297944', title: 'Hershey\'s', client: 'Hershey\'s', credits: '', dur: 61, tag: 'HUMOR' },
+    { id: 31, vid: '1174664439', hash: 'e17b297944', title: 'Hershey\'s', client: 'Hershey\'s', credits: 'Dir. Shirish Daiya', dur: 61, tag: 'HUMOR' },
     { id: 32, vid: '535424849', hash: 'a1ece44b88', title: 'Hero - Halwa', client: 'Hero', credits: '', dur: 42, tag: 'STORYTELLING' },
     { id: 33, vid: '535422129', hash: '146793b802', title: 'Bajaj - Umbrella', client: 'Bajaj', credits: '', dur: 41, tag: 'STORYTELLING' },
     { id: 34, vid: '535421448', hash: 'bcd4f2c473', title: 'Bajaj - Paperboat', client: 'Bajaj', credits: '', dur: 46, tag: 'STORYTELLING' },
-    { id: 35, vid: '854322510', hash: '4e43202996', title: 'MPL - Ludo', client: 'MPL', credits: '', dur: 30, tag: 'HUMOR' },
+    { id: 35, vid: '854322510', hash: '4e43202996', title: 'MPL - Ludo', client: 'MPL', credits: 'Overdose Films · Dir. Rahul Dadda', dur: 30, tag: 'HUMOR' },
     { id: 36, vid: '747936708', hash: 'cfb4e9b082', title: 'Meesho - MegaBlockbuster Sale', client: 'Meesho', credits: '', dur: 29, tag: 'HUMOR' },
-    { id: 37, vid: '1179531910', hash: 'be8e6f7f01', title: 'Gillette Guard 3-in-1', client: 'Gillette', credits: 'Keroscene Films · Dir. Rajesh Saathi', dur: 30, tag: 'STYLISED' },
     { id: 38, vid: '1179533196', hash: 'b39fd32b44', title: 'IPL - Migrant', client: 'Astral Pipes', credits: '', dur: 60, tag: 'STORYTELLING' },
-    { id: 39, vid: '948622574', hash: 'cdfcad98cb', title: 'Bajaj Allianz Life - Happy Bonus', client: 'Bajaj Allianz Life', credits: '', dur: 55, tag: 'STORYTELLING' },
-    { id: 40, vid: '1006193461', hash: 'b2f117028b', title: 'JK Wipeazy', client: 'JK Wipeazy', credits: '', dur: 36, tag: 'HUMOR' },
+    { id: 44, vid: '1202512344', hash: '2f299c22f5', title: 'Agami Realty', client: 'Agami Realty', credits: '', dur: 78, tag: 'STYLISED' },
+    { id: 39, vid: '948622574', hash: 'cdfcad98cb', title: 'Bajaj Allianz Life - Happy Bonus', client: 'Bajaj Allianz Life', credits: 'Minikin Works · Dir. Mithun Shaw', dur: 55, tag: 'STORYTELLING' },
+    { id: 40, vid: '1006193461', hash: 'b2f117028b', title: 'JK Wipeazy', client: 'JK Wipeazy', credits: 'Dir. Rahul Dadda', dur: 36, tag: 'HUMOR' },
     { id: 41, vid: '1194290610', hash: '0abd367ed4', title: 'Chunky Ice Cream - Soulmate', client: 'Call Me Chunky', credits: '', dur: 15, tag: 'HUMOR' },
     { id: 42, vid: '1194256626', hash: '3fdcc1ecb0', title: 'Popeyes', client: 'Popeyes', credits: '', dur: 40, tag: 'HUMOR' },
-    { id: 43, vid: '1176234899', hash: '4b3fdf00d8', title: 'Equus Asinus', client: '', credits: '', dur: 50, tag: 'HUMOR' },
-    { id: 44, vid: '1202512344', hash: '2f299c22f5', title: 'Agami Realty', client: 'Agami Realty', credits: '', dur: 78, tag: 'STYLISED' },
+    { id: 43, vid: '1176234899', hash: '4b3fdf00d8', title: 'Equus Asinus', client: '', credits: 'Dir. Nikhil Rao', dur: 50, tag: 'HUMOR' },
+    { id: 53, vid: '1220191622', hash: '374b050074', title: 'Flipkart Live', client: 'Flipkart', credits: '', dur: 45, tag: 'HUMOR' },
+    { id: 54, vid: '1148404451', hash: 'd10f73a326', title: 'It\'s Your Moment - Amanté India', client: 'amanté', credits: 'Dir. Raghavi Agarwal', dur: 46, tag: 'STORYTELLING' },
+    { id: 55, vid: '1221037860', hash: '4ee2920fb6', title: 'Flipkart Minutes - Rakhi', client: 'Flipkart', credits: 'Minikin Works · Dir. Mithun Shaw', dur: 72, tag: 'STORYTELLING' },
     /* 45-50 - named in Prashant's 2026-08-25 notes, pulled from
        vimeo.com/prashantpanda (not in the curated showcase) */
     { id: 45, vid: '815585818',  hash: '3fdeb7b3e4', title: 'Asian Paints - Ace Sparc Emulsion', client: 'Asian Paints', credits: '', dur: 32, tag: 'HUMOR' },
     { id: 46, vid: '815585849',  hash: 'd0318ea5c2', title: 'Asian Paints - Tractor Sparc', client: 'Asian Paints', credits: '', dur: 47, tag: 'STORYTELLING' },
-    { id: 47, vid: '886353055',  hash: 'a556f5beab', title: 'MPL - Par Nahin Katega', client: 'MPL', credits: '', dur: 20, tag: 'HUMOR' },
+    { id: 47, vid: '886353055',  hash: 'a556f5beab', title: 'MPL - Par Nahin Katega', client: 'MPL', credits: 'Overdose Films · Dir. Rahul Dadda', dur: 20, tag: 'HUMOR' },
     { id: 48, vid: '763773007',  hash: '3b8630e258', title: 'MPL - Jignesh Bhai', client: 'MPL', credits: '', dur: 29, tag: 'HUMOR' },
     { id: 49, vid: '1149451696', hash: '94bfc6f18b', title: 'Oppo F31 Series 5G', client: 'Oppo', credits: '', dur: 30, tag: 'HUMOR' },
     { id: 50, vid: '747936664',  hash: '6ccb94a555', title: 'Lightein Parde - MegaBlockbuster', client: 'Meesho', credits: 'ft. Kapil Sharma', dur: 20, tag: 'HUMOR' },
   ];
 
-  /* ============================================================
-     MUSIC VIDEOS & FILM SONGS - his 2026-08-25 notes. Same shape
-     as ADS so the player and the timeline can carry them too.
-     ============================================================ */
+  /* MUSIC VIDEOS & FILM SONGS - same shape as ADS so the player and
+     the timeline carry them too */
   const MUSIC = [
     { id: 101, vid: '877026031', hash: 'a7348f4814', title: 'Tu Jaana Na Piya', client: 'KING - New Life', credits: '', dur: 246, tag: 'MUSIC' },
   ];
@@ -102,34 +100,29 @@
   const byId = id => LIST.find(p => p.id === id);
 
   /* ============================================================
-     SERIES + FILMS (no embeddable video - rendered as slates)
-     · sorted: series by IMDB desc, films by year desc
-     · rating shown only when >= 7.0
+     SERIES + FILMS - key art + channel-verified trailers
      ============================================================ */
-  /* art = assets/img/series/<art>.jpg - official key art; a slate
-     falls back to type automatically if the file is missing */
   const SERIES = [
-    { title: 'Permanent Roommates',        years: '2014-2016', eps: 5,  rating: 8.6, platform: 'TVF',                art: 'series/permanent-roommates', yt: 'tKNQMYmQjnA' },
-    { title: 'Hostel Daze',                years: '2019-2022', eps: 3,  rating: 8.5, platform: 'TVF · Prime Video',  art: 'series/hostel-daze', yt: '6Xdj-Jn9_iI' },
-    { title: 'Operation MBBS',             years: '2020-2021', eps: 2,  rating: 8.3, platform: '',                   art: 'series/operation-mbbs', yt: 'WL_BdNa4tEU' },
-    { title: 'Cheesecake',                 years: '2019',      eps: 5,  rating: 8.2, platform: '',                   art: 'series/cheesecake', yt: '' },
-    { title: 'Cartel',                     years: '2021',      eps: 14, rating: 8.0, platform: 'ALTBalaji',          art: 'series/cartel', yt: 'EQ9zXtlMRpM' },
-    { title: 'Bachelors vs the World',     years: '2022',      eps: 5,  rating: 7.8, platform: '',                   art: 'series/bachelors-vs-the-world', yt: 'bdh9UmsuEGw' },
-    { title: 'Ishq Next Door',             years: '2023',      eps: 7,  rating: 7.7, platform: 'JioCinema',          art: 'series/ishq-next-door', yt: 'lGTjxQavLc4' },
-    { title: 'Fireflies: Parth Aur Jugnu', years: '2023',      eps: 10, rating: 7.3, platform: '',                   art: 'series/fireflies', yt: '1MbGjbyYqrI' },
-    { title: 'CLASS of 2017',              years: '2017',      eps: 20, rating: 7.3, platform: 'ALTBalaji',          art: 'series/class-of-2017', yt: '' },
-    { title: "TSP's Zeroes",               years: '2018',      eps: 3,  rating: 7.2, platform: 'The Screen Patti',   art: 'series/tsps-zeroes', yt: 'LwIaKhvI3r0' },
-    { title: 'PA-Gals',                    years: '2017',      eps: 3,  rating: 6.6, platform: '',                   art: 'series/pa-gals', yt: 'lzI9ilVNzno' },
-    { title: 'Puncch Beat',                years: '2018-2019', eps: 13, rating: 6.2, platform: 'ALTBalaji',          art: 'series/puncch-beat', yt: 'j8Sdmrb1l2Q' },
-    { title: 'Ragini MMS Returns',         years: '2017-2018', eps: 11, rating: 4.1, platform: 'ALTBalaji',          art: 'series/ragini-mms-returns', yt: 'G8Xud9tnS-M' },
+    { title: 'Permanent Roommates',        art: 'series/permanent-roommates', yt: 'tKNQMYmQjnA' },
+    { title: 'Hostel Daze',                art: 'series/hostel-daze', yt: '6Xdj-Jn9_iI' },
+    { title: 'Operation MBBS',             art: 'series/operation-mbbs', yt: 'WL_BdNa4tEU' },
+    { title: 'Cheesecake',                 art: 'series/cheesecake', yt: '' },
+    { title: 'Cartel',                     art: 'series/cartel', yt: 'EQ9zXtlMRpM' },
+    { title: 'Bachelors vs the World',     art: 'series/bachelors-vs-the-world', yt: 'bdh9UmsuEGw' },
+    { title: 'Ishq Next Door',             art: 'series/ishq-next-door', yt: 'lGTjxQavLc4' },
+    { title: 'Fireflies: Parth Aur Jugnu', art: 'series/fireflies', yt: '1MbGjbyYqrI' },
+    { title: 'CLASS of 2017',              art: 'series/class-of-2017', yt: '' },
+    { title: "TSP's Zeroes",               art: 'series/tsps-zeroes', yt: 'LwIaKhvI3r0' },
+    { title: 'PA-Gals',                    art: 'series/pa-gals', yt: 'lzI9ilVNzno' },
+    { title: 'Puncch Beat',                art: 'series/puncch-beat', yt: 'j8Sdmrb1l2Q' },
+    { title: 'Ragini MMS Returns',         art: 'series/ragini-mms-returns', yt: 'G8Xud9tnS-M' },
   ];
+  /* the features he cut as editor; the associate credits live in ASSOC */
   const FILMS = [
-    { title: 'Rabia and Olivia', year: '2023', role: 'Editor',                note: 'Feature film',    art: 'films/rabia-and-olivia', yt: 'dYTUwZAVCrk' },
-    { title: 'My Name Is Khan',  year: '2010', role: 'Associate Film Editor', note: 'Dir. Karan Johar', art: 'films/my-name-is-khan',  yt: 'nqxgYT3TYzY' },
+    { title: 'Rabia and Olivia', year: '2023', role: 'Editor', art: 'films/rabia-and-olivia', yt: 'dYTUwZAVCrk' },
   ];
-  /* ASSOCIATE FILM EDITOR - Prashant's list of 2026-08-25, in his
-     order. No key art for these, so they print as typeset credits
-     under the films shelf rather than as dead tiles. */
+  /* the upcoming feature - its "poster" is the generated Avid timeline */
+  const UPCOMING = { title: 'Rotten Apple', house: 'Sagar Motion Pictures', art: 'films/rotten-apple' };
   /* ASSOCIATE FILM EDITOR - Prashant's list of 2026-08-25, in his
      order. Posters are the Wikipedia infobox artwork; trailers are
      channel-verified official uploads (Dharma / Pritish Nandy, the
@@ -152,144 +145,162 @@
      the official label upload of a song his own Vimeo confirms he cut;
      Paying Guests has a poster only, since no song is confirmed. */
   const SONGS = {
-    lede: 'Film songs and music videos for Remo D\u2019Souza, Arvind Thakur, Jayesh Pradhan and Jeet Singh.',
+    lede: 'Film songs and music videos for Remo D’Souza, Arvind Thakur, Jayesh Pradhan and Jeet Singh.',
     films: [
       { title: 'Do Knot Disturb', year: '2009', art: 'films/do-knot-disturb',  yt: 'p2GuQW8A93k', song: 'Mere Naal' },
       { title: 'Kal Kissne Dekha',year: '2009', art: 'films/kal-kissne-dekha', yt: 'Up9XrXVnxe0', song: 'Soniye Billori' },
       { title: 'Paying Guests',   year: '2009', art: 'films/paying-guest',     yt: '',            song: '' },
     ],
   };
-  /* the upcoming feature - hero of the films shelf; drops in
-     assets/img/films/rotten-apple.jpg automatically when supplied */
-  const UPCOMING = { title: 'Rotten Apple', note: 'Feature film', art: 'films/rotten-apple' };
 
   /* SELECTED STORIES - Prashant's own running order, 2026-08-25.
-     note = the thought behind the story (craft copy, not fact). */
+     note = the thought behind the story (craft copy, not fact).
+     ar = the film's true aspect; only '34' is pillarboxed in its still. */
   const REEL = [
-    { id: 2,   t: 'CHUPA CHUPS - CARROM',     ar: '34',
+    { id: 2,   t: 'Chupa Chups - Carrom',     ar: '34',
       note: 'A quiet joke built frame by frame. Comedy timing is edit timing - hold, hold, pay off.' },
-    { id: 1,   t: 'MARY AUNTY',               ar: '169',
+    { id: 1,   t: 'Mary Aunty',               ar: '169',
       note: 'Insurance sold as belonging - a stray who stays. The cut sits still and lets the bond do the talking.' },
-    { id: 20,  t: 'JAB HAATH AUR BINGO',      ar: '11', tick: 'FT. RANVEER SINGH',
+    { id: 20,  t: 'Jab Haath aur Bingo',      ar: '11',
       note: 'Fifteen seconds, one running gag, no room to breathe. The shortest cuts leave the least to hide behind.' },
-    { id: 42,  t: 'POPEYES',                  ar: '43',
+    { id: 42,  t: 'Popeyes',                  ar: '43',
       note: 'Appetite is a tempo problem. Cut on the crunch and the audience tastes it before they read it.' },
-    { id: 37,  t: 'GILLETTE',                 ar: '45', tick: 'DIR. RAJESH SAATHI',
+    { id: 37,  t: 'Gillette',                 ar: '45',
       note: 'Three blades, one clean line. Product films live or die on where you choose to stop looking.' },
-    { id: 31,  t: "HERSHEY'S",                ar: '169',
+    { id: 31,  t: "Hershey's",                ar: '169',
       note: 'Sweetness without sentiment. Let the pauses carry it and the product never has to shout.' },
-    { id: 8,   t: 'HINT - PYAAR KA TAKE-OFF', ar: '45',
+    { id: 8,   t: 'Hint - Pyaar ka Take-off', ar: '45',
       note: 'A love story boarding in fifty seconds. Looks traded like dialogue - the edit does the flirting.' },
-    { id: 4,   t: 'SNICKERS',                 ar: '11',
+    { id: 4,   t: 'Snickers',                 ar: '11',
       note: 'Hunger changes people - the gag only lands if the switch is invisible. Blink, and the cut already happened.' },
-    { id: 10,  t: 'ENVY',                     ar: '43',
+    { id: 10,  t: 'Envy',                     ar: '43',
       note: 'Fragrance is pure mood, no plot, only tempo. The edit wears the perfume.' },
-    { id: 101, t: 'TU JAANA NA PIYA',         ar: '169', tick: 'KING / NEW LIFE',
+    { id: 101, t: 'Tu Jaana Na Piya',         ar: '169',
       note: 'A song cut to the voice, not the beat. Music video editing is listening with your hands.' },
   ];
 
   /* ============================================================
-     DIRECTORS - Prashant's list of 2026-08-25, his order and his
-     twelve names, with Rishabh Dubey and Varun Gupta retained at
-     the tail (their cuts are already playable in-site).
-     works[] = ad ids playable in-site today; directors without
-     works get an "in assembly" panel until he sends the titles.
+     DIRECTORS - Prashant's twelve of 2026-08-25 in his order, then
+     Rishabh Dubey and Varun Gupta, then the directors credited on
+     the films already on the site (refreshed 2026-10-05 from the
+     credits in his own Vimeo descriptions). works[] = ids playable
+     in-site. Flipkart Rakhi is credited to Mithun Shaw from the
+     Minikin Works end card; Healthians and Flipkart Live carry no
+     credit yet, so they sit under no one.
      ============================================================ */
   const DIRECTORS = [
-    { name: 'NIKHIL RAO',         house: 'JAMIC FILMS',                works: [2, 7, 11, 30], still: '867458294' },
-    { name: 'SHIRISH DAIYA',      house: 'JAMIC FILMS',                works: [1, 9, 8, 16], still: '1088993725' },
+    { name: 'NIKHIL RAO',         house: 'JAMIC FILMS',                works: [2, 7, 11, 30, 28, 43], still: '867458294' },
+    { name: 'SHIRISH DAIYA',      house: 'JAMIC FILMS',                works: [1, 9, 8, 16, 52, 31, 25], still: '1088993725' },
     { name: 'RAJESH SAATHI',      house: 'KEROSCENE FILMS',            works: [37],      still: '1179531910' },
-    { name: 'ABHIJIT SUDAKAR',    house: 'ZIGZAG FILM',                works: [],        still: '' },
+    { name: 'ABHIJIT SUDHAKAR',   house: 'ZIGZAG FILM',                works: [],        still: '' },
     { name: 'SAPNA SINGH',        house: '',                           works: [],        still: '' },
     { name: 'SHAUN KOLA',         house: '',                           works: [],        still: '' },
     { name: 'RAHUL SRIVASTAVA',   house: '',                           works: [],        still: '' },
     { name: 'VIVEK DASCHAUDHARY', house: 'KARMMAN LINE',               works: [10],      still: '1106435260' },
-    { name: 'RAGHAVI AGARWAL',    house: '',                           works: [],        still: '' },
+    { name: 'RAGHAVI AGARWAL',    house: 'CINERA',                     works: [54, 15],  still: '1148404451' },
     { name: 'SUYASH VADHAVKAR',   house: '',                           works: [],        still: '' },
     { name: 'SHAKTI SAGAR',       house: '',                           works: [],        still: '' },
-    { name: 'MITHUN SHAW',        house: '',                           works: [],        still: '' },
+    { name: 'MITHUN SHAW',        house: 'MINIKIN WORKS',              works: [55, 39],  still: '1221037860' },
     { name: 'RISHABH DUBEY',      house: 'BBDO / DUCKTAPE / COLONIAL', works: [4, 6, 17, 29], still: '1073818885' },
     { name: 'VARUN GUPTA',        house: '',                           works: [3],       still: '1031822870' },
+    { name: 'RAHUL DADDA',        house: 'OVERDOSE FILMS',             works: [35, 47, 40], still: '854322510' },
+    { name: 'SUBODH MENON',       house: 'FCB ULKA',                   works: [24],      still: '904713196' },
+    { name: 'AKHILESH VATS',      house: 'KING - NEW LIFE',            works: [101],     still: '877026031' },
   ];
 
   /* ============================================================
-     01 - THE PORTFOLIO as an NLE TIMELINE (aimighty treatment)
-     · clips keep their relative length, compressed on a √-ish
-       curve so a four-minute brand film and a fifteen-second
-       cutdown can share one strip (same optical-area logic the
-       logo walls use). The caption still prints TRUE runtime.
-     · checkerboarded across V2/V1 like an A/B roll - echoing
-       the brand lockup's two tracks
-     · fixed playhead reads the scroll; 25fps timecode; the
-       active clip's story-thought prints under the strip
+     01 - SELECTED STORIES as an NLE TIMELINE
+     · one video track of uniform clips, no numbers, no durations
+     · two audio tracks under it (decorative waveforms, seeded per
+       clip so they are stable), the active clip's audio runs red
+     · fixed playhead reads the scroll; the clip under it prints
+       its story-thought below the strip
      ============================================================ */
   (function timeline() {
     const scroller = $('#tlScroll');
     if (!scroller) return;
-    const lanes = [$('#laneV2'), $('#laneV1')];
-    const ruler = $('#tlRuler'), inner = $('#tlInner'), tcOut = $('#tlTc');
+    const laneV = $('#laneV1');
+    const lanesA = [$('#laneA1'), $('#laneA2')].filter(Boolean);
+    const ruler = $('#tlRuler'), inner = $('#tlInner');
     const noteT = $('#tlNoteTitle'), noteX = $('#tlNoteText');
+    const CLIPS = REEL.map(r => ({ ...r, p: byId(r.id) })).filter(c => c.p);
+    const N = CLIPS.length;
+    const PADL = 52;
 
-    const CLIPS = REEL.map(r => ({ ...r, p: byId(r.id) }));
-    /* every clip the same width - the strip reads as an even run of
-       frames rather than a duration chart */
-    const SLOT = 60;
-    let acc = 0;
-    CLIPS.forEach(c => { c.d = SLOT; c.start = acc; acc += SLOT; });
-    const TOTALS = acc;
-    const PADL = 56, PADR = 72;
-    let pps = 7;
+    /* a deterministic waveform per clip - a fixed seed so it never
+       flickers between loads; reads as a mixed track, not as data */
+    const wave = (seed, bars, soft) => {
+      let s = (seed % 2147483646) + 1;
+      const rnd = () => (s = (s * 48271) % 2147483647) / 2147483647;
+      let d = '';
+      for (let i = 0; i < bars; i++) {
+        const env = .3 + .7 * Math.abs(Math.sin((i / bars) * Math.PI * (soft ? 1.7 : 3.1) + rnd() * .4));
+        const h = Math.max(.05, Math.min(1, env * (.4 + rnd() * .8))) * 47;
+        d += `M${i + .2} ${(50 - h).toFixed(1)}h.6v${(h * 2).toFixed(1)}h-.6z`;
+      }
+      return `<svg viewBox="0 0 ${bars} 100" preserveAspectRatio="none" aria-hidden="true"><path d="${d}"/></svg>`;
+    };
 
     CLIPS.forEach((c, i) => {
       const el = document.createElement('button');
       el.type = 'button';
       el.className = 'tclip';
       el.dataset.play = c.id;
+      el.dataset.ar = c.ar || '169';
       el.setAttribute('aria-label', `Play ${c.p.title}`);
       el.innerHTML = `
-        <img src="${img(c.p)}" alt="" ${i === 0 ? '' : 'loading="lazy"'} draggable="false" />
+        <img src="${img(c.p)}" alt="" width="1600" height="900" decoding="async" ${i < 4 ? '' : 'loading="lazy"'} draggable="false" />
         <span class="tclip__grade" aria-hidden="true"></span>
-        <span class="tclip__face">
-          <span class="tclip__name">${c.t}</span>
-        </span>`;
-      lanes[i % 2].appendChild(el);
+        <span class="tclip__name">${c.t}</span>`;
+      laneV.appendChild(el);
       c.el = el;
+      c.a = lanesA.map((lane, k) => {
+        const a = document.createElement('span');
+        a.className = 'aclip';
+        a.innerHTML = wave(+c.p.vid + k * 7919, 110, k === 1);
+        lane.appendChild(a);
+        return a;
+      });
     });
 
+    let w = 0;
     function layout() {
-      const frame = scroller.clientWidth || innerWidth;
-      pps = Math.max((frame * (frame < 700 ? 2.1 : 1.55)) / TOTALS, 7);
-      CLIPS.forEach(c => {
-        c.el.style.left = Math.round(PADL + c.start * pps) + 'px';
-        c.el.style.width = Math.round(c.d * pps) + 'px';
+      const h = laneV.clientHeight - 12;            /* clip inset 6px top + bottom */
+      w = Math.round(h * 16 / 9);                    /* every clip the same 16:9 width */
+      const cw = scroller.clientWidth || innerWidth;
+      /* the right pad lets the LAST clip reach the playhead at full scroll */
+      const PADR = Math.max(24, Math.round(cw * .82 - w * .5));
+      CLIPS.forEach((c, i) => {
+        const x = PADL + i * w;
+        c.el.style.left = x + 'px'; c.el.style.width = w + 'px';
+        c.a.forEach(a => { a.style.left = x + 'px'; a.style.width = w + 'px'; });
       });
+      inner.style.width = (PADL + N * w + PADR) + 'px';
+      /* a major tick on every cut, minor ticks at the quarters */
       const marks = [];
-      for (let s = 0; s <= TOTALS; s += 10) {
-        const major = s % 30 === 0;
-        marks.push(`<span class="tick${major ? ' major' : ''}" style="left:${Math.round(PADL + s * pps)}px">${major ? `<i>${mmss(s)}</i>` : ''}</span>`);
+      for (let i = 0; i <= N * 4; i++) {
+        marks.push(`<span class="tick${i % 4 === 0 ? ' major' : ''}" style="left:${Math.round(PADL + i * w / 4)}px"></span>`);
       }
       ruler.innerHTML = marks.join('');
-      inner.style.width = Math.round(PADL + TOTALS * pps + PADR) + 'px';
       sync();
     }
 
     const headAt = () => scroller.clientWidth * 0.18;
-    const fmtTC = sec => {
-      const s = Math.floor(sec);
-      return `${pad2(Math.floor(s / 60))}:${pad2(s % 60)}:${pad2(Math.floor((sec - s) * 25))}`;
-    };
     let cur = -1;
     function sync() {
-      const secs = Math.min(Math.max(0, (scroller.scrollLeft + headAt() - PADL) / pps), TOTALS - 0.04);
-      if (tcOut) tcOut.textContent = fmtTC(secs);
-      const i = CLIPS.findIndex(c => secs >= c.start && secs < c.start + c.d);
-      if (i >= 0 && i !== cur) {
-        cur = i;
-        CLIPS.forEach((c, j) => c.el.classList.toggle('active', j === i));
-        /* the descriptor is mono and small - hyphens read as noise there */
-        if (noteT) noteT.textContent = CLIPS[i].t.replace(/\s*-\s*/g, ' ');
-        if (noteX) noteX.textContent = CLIPS[i].note;
-      }
+      if (!w) return;
+      const x = scroller.scrollLeft + headAt() - PADL;
+      const i = Math.min(N - 1, Math.max(0, Math.floor(x / w)));
+      if (i === cur) return;
+      cur = i;
+      CLIPS.forEach((c, j) => {
+        const on = j === i;
+        c.el.classList.toggle('active', on);
+        c.a.forEach(a => a.classList.toggle('active', on));
+      });
+      /* the descriptor sets the name in mono - hyphens read as noise there */
+      if (noteT) noteT.textContent = CLIPS[i].t.replace(/\s*-\s*/g, ' ');
+      if (noteX) noteX.textContent = CLIPS[i].note;
     }
     let tick = false;
     scroller.addEventListener('scroll', () => {
@@ -298,8 +309,10 @@
     let rt;
     addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(layout, 120); });
     layout();
+    /* fonts and images can change the lane height after first paint */
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
 
-    /* wheel scrubs the timeline, hands the page back at the ends */
+    /* wheel scrubs the strip, and hands the page back at either end */
     scroller.addEventListener('wheel', e => {
       if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
       const max = scroller.scrollWidth - scroller.clientWidth;
@@ -332,164 +345,106 @@
       if (dragged) { e.preventDefault(); e.stopPropagation(); }
     }, true);
     scroller.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft') { e.preventDefault(); scroller.scrollLeft -= 120; }
-      if (e.key === 'ArrowRight') { e.preventDefault(); scroller.scrollLeft += 120; }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); scroller.scrollLeft -= w || 120; }
+      if (e.key === 'ArrowRight') { e.preventDefault(); scroller.scrollLeft += w || 120; }
     });
   })();
 
   /* ============================================================
-     RENDER - INDEX (three shelves: ads / series / films)
-     each shelf numbers its own titles; an end strip stretches
-     to the last grid column (grid-column:auto/-1) so no shelf
-     leaves bare cells
+     RENDER - WORK. One card for every body of work: a framed still
+     with the title beneath it, the same board Why Prashant uses.
      ============================================================ */
   (function renderIndex() {
-    /* caption = film name + brand, and the brand only when the title
-       doesn't already carry it. No durations, no repeated brand. */
+    /* brand under the title only when the title doesn't already carry it */
     const capOf = p => {
       const t = p.title.toUpperCase(), c = (p.client || '').toUpperCase();
       return (c && !t.includes(c)) ? c : '';
     };
-    const slate = (grid, no, N, tag, title, meta, rating, wide, art, yt) => {
-      const el = document.createElement(yt ? 'button' : 'div');
-      if (yt) {
-        el.type = 'button';
-        el.dataset.yt = yt;
-        el.dataset.ytTitle = title.toUpperCase();
-        el.setAttribute('aria-label', `Play trailer - ${title}`);
-      }
-      el.className = 'tile tile--slate' + (wide ? ' tile--wide' : '') + (art ? ' has-cover' : '');
-      el.innerHTML = `
-        ${art ? `<img class="slate__art" loading="lazy" src="assets/img/${art}.jpg" alt="${title} - key art" /><span class="slate__scrim" aria-hidden="true"></span>` : ''}
-        <span class="slate__top"><b>${no ? `${pad2(no)} / ${pad2(N)} - ` : ''}${tag}</b>${rating ? `<span>IMDB ${rating.toFixed(1)}</span>` : ''}</span>
-        <span class="slate__title">${title.toUpperCase()}</span>
-        <span class="slate__meta">${meta}</span>
-        ${yt ? '<span class="slate__chip"><i>▸</i>&nbsp;TRAILER</span>' : ''}`;
-      if (art) {
-        const im = el.querySelector('.slate__art');
-        im.addEventListener('error', () => {
-          el.classList.remove('has-cover');
-          const sc = el.querySelector('.slate__scrim');
-          if (sc) sc.remove();
-          im.remove();
-        });
-      }
-      grid.appendChild(el);
-      return el;
-    };
+    const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 
-    /* the ad shelf is grouped into Prashant's four genres - one
-       titled shelf each, no filter pills and no running total */
-    /* work uses the same boarded-frame treatment as Why Prashant:
-       a framed still with the title set beneath it, not over it */
-    const adTile = p => {
-      const el = document.createElement('button');
-      el.type = 'button';
-      el.className = 'board__panel board__panel--play';
-      el.dataset.play = p.id;
-      el.dataset.tag = p.tag;
-      el.setAttribute('aria-label', `Play ${p.title}`);
-      const brand = capOf(p);
+    const card = o => {
+      const clickable = o.play || o.yt;
+      const el = document.createElement(clickable ? 'button' : 'div');
+      if (clickable) el.type = 'button';
+      el.className = 'board__panel' + (o.upcoming ? ' board__panel--upcoming' : '');
+      if (o.play) { el.dataset.play = o.play; el.setAttribute('aria-label', `Play ${o.title}`); }
+      if (o.yt) { el.dataset.yt = o.yt; el.dataset.ytTitle = o.title.toUpperCase(); el.setAttribute('aria-label', `Play trailer - ${o.title}`); }
       el.innerHTML = `
         <span class="board__frame">
-          <img loading="lazy" src="${img(p)}" alt="${p.title} - film still" />
+          <img loading="lazy" decoding="async" width="1600" height="900" src="${o.art}" alt="${esc(o.title)}${o.alt ? ' - ' + o.alt : ''}" />
+          ${o.yt ? '<span class="chip"><i>&#9656;</i>&nbsp;TRAILER</span>' : ''}
         </span>
         <span class="board__cap">
-          <b class="board__title">${p.title.toUpperCase()}</b>
-          ${brand ? `<span class="board__text">${brand}</span>` : ''}
+          <b class="board__title">${esc(o.title)}</b>
+          ${o.brand ? `<span class="board__brand">${esc(o.brand)}</span>` : ''}
         </span>`;
+      const im = el.querySelector('img');
+      im.addEventListener('error', () => im.remove(), { once: true });
       return el;
     };
+    const fill = (grid, items) => { if (grid) items.forEach(o => grid.appendChild(card(o))); };
+
+    /* commercials, grouped into Prashant's three genres - one shelf each */
     const genres = $('#adGenres');
     if (genres) {
       TAGS.forEach(tag => {
         const films = ADS.filter(p => p.tag === tag);
         if (!films.length) return;
         const head = document.createElement('div');
-        head.className = 'subhead subhead--genre subhead--right reveal';
+        head.className = 'subhead reveal';
         head.id = 'genre-' + tag.toLowerCase();
         head.innerHTML = `<h3 class="subhead__title">${tag}</h3>`;
         genres.appendChild(head);
         const grid = document.createElement('div');
-        grid.className = 'board board--work';
+        grid.className = 'board board--work reveal';
         genres.appendChild(grid);
-        films.forEach(p => grid.appendChild(adTile(p)));
+        fill(grid, films.map(p => ({ title: p.title, art: img(p), brand: capOf(p), play: p.id, alt: 'film still' })));
       });
     }
+    fill($('#gridSeries'), SERIES.map(s => ({ title: s.title, art: `assets/img/${s.art}.jpg`, yt: s.yt, alt: 'key art' })));
+    fill($('#gridFilms'), [
+      { title: UPCOMING.title, art: `assets/img/${UPCOMING.art}.jpg`, brand: `UPCOMING · ${UPCOMING.house.toUpperCase()}`, upcoming: true, alt: 'edit timeline' },
+      ...FILMS.map(f => ({ title: f.title, art: `assets/img/${f.art}.jpg`, brand: f.role.toUpperCase(), yt: f.yt, alt: 'key art' })),
+    ]);
+    fill($('#gridMusic'), MUSIC.map(p => ({ title: p.title, art: img(p), brand: capOf(p), play: p.id, alt: 'film still' })));
 
-    const gSeries = $('#gridSeries');
-    if (gSeries) {
-      /* just the name - no episode counts, years, ratings or platform */
-      SERIES.forEach(s => slate(gSeries, 0, 0, 'SERIES', s.title, '', 0, false, s.art, s.yt));
-    }
-
-    const gFilms = $('#gridFilms');
-    if (gFilms) {
-      /* the upcoming feature leads the shelf as its hero */
-      const hero = slate(gFilms, 0, 0, 'UPCOMING', UPCOMING.title,
-        'SAGAR MOTION PICTURES', 0, false, UPCOMING.art, '');
-      hero.classList.add('tile--filmhero', 'tile--upcoming');
-      FILMS.forEach((f, i) => {
-        slate(gFilms, 0, 0, 'FILM', f.title, f.role.toUpperCase(), 0, i === 0, f.art, f.yt);
-      });
-    }
-
-    /* music videos & film songs - playable, same tile as the ads */
-    const gMusic = $('#gridMusic');
-    if (gMusic) {
-      MUSIC.forEach((p, i) => {
-        const el = document.createElement('button');
-        el.type = 'button';
-        el.className = 'tile';
-        el.dataset.play = p.id;
-        el.setAttribute('aria-label', `Play - ${p.title}`);
-        el.innerHTML = `
-          <img loading="lazy" src="${img(p)}" alt="${p.title} - film still" />
-          <span class="tile__cap"><b>${p.title.toUpperCase()}</b><span>${capOf(p)}</span></span>`;
-        gMusic.appendChild(el);
-      });
-    }
-
-    /* poster wall - a card per film, with a trailer chip where an
-       official upload exists. Films with no verified artwork print as
-       a plain card rather than borrowing another film's poster. */
+    /* poster wall - a card per film, a trailer chip where an official
+       upload exists. Films with no verified artwork set their title
+       inside the frame like a slate rather than borrowing a poster. */
     const credits = (id, data) => {
       const wrap = $(id);
       if (!wrap) return;
-      const card = f => {
+      const poster = f => {
         const tag = f.yt ? 'button' : 'div';
         const attrs = f.yt
-          ? ` type="button" data-yt="${f.yt}" data-yt-title="${f.title.toUpperCase()}"` +
-            ` aria-label="Play ${f.song ? f.song + ' from ' : 'the trailer for '}${f.title}"`
+          ? ` type="button" data-yt="${f.yt}" data-yt-title="${esc(f.title.toUpperCase())}"` +
+            ` aria-label="Play ${f.song ? f.song + ' from ' : 'the trailer for '}${esc(f.title)}"`
           : '';
         const chip = f.yt
-          ? `<span class="poster__chip"><i>&#9656;</i>&nbsp;${f.song ? f.song.toUpperCase() : 'TRAILER'}</span>`
+          ? `<span class="chip"><i>&#9656;</i>&nbsp;${esc(f.song ? f.song.toUpperCase() : 'TRAILER')}</span>`
           : '';
         return `<${tag} class="poster${f.art ? '' : ' poster--noart'}"${attrs}>
           <span class="poster__frame">
-            ${f.art ? `<img loading="lazy" src="assets/img/${f.art}.jpg" alt="${f.title} poster" />` : ''}
+            ${f.art
+              ? `<img loading="lazy" decoding="async" src="assets/img/${f.art}.jpg" alt="${esc(f.title)} poster" />`
+              : `<span>${esc(f.title)}</span>`}
             ${chip}
           </span>
           <span class="poster__cap">
-            <b>${f.title.toUpperCase()}</b>${f.year ? `<span>${f.year}</span>` : ''}
+            <b>${esc(f.title)}</b>${f.year ? `<span class="poster__year">${f.year}</span>` : ''}
           </span>
         </${tag}>`;
       };
       wrap.innerHTML =
         `<p class="credits__lede">${data.lede}</p>` +
-        `<div class="posters">${data.films.map(card).join('')}</div>`;
+        `<div class="posters">${data.films.map(poster).join('')}</div>`;
     };
     credits('#creditsAssoc', ASSOC);
     credits('#creditsSongs', SONGS);
   })();
 
-  /* ============================================================
-     CONTACT EMAIL - paste Prashant's address here to activate
-     the EMAIL button on /contact (stays a muted "in assembly"
-     row while empty - the no-invented-email rule holds)
-     ============================================================ */
-  /* the VP company mark is pending from Prashant - hide the slot
-     until the file exists so the row never shows a broken image */
+  /* the VP company mark is pending from Prashant - hide the slot until
+     the file exists so the row never shows a broken image */
   (function vpLogo() {
     const el = $('#vpLogo');
     if (!el) return;
@@ -507,18 +462,17 @@
       row.classList.add('frow--pending');
       row.removeAttribute('href');
       const k = $('#emailRowK');
-      if (k) k.innerHTML = 'ADDRESS&nbsp;-&nbsp;IN&nbsp;ASSEMBLY';
+      if (k) k.textContent = 'ADDRESS - IN ASSEMBLY';
     }
   })();
 
   /* ============================================================
-     BANNERS - ad-film brands + agencies (under 02·A) and the
-     platforms/banners the series & films aired on (under 02·C)
-     logo: filename in assets/img/brands/ (official marks,
-     recolored bone via CSS) · logo:null → typographic fallback
+     BANNERS - brands + agencies under COMMERCIALS, the platforms
+     under SERIES. logo: filename in assets/img/brands/ (official
+     marks, recolored bone via CSS) · logo:null → typographic fallback
      ============================================================ */
   const BRANDS_ROW = [
-    { name: 'GIC',                logo: 'gic-compact.svg' }, /* emblem + GIC glyphs derived from the official Council lockup */
+    { name: 'GIC',                logo: 'gic-compact.svg' },
     { name: 'SNICKERS',           logo: 'snickers.svg' },
     { name: 'ICICI BANK',         logo: 'icici-bank.svg' },
     { name: 'PERFETTI VAN MELLE', logo: 'perfetti.svg' },
@@ -536,9 +490,7 @@
     { name: 'LOWE LINTAS',        logo: 'lowe-lintas.png' },
     { name: 'KEROSCENE FILMS',    logo: 'keroscene.png' },
     { name: 'ZIGZAG FILM',        logo: 'zigzag.png' },
-    { name: 'KARMMAN LINE',       logo: 'karmanline.png' }, /* official double-M styling */
-    /* added per Prashant, 2026-08-25 - Dharma is the house behind the
-       associate-editor features; Entourage Films' own mark, entourage-films.com */
+    { name: 'KARMMAN LINE',       logo: 'karmanline.png' },
     { name: 'DHARMA PRODUCTIONS', logo: 'dharma.svg' },
     { name: 'ENTOURAGE FILMS',    logo: 'entourage-films.png' },
   ];
@@ -550,9 +502,8 @@
     { name: 'THE SCREEN PATTI', logo: 'screen-patti.png' },
   ];
   (function renderBanners() {
-    /* ?v=2 busts caches that pinned 404s from the deploy window */
     const item = b => b.logo
-      ? `<img class="bmq__logo" src="assets/img/brands/${b.logo}?v=2" alt="${b.name}" />`
+      ? `<img class="bmq__logo" src="assets/img/brands/${b.logo}?v=2" alt="${b.name}" loading="lazy" decoding="async" />`
       : `<span>${b.name.replace(/ /g, '&nbsp;')}</span>`;
     const fill = (id, row) => {
       const track = $(id);
@@ -565,50 +516,30 @@
     fill('#bmqBrands', BRANDS_ROW);
     fill('#bmqPlatforms', PLATFORMS_ROW);
 
-    /* thin hero ticker - every banner, logo-first, at ticker scale */
-    const ticker = $('#ticker');
-    if (ticker) {
-      const ROW = [...BRANDS_ROW, ...PLATFORMS_ROW];
-      const tItem = b => b.logo
-        ? `<img class="marquee__logo" src="assets/img/brands/${b.logo}?v=2" alt="${b.name}" />`
-        : `<span>${b.name.replace(/ /g, '&nbsp;')}</span>`;
-      const half = ROW.map(b => `${tItem(b)}<b>●</b>`).join('');
-      ticker.innerHTML = half + half;
-    }
-
-    /* equalise the strips by optical AREA, not raw height: a long
-       wordmark set to the same height as a compact mark reads twice
-       as loud. h = base · √(REF/aspect), held inside sane bounds. */
+    /* equalise the strip by optical AREA, not raw height: a long wordmark
+       set to the same height as a compact mark reads twice as loud.
+       h = base · √(REF/aspect), held to ±25% */
     const REF = 3.2;
     const size = el => {
       const w = el.naturalWidth, h = el.naturalHeight;
       if (!w || !h) return;
-      /* held to ±25% so a stacked mark can't tower over the strip */
       const k = Math.min(1.25, Math.max(.82, Math.sqrt(REF / (w / h))));
       el.style.setProperty('--k', k.toFixed(3));
     };
-    $$('.marquee__logo, .bmq__logo').forEach(el => {
+    $$('.bmq__logo').forEach(el => {
       if (el.complete) size(el);
       else el.addEventListener('load', () => size(el), { once: true });
     });
-
-    /* type fallbacks get the same optical-area treatment - a long
-       wordmark set in 125%-stretch black otherwise outweighs every
-       compact mark beside it. A text box's aspect doesn't change with
-       font-size, so one measurement is enough. Floor is lower than the
-       logos' because these words run much wider than a mark. */
+    /* type fallbacks get the same treatment, measured once the web font is in */
     const sizeType = el => {
-      if (el.dataset.sized) return;            /* never compound the scale */
+      if (el.dataset.sized) return;
       const r = el.getBoundingClientRect();
       if (!r.width || !r.height) return;
       const k = Math.min(1.15, Math.max(.6, Math.sqrt(REF / (r.width / r.height))));
       el.style.fontSize = `calc(${getComputedStyle(el).fontSize} * ${k.toFixed(3)})`;
       el.dataset.sized = '1';
     };
-    /* fonts.ready, not rAF - the measurement needs the web font's real
-       metrics, and rAF is parked in a background tab so the strip would
-       be left unequalised for anyone who opens the site in a new tab */
-    const applyType = () => $$('.marquee__track span, .bmq__track span').forEach(sizeType);
+    const applyType = () => $$('.bmq__track span').forEach(sizeType);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(applyType);
     else applyType();
   })();
@@ -617,8 +548,8 @@
      DIRECTORS DRAWER (home) - a handle bottom-left opens the list
      ============================================================ */
   (function dirDrawer() {
-    const tab = $('#dirTab'), panel = $('#dirPanel'), list = $('#dirPanelList');
-    if (!tab || !panel || !list) return;
+    const tab = $('#dirTab'), panel = $('#dirPanel'), list = $('#dirPanelList'), close = $('#dirPanelClose');
+    if (!tab || !panel || !list || !close) return;
     list.innerHTML = DIRECTORS.map(d =>
       `<li>${d.name}${d.house ? `<span>${d.house}</span>` : ''}</li>`).join('');
     const set = open => {
@@ -626,9 +557,10 @@
       panel.setAttribute('aria-hidden', String(!open));
       tab.setAttribute('aria-expanded', String(open));
       tab.classList.toggle('hidden', open);
+      (open ? close : tab).focus({ preventScroll: true });
     };
     tab.addEventListener('click', () => set(true));
-    $('#dirPanelClose').addEventListener('click', () => set(false));
+    close.addEventListener('click', () => set(false));
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && panel.classList.contains('open')) set(false);
     });
@@ -640,10 +572,8 @@
   (function renderDirectors() {
     const wrap = $('#dirRows');
     if (!wrap) return;
-    /* names run right-aligned in a single column; no cut counts and no
-       right-hand data - the row shows a couple of titles, not a tally */
-    DIRECTORS.forEach((d, i) => {
-      const cuts = d.works.map(byId);
+    DIRECTORS.forEach(d => {
+      const cuts = d.works.map(byId).filter(Boolean);
       const chips = cuts.length
         ? cuts.map(w => `<button type="button" class="dirchip" data-play="${w.id}">${w.title.toUpperCase()}&nbsp;▸</button>`).join('')
         : '<span class="dirchip dirchip--tbc">MORE SOON</span>';
@@ -653,20 +583,16 @@
       el.setAttribute('role', 'button');
       el.setAttribute('tabindex', '0');
       el.setAttribute('aria-expanded', 'false');
-      el.innerHTML = `
-        <span class="dir__no">D.${pad2(i + 1)}</span>
-        <span class="dir__name">${d.name}</span>
-        <div class="dir__works">${chips}</div>`;
+      el.innerHTML = `<span class="dir__name">${d.name}</span><div class="dir__works">${chips}</div>`;
       wrap.appendChild(el);
     });
 
-    /* tap a name → its cuts unfold (and play in-site) */
     const toggle = row => {
       const open = row.classList.toggle('open');
       row.setAttribute('aria-expanded', String(open));
     };
     wrap.addEventListener('click', e => {
-      if (e.target.closest('[data-play]')) return; /* chip → player */
+      if (e.target.closest('[data-play]')) return;
       const row = e.target.closest('.dir');
       if (row) toggle(row);
     });
@@ -703,7 +629,7 @@
   })();
 
   /* ============================================================
-     PRELOADER
+     THE OPENING (home only)
      ============================================================ */
   const loader = $('#loader');
   (function opening() {
@@ -721,10 +647,9 @@
     const FLY      = reduced ? 0 : 1400;   /* matches .titleseq__mark transition */
     const fill = $('#loaderFill'), num = $('#loaderNum');
 
-    /* fly the assembled mark from centre screen onto the nav logo.
-       Both are the same artwork, so the landing is a straight swap.
-       If the box measures zero (fonts/images not laid out yet) skip
-       the flight rather than launching the mark to a wrong place. */
+    /* fly the assembled mark from centre screen onto the nav logo. Both
+       are the same artwork, so the landing is a straight swap. If a box
+       measures zero, skip the flight rather than land the mark wrong. */
     function settleIntoNav() {
       const mark = $('#tsMark'), slot = $('#navBrandImg');
       if (!mark || !slot) return;
@@ -737,13 +662,10 @@
       mark.style.transform = `translate(${dx}px, ${dy}px) scale(${s})`;
     }
 
-    /* the sequence runs ~9s so the subtext can actually be read - but
-       nobody should be trapped in it. Any click or key jumps to the end. */
+    /* the sequence runs ~9s so the subtext can be read - but nobody
+       should be trapped in it. Any click or key jumps to the end. */
     let done = false;
     const timers = [];
-    /* Cut straight to the open site. No flight here - the mark would have
-       to be measured mid-assembly and would land wrong; a clean dissolve
-       reads better than a bad landing. */
     function finish() {
       if (done) return;
       done = true;
@@ -757,8 +679,6 @@
 
     function play() {
       requestAnimationFrame(() => body.classList.remove('opening'));
-
-      /* the bar tracks the assembly instead of running on its own clock */
       const t0 = performance.now();
       const tick = now => {
         const k = Math.min(1, (now - t0) / Math.max(ASSEMBLE, 1));
@@ -771,10 +691,10 @@
       timers.push(setTimeout(() => {
         if (done) return;
         loader.classList.add('done');
-        body.classList.add('loaded');           /* veil lifts, roles land */
+        body.classList.add('loaded');
         timers.push(setTimeout(() => {
           if (done) return;
-          body.classList.add('settling');       /* meta fades, mark flies */
+          body.classList.add('settling');
           settleIntoNav();
           timers.push(setTimeout(() => {
             done = true;
@@ -784,11 +704,9 @@
       }, ASSEMBLE + (reduced ? 0 : 140)));
     }
 
-    /* Don't start the sequence in a background tab: rAF is parked and
-       transitions don't advance there, so the timers would run out
-       while nothing moved - the visitor would return to a logo that
-       snaps together, or to a mark measured against a stale layout.
-       Wait until the page is actually on screen, then play it. */
+    /* Don't start in a background tab: rAF is parked there and the
+       timers would run out while nothing moved. Wait for the page to be
+       on screen, with a failsafe so the site can never sit blank. */
     if (document.visibilityState === 'visible') {
       play();
     } else {
@@ -797,11 +715,6 @@
         document.removeEventListener('visibilitychange', onShow);
         play();
       });
-      /* Failsafe: the page is hidden behind the veil until the sequence
-         finishes, so if visibilitychange never arrives (embedded webview,
-         prerender, an automation context that reports hidden forever) the
-         site would sit there blank. Open it anyway - losing the animation
-         is far cheaper than serving an empty page. */
       setTimeout(finish, 12000);
     }
   })();
@@ -811,8 +724,14 @@
      ============================================================ */
   const menu = $('#menu'), burger = $('#burger'), burgerLabel = $('#burgerLabel');
   const menuOpen = () => menu && menu.classList.contains('open');
+  let menuStillsLoaded = false;
   function toggleMenu(open) {
     if (!menu || !burger) return;
+    if (open && !menuStillsLoaded) {
+      /* the five stills only load the first time the menu opens */
+      $$('.menu__bg img[data-src]', menu).forEach(im => { im.src = im.dataset.src; });
+      menuStillsLoaded = true;
+    }
     burger.classList.toggle('open', open);
     menu.classList.toggle('open', open);
     menu.setAttribute('aria-hidden', String(!open));
@@ -823,15 +742,12 @@
   }
   (function nav() {
     const nav = $('#nav');
-    /* bone-opening pages (storyteller) force a solid nav from the top */
-    const forceSolid = document.body.dataset.nav === 'solid';
-    const onScroll = () => nav && nav.classList.toggle('solid', forceSolid || scrollY > 40);
+    const onScroll = () => nav && nav.classList.toggle('solid', scrollY > 40);
     onScroll(); addEventListener('scroll', onScroll, { passive: true });
     if (burger && menu) {
       burger.addEventListener('click', () => toggleMenu(!menuOpen()));
       $$('a', menu).forEach(a => a.addEventListener('click', () => toggleMenu(false)));
     }
-    /* menu link hover → background still */
     const bgs = $$('.menu__bg img');
     const show = key => bgs.forEach(b => b.classList.toggle('show', b.dataset.menubg === key));
     $$('.menu__links a').forEach(a => {
@@ -841,119 +757,27 @@
   })();
 
   /* ============================================================
-     HERO - crossfading stills (no hero video asset; the slides
-     stand in for it and read identically under the scrim)
-     ============================================================ */
-  (function heroSlides() {
-    const a = $('#heroA'), b = $('#heroB');
-    if (!a || !b || reduced) return;
-    const STILLS = ['1088993725', '867458294', '1106434425', '1015277896'];
-    let i = 0, front = a, back = b;
-    setInterval(() => {
-      i = (i + 1) % STILLS.length;
-      back.src = `assets/img/work/${STILLS[i]}.jpg`;
-      back.classList.add('on');
-      front.classList.remove('on');
-      [front, back] = [back, front];
-    }, 4600);
-  })();
-
-  /* ============================================================
-     HUD TIMECODE - scroll as 25fps timecode
-     ============================================================ */
-  (function timecode() {
-    const el = $('#tc');
-    if (!el) return;
-    /* per-page runtimes via <body data-tc> - full scroll = full reel */
-    const TOTAL = +document.body.dataset.tc || 1465; // default 24:25
-    const fmt = s => {
-      const f = Math.floor((s % 1) * 25);
-      const sec = Math.floor(s);
-      return `${pad2(Math.floor(sec / 3600))}:${pad2(Math.floor(sec / 60) % 60)}:${pad2(sec % 60)}:${pad2(f)}`;
-    };
-    const onScroll = () => {
-      const max = document.documentElement.scrollHeight - innerHeight;
-      const pct = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
-      el.textContent = fmt(pct * TOTAL);
-    };
-    addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  })();
-
-  /* ============================================================
-     SCROLL REVEALS
+     SCROLL REVEALS - whatever is already on screen shows at once;
+     the rest waits for the observer
      ============================================================ */
   (function reveals() {
     const els = $$('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
-    const io = new IntersectionObserver((ents) => {
-      ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-    }, { threshold: 0.12 });
-    els.forEach(e => io.observe(e));
-  })();
-
-  /* ============================================================
-     STATS COUNT-UP
-     ============================================================ */
-  (function stats() {
-    /* '&' in the "and counting" tail carries no count - skip it */
-    const els = $$('.stat b').filter(e => e.dataset.count);
-    if (!els.length) return;
-    const done = e => e.textContent = e.dataset.count + (e.dataset.suffix || '');
-    if (reduced || !('IntersectionObserver' in window)) {
-      els.forEach(done); return;
-    }
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        io.unobserve(e.target);
-        const el = e.target, target = +el.dataset.count, suffix = el.dataset.suffix || '';
-        const t0 = performance.now(), dur = 1300;
-        const tick = now => {
-          const k = Math.min(1, (now - t0) / dur);
-          el.textContent = Math.round(target * (1 - Math.pow(1 - k, 3))) + (k === 1 ? suffix : '');
-          if (k < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
+    const show = e => e.classList.add('in');
+    if (reduced || !('IntersectionObserver' in window)) { els.forEach(show); return; }
+    const io = new IntersectionObserver(ents => {
+      ents.forEach(en => { if (en.isIntersecting) { show(en.target); io.unobserve(en.target); } });
+    }, { threshold: 0.08 });
+    const pending = new Set(els);
+    const firstScreen = () => {
+      const vh = innerHeight;
+      pending.forEach(e => {
+        if (e.getBoundingClientRect().top < vh * 1.05) { show(e); io.unobserve(e); pending.delete(e); }
       });
-    }, { threshold: 0.4 });
-    els.forEach(s => io.observe(s));
-  })();
-
-  /* ============================================================
-     EDITOR VIZ - crossfading stills
-     ============================================================ */
-  (function viz() {
-    const a = $('#vizA'), b = $('#vizB'), cap = $('#vizCap'), bar = $('#vizBar');
-    if (!a || !b) return;
-    const IDS = [1, 7, 2, 4, 6, 10];
-    const STILLS = IDS.map(byId);
-    const HOLD = 3400;
-    let i = 0, front = a, back = b;
-    front.src = img(STILLS[0]);
-    const caption = p => `STILL ${pad2(STILLS.indexOf(p) + 1)} - ${p.title.toUpperCase()} / ${p.client.toUpperCase()}`;
-    if (cap) cap.textContent = caption(STILLS[0]);
-    if (reduced) return;
-    if (bar) {
-      bar.style.transition = `width ${HOLD}ms linear`;
-      requestAnimationFrame(() => { bar.style.width = '100%'; });
-    }
-    setInterval(() => {
-      i = (i + 1) % STILLS.length;
-      back.src = img(STILLS[i]);
-      back.classList.add('on');
-      front.classList.remove('on');
-      [front, back] = [back, front];
-      if (cap) cap.textContent = caption(STILLS[i]);
-      if (bar) {
-        bar.style.transition = 'none';
-        bar.style.width = '0%';
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          bar.style.transition = `width ${HOLD}ms linear`;
-          bar.style.width = '100%';
-        }));
-      }
-    }, HOLD);
+    };
+    els.forEach(e => io.observe(e));
+    firstScreen();
+    /* a tab opened in the background gets the same treatment when it is shown */
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') firstScreen(); });
   })();
 
   /* ============================================================
@@ -1013,16 +837,14 @@
       const y = e.target.closest('[data-yt]');
       if (y) openTrailer(y.dataset.yt, y.dataset.ytTitle);
     });
-    const reelBtn = $('#playReel');
-    if (reelBtn) reelBtn.addEventListener('click', () => openPlayer(LIST[0].id));
     $('#playerClose').addEventListener('click', closePlayer);
     $('#playerPrev').addEventListener('click', () => loadFilm(cur - 1));
     $('#playerNext').addEventListener('click', () => loadFilm(cur + 1));
     document.addEventListener('keydown', e => {
       if (player.classList.contains('open')) {
         if (e.key === 'Escape') closePlayer();
-        if (e.key === 'ArrowLeft') loadFilm(cur - 1);
-        if (e.key === 'ArrowRight') loadFilm(cur + 1);
+        if (e.key === 'ArrowLeft' && !player.classList.contains('single')) loadFilm(cur - 1);
+        if (e.key === 'ArrowRight' && !player.classList.contains('single')) loadFilm(cur + 1);
       } else if (e.key === 'Escape' && menuOpen()) {
         toggleMenu(false);
       }
@@ -1030,11 +852,10 @@
   })();
 
   /* ============================================================
-     dev screenshot helper - inert unless localStorage flag set
+     dev screenshot helper - inert unless the storage flag is set
      usage: v4-jump = 'SHOT' | 'MENU' | 'PLAYER' | 'TOP:#sel' (combinable 'TOP:#sel|SHOT')
      ============================================================ */
   try {
-    /* preview harness reloads the tab once - stash flag in sessionStorage so it survives */
     const jump = localStorage.getItem('v4-jump') || sessionStorage.getItem('v4-jump');
     if (jump) {
       localStorage.removeItem('v4-jump');
@@ -1050,7 +871,7 @@
           if (part === 'SHOT') document.documentElement.classList.add('shot');
           else if (part === 'MENU') toggleMenu(true);
           else if (part === 'PLAYER') openPlayer(LIST[0].id);
-          else if (part.indexOf('TOP:') === 0) { // headless captures only work unscrolled - hoist section
+          else if (part.indexOf('TOP:') === 0) {
             const el = document.querySelector(part.slice(4));
             const m = document.querySelector('main');
             if (el && m) {
